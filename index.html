@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВЕРШИНА — готовый апарт-комплекс с видом на горы · Кисловодск</title>
+<meta name="description" content="Готовый премиальный жилой комплекс с апарт-номерами в Кисловодске. 100% готов, вид на горы Кавказа. Апартаменты и квартиры под доход и для жизни. Инвестиции от 8–12% годовых.">
+<meta name="theme-color" content="#05101E">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ВЕРШИНА — готовый апарт-комплекс с видом на горы · Кисловодск">
+<meta property="og:description" content="Готовый премиальный комплекс с апарт-номерами в Кисловодске. Доход сразу, без стройрисков. Вид на горы Кавказа.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Favicon (mountain emoji as inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2305101E'/%3E%3Cpath d='M15 72 L38 34 L52 55 L64 38 L85 72 Z' fill='%23C9A96E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Residence",
+  "name": "ВЕРШИНА — апарт-комплекс",
+  "description": "Готовый премиальный жилой комплекс с апарт-номерами в Кисловодске, вторая санитарная зона, вид на горы Кавказа.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Кисловодск",
+    "addressRegion": "Ставропольский край",
+    "addressCountry": "RU"
+  },
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"Ресепшен","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Ресторан","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Закрытая территория","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Вид на горы","value":true}
+  ]
+}
+</script>
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#05101E; --bg-2:#081526; --surface:#0C1B30; --surface-2:#10223A;
+  --accent:#1B5EFF; --accent-h:#3B79FF;
+  --gold:#C9A96E; --gold-l:#E0C28A;
+  --white:#FFFFFF;
+  --text:rgba(255,255,255,.93); --text-2:rgba(255,255,255,.58); --text-3:rgba(255,255,255,.32);
+  --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.14);
+  --serif:'Playfair Display', Georgia, serif;
+  --sans:'Inter', system-ui, sans-serif;
+  --r-sm:6px; --r-md:12px; --r-lg:20px; --r-xl:32px;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --maxw:1240px;
+  --grad-gold:linear-gradient(135deg,#C9A96E,#E0C28A);
+  --grad-ph:linear-gradient(135deg,#0C1B30 0%,#132a48 55%,#1d3a5f 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--serif); font-weight:400; line-height:1.12; letter-spacing:.2px}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+.container{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+section{padding:120px 0}
+.eyebrow{
+  font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold);
+  font-weight:500; margin-bottom:18px; display:inline-block;
+}
+.sec-title{font-size:clamp(30px,4.4vw,54px); color:#fff; margin-bottom:20px}
+.sec-sub{color:var(--text-2); font-size:17px; max-width:620px; margin-bottom:56px}
+.center{text-align:center}
+.center .sec-sub{margin-left:auto;margin-right:auto}
+.gold{color:var(--gold)}
+
+/* buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:10px; padding:15px 30px; border-radius:var(--r-sm);
+  font-size:14px; font-weight:500; letter-spacing:.6px; transition:all .35s var(--ease); white-space:nowrap;
+}
+.btn-gold{background:var(--grad-gold); color:#0a1524; font-weight:600}
+.btn-gold:hover{filter:brightness(1.08); transform:translateY(-2px); box-shadow:0 14px 34px rgba(201,169,110,.28)}
+.btn-ghost{border:1px solid var(--border-2); color:#fff}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold)}
+
+/* reveal */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.reveal.in{opacity:1; transform:none}
+
+/* ============ NAV ============ */
+header{position:fixed; top:0; left:0; right:0; z-index:100; transition:all .4s var(--ease); padding:22px 0}
+header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); padding:14px 0; border-bottom:1px solid var(--border)}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:20px}
+.logo{font-family:var(--serif); font-size:26px; letter-spacing:4px; color:#fff; display:flex; align-items:center; gap:10px}
+.logo b{color:var(--gold); font-weight:600}
+.logo svg{width:26px;height:26px}
+.nav-links{display:flex; gap:34px; align-items:center}
+.nav-links a{font-size:14px; color:var(--text-2); letter-spacing:.5px; transition:color .3s; position:relative}
+.nav-links a:hover{color:#fff}
+.nav-right{display:flex; align-items:center; gap:18px}
+.lang{display:flex; gap:2px; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden}
+.lang button{padding:7px 12px; font-size:12px; letter-spacing:1px; color:var(--text-2)}
+.lang button.active{background:var(--gold); color:#0a1524; font-weight:600}
+.burger{display:none; font-size:24px; color:#fff}
+.mobile-menu{
+  position:fixed; inset:0; background:rgba(5,16,30,.98); z-index:99; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:30px; transform:translateX(100%); transition:transform .45s var(--ease);
+}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-size:24px; font-family:var(--serif); color:#fff}
+.mobile-menu .close{position:absolute; top:26px; right:28px; font-size:34px; color:var(--text-2)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh; display:flex; align-items:center; position:relative; padding-top:120px; overflow:hidden;
+  background:var(--grad-ph);
+}
+.hero-bg{
+  position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80');
+  background-size:cover; background-position:center; opacity:.34;
+}
+.hero::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,16,30,.55) 0%,rgba(5,16,30,.35) 40%,var(--bg) 100%)}
+.hero .container{position:relative; z-index:2}
+.hero-badge{
+  display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border:1px solid var(--border-2);
+  border-radius:100px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-l); margin-bottom:30px;
+}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#3ad07a; box-shadow:0 0 10px #3ad07a}
+.hero h1{font-size:clamp(42px,7vw,88px); color:#fff; max-width:15ch; margin-bottom:26px}
+.hero h1 em{font-style:italic; color:var(--gold)}
+.hero p.lead{font-size:clamp(17px,2vw,21px); color:var(--text-2); max-width:52ch; margin-bottom:40px}
+.hero-cta{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:70px}
+.hero-stats{display:flex; gap:52px; flex-wrap:wrap}
+.hstat .n{font-family:var(--serif); font-size:clamp(30px,4vw,44px); color:#fff}
+.hstat .n span{color:var(--gold)}
+.hstat .l{font-size:13px; color:var(--text-3); letter-spacing:1px; text-transform:uppercase; margin-top:4px}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center}
+.about-media{position:relative; border-radius:var(--r-lg); overflow:hidden; min-height:460px; background:var(--grad-ph)}
+.about-media .ph{position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80'); background-size:cover; background-position:center}
+.about-media .tag{position:absolute; left:24px; bottom:24px; background:rgba(5,16,30,.72); backdrop-filter:blur(8px); border:1px solid var(--border-2); padding:14px 20px; border-radius:var(--r-md)}
+.about-media .tag b{color:var(--gold); font-family:var(--serif); font-size:24px}
+.about-media .tag span{display:block; font-size:12px; color:var(--text-2); letter-spacing:1px}
+.feat-row{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap}
+.feat-chip{display:flex; align-items:center; gap:10px; padding:12px 18px; border:1px solid var(--border); border-radius:var(--r-sm); font-size:14px; color:var(--text-2)}
+.feat-chip i{font-style:normal; font-size:18px}
+
+/* ============ ADVANTAGES ============ */
+.adv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+.adv-card{padding:38px 32px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface); transition:all .4s var(--ease)}
+.adv-card:hover{border-color:rgba(201,169,110,.4); transform:translateY(-4px); background:var(--surface-2)}
+.adv-card .ico{width:52px;height:52px;border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:22px}
+.adv-card h3{font-size:22px; color:#fff; margin-bottom:12px}
+.adv-card p{font-size:15px; color:var(--text-2)}
+
+/* ============ CATALOG ============ */
+.filters{display:flex; gap:12px; margin-bottom:44px; flex-wrap:wrap}
+.filters button{padding:11px 24px; border:1px solid var(--border); border-radius:100px; font-size:14px; color:var(--text-2); transition:all .3s}
+.filters button.active{background:var(--gold); color:#0a1524; font-weight:600; border-color:var(--gold)}
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+.uc{border:1px solid var(--border); border-radius:var(--r-md); overflow:hidden; background:var(--surface); transition:all .4s var(--ease)}
+.uc:hover{transform:translateY(-5px); border-color:var(--border-2); box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.uc-img{height:220px; background:var(--grad-ph); background-size:cover; background-position:center; position:relative}
+.uc-badge{position:absolute; top:14px; left:14px; padding:6px 13px; background:rgba(5,16,30,.75); backdrop-filter:blur(6px); border:1px solid var(--border-2); border-radius:var(--r-sm); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold-l)}
+.uc-body{padding:26px 24px}
+.uc-body h3{font-size:23px; color:#fff; margin-bottom:6px}
+.uc-loc{font-size:13px; color:var(--text-2); margin-bottom:20px}
+.uc-meta{display:flex; gap:22px; padding:16px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:20px}
+.uc-meta div{font-size:13px; color:var(--text-2)}
+.uc-meta b{display:block; font-size:18px; color:#fff; font-family:var(--serif); font-weight:500}
+.uc-foot{display:flex; align-items:center; justify-content:space-between}
+.uc-price{font-family:var(--serif); font-size:24px; color:var(--gold)}
+.uc-price small{display:block; font-size:11px; color:var(--text-3); font-family:var(--sans); letter-spacing:1px}
+.uc-btn{padding:10px 18px; border:1px solid var(--border-2); border-radius:var(--r-sm); font-size:13px; color:#fff; transition:all .3s}
+.uc-btn:hover{background:var(--gold); color:#0a1524; border-color:var(--gold)}
+
+/* ============ INVESTOR ============ */
+.investor{background:var(--bg-2)}
+.inv-top{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:64px}
+.inv-stat{padding:34px 30px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface)}
+.inv-stat .n{font-family:var(--serif); font-size:44px; color:var(--gold)}
+.inv-stat .l{font-size:14px; color:var(--text-2); margin-top:6px}
+.inv-facts{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:64px}
+.fact{padding:24px; border-left:2px solid var(--gold); background:var(--surface); border-radius:0 var(--r-sm) var(--r-sm) 0}
+.fact b{font-family:var(--serif); font-size:28px; color:#fff; display:block}
+.fact span{font-size:13px; color:var(--text-2)}
+/* B2B lot */
+.b2b{
+  border:1px solid rgba(201,169,110,.35); border-radius:var(--r-lg); padding:52px;
+  background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(27,94,255,.05)); position:relative; overflow:hidden;
+}
+.b2b h3{font-size:clamp(26px,3vw,38px); color:#fff; margin-bottom:16px}
+.b2b h3 span{color:var(--gold)}
+.b2b p{color:var(--text-2); max-width:60ch; margin-bottom:34px}
+.deal-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:38px}
+.step{position:relative; padding-top:14px}
+.step .num{font-family:var(--serif); font-size:16px; color:#0a1524; background:var(--gold); width:34px;height:34px;border-radius:50%; display:flex;align-items:center;justify-content:center; margin-bottom:14px; font-weight:600}
+.step h4{font-size:16px; color:#fff; margin-bottom:6px}
+.step p{font-size:13px; color:var(--text-2); margin:0}
+
+/* ============ CALCULATOR ============ */
+.calc-wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:0; border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden}
+.calc-wrap>*{min-width:0}
+.range-val{min-width:0}
+.calc-form{padding:48px; background:var(--surface)}
+.calc-res{padding:48px; background:linear-gradient(160deg,#0e2340,#0a1a30); display:flex; flex-direction:column; justify-content:center}
+.field{margin-bottom:26px}
+.field label{display:block; font-size:13px; color:var(--text-2); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px}
+.seg{display:flex; gap:8px; flex-wrap:wrap}
+.seg button{flex:1; min-width:90px; padding:12px; border:1px solid var(--border); border-radius:var(--r-sm); font-size:13px; color:var(--text-2); transition:all .3s}
+.seg button.active{background:var(--accent); color:#fff; border-color:var(--accent)}
+input[type=range]{width:100%; -webkit-appearance:none; height:3px; background:var(--border-2); border-radius:3px; outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:20px;height:20px;border-radius:50%; background:var(--gold); cursor:pointer; box-shadow:0 0 0 5px rgba(201,169,110,.18)}
+.range-val{display:flex; justify-content:space-between; font-size:13px; color:var(--text-3); margin-top:8px}
+.range-val b{color:var(--gold); font-size:16px; font-family:var(--serif)}
+.calc-res .r-label{font-size:13px; color:var(--text-2); letter-spacing:1px; text-transform:uppercase; margin-bottom:10px}
+.calc-res .r-big{font-family:var(--serif); font-size:clamp(38px,5vw,56px); color:#fff; line-height:1}
+.calc-res .r-big span{color:var(--gold)}
+.calc-res .r-row{display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--border); font-size:14px; color:var(--text-2)}
+.calc-res .r-row b{color:#fff; font-family:var(--serif); font-size:18px; font-weight:500}
+.calc-note{font-size:12px; color:var(--text-3); margin-top:22px; line-height:1.5}
+
+/* ============ LOCATION ============ */
+.loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+.loc-map{border-radius:var(--r-lg); overflow:hidden; min-height:400px; background:var(--grad-ph); position:relative; border:1px solid var(--border)}
+.loc-map iframe{width:100%; height:100%; min-height:400px; border:0; filter:grayscale(.3) invert(.9) contrast(.9)}
+.loc-list{list-style:none}
+.loc-list li{display:flex; align-items:flex-start; gap:16px; padding:18px 0; border-bottom:1px solid var(--border)}
+.loc-list .ico{font-size:22px}
+.loc-list b{color:#fff; font-size:16px}
+.loc-list span{font-size:14px; color:var(--text-2)}
+
+/* ============ FAQ ============ */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%; text-align:left; padding:26px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; font-size:19px; color:#fff; font-family:var(--serif)}
+.faq-q .pm{color:var(--gold); font-size:26px; transition:transform .3s; flex-shrink:0}
+.faq-item.open .pm{transform:rotate(45deg)}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .4s var(--ease)}
+.faq-a p{padding:0 0 26px; color:var(--text-2); font-size:15px; max-width:80ch}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--bg-2)}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px}
+.form-el{margin-bottom:20px}
+.form-el label{display:block; font-size:13px; color:var(--text-2); margin-bottom:8px}
+.form-el input,.form-el select,.form-el textarea{
+  width:100%; padding:15px 18px; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm);
+  color:#fff; font-family:inherit; font-size:15px; transition:border-color .3s;
+}
+.form-el input:focus,.form-el select:focus,.form-el textarea:focus{outline:none; border-color:var(--gold)}
+.form-el textarea{resize:vertical; min-height:90px}
+.consent{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--text-3); margin-bottom:22px}
+.consent a{color:var(--gold); text-decoration:underline}
+.contact-info h3{font-size:26px; color:#fff; margin-bottom:8px}
+.ci-item{display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--border)}
+.ci-item .ico{width:44px;height:44px; border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex;align-items:center;justify-content:center; font-size:20px}
+.ci-item b{color:#fff; font-size:16px; display:block}
+.ci-item span{font-size:13px; color:var(--text-2)}
+.demo-note{margin-top:24px; padding:16px 20px; border:1px dashed var(--border-2); border-radius:var(--r-sm); font-size:12px; color:var(--text-3)}
+
+/* ============ FOOTER ============ */
+footer{padding:70px 0 40px; border-top:1px solid var(--border)}
+.foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:50px}
+.foot-grid p{color:var(--text-2); font-size:14px; margin-top:16px; max-width:38ch}
+.foot-col h4{font-family:var(--sans); font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--text-3); margin-bottom:20px}
+.foot-col a{display:block; color:var(--text-2); font-size:14px; margin-bottom:12px; transition:color .3s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:20px; padding-top:30px; border-top:1px solid var(--border); font-size:13px; color:var(--text-3); flex-wrap:wrap}
+.foot-bottom a{color:var(--text-3); text-decoration:underline}
+
+/* ============ FLOAT + COOKIE + TOAST ============ */
+.float-btn{position:fixed; right:24px; bottom:24px; z-index:90; width:60px;height:60px; border-radius:50%; background:var(--grad-gold); display:flex;align-items:center;justify-content:center; font-size:28px; box-shadow:0 10px 30px rgba(201,169,110,.4); transition:transform .3s; animation:pulse 2.6s infinite}
+.float-btn:hover{transform:scale(1.08)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,169,110,.5)}70%{box-shadow:0 0 0 16px rgba(201,169,110,0)}100%{box-shadow:0 0 0 0 rgba(201,169,110,0)}}
+.cookie{position:fixed; left:24px; bottom:24px; right:100px; max-width:520px; z-index:95; background:var(--surface-2); border:1px solid var(--border-2); border-radius:var(--r-md); padding:20px 24px; display:flex; gap:18px; align-items:center; box-shadow:0 20px 50px rgba(0,0,0,.5); transform:translateY(150%); transition:transform .5s var(--ease)}
+.cookie.show{transform:none}
+.cookie p{font-size:13px; color:var(--text-2)}
+.cookie a{color:var(--gold); text-decoration:underline}
+.cookie button{flex-shrink:0; padding:11px 22px; background:var(--gold); color:#0a1524; border-radius:var(--r-sm); font-size:13px; font-weight:600}
+.toast{position:fixed; top:24px; left:50%; transform:translate(-50%,-300%); z-index:200; background:#0f2a1c; border:1px solid #2f7d52; color:#a8e6c2; padding:16px 28px; border-radius:var(--r-sm); font-size:14px; transition:transform .5s var(--ease); max-width:92vw; text-align:center}
+.toast.show{transform:translate(-50%,0)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  section{padding:80px 0}
+  .about-grid,.calc-wrap,.loc-grid,.contact-grid{grid-template-columns:1fr; gap:34px}
+  .adv-grid,.cards,.inv-top{grid-template-columns:repeat(2,1fr)}
+  .inv-facts,.deal-steps{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .b2b{padding:36px 28px}
+  .calc-form,.calc-res{padding:34px}
+}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .nav-links{display:none}
+  .burger{display:block}
+  .nav-right .btn{display:none}
+  section{padding:64px 0}
+  .hero{padding-top:100px}
+  .hero-stats{gap:28px}
+  .hero-cta{flex-direction:column; align-items:stretch}
+  .hero-cta .btn{justify-content:center}
+  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid{grid-template-columns:1fr}
+  .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
+  .sec-title{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <div class="container nav">
+    <a href="#hero" class="logo">
+      <svg viewBox="0 0 100 100"><path d="M12 74 L40 30 L54 52 L66 34 L88 74 Z" fill="#C9A96E"/></svg>
+      <span data-i18n="brand">ВЕРШИНА</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about" data-i18n="nav_about">О проекте</a>
+      <a href="#catalog" data-i18n="nav_apart">Апартаменты</a>
+      <a href="#investor" data-i18n="nav_invest">Инвестору</a>
+      <a href="#location" data-i18n="nav_loc">Локация</a>
+      <a href="#contact" data-i18n="nav_contacts">Контакты</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button data-lang="ru" class="active">RU</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
+      <button class="burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu">×</button>
+  <a href="#about" data-i18n="nav_about">О проекте</a>
+  <a href="#catalog" data-i18n="nav_apart">Апартаменты</a>
+  <a href="#investor" data-i18n="nav_invest">Инвестору</a>
+  <a href="#location" data-i18n="nav_loc">Локация</a>
+  <a href="#contact" data-i18n="nav_contacts">Контакты</a>
+  <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" data-asset="__HERO_VIDEO__"></div>
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span><span data-i18n="hero_badge">100% готов · введён в эксплуатацию</span></div>
+    <h1><span data-i18n="hero_h1a">Готовый апарт-комплекс с видом на </span><em data-i18n="hero_h1b">горы Кавказа</em></h1>
+    <p class="lead" data-i18n="hero_lead">Кисловодск, вторая санитарная зона. Апартаменты и квартиры под доход и для жизни. Актив, который приносит деньги уже сегодня — без стройки и рисков.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-gold" data-i18n="hero_cta1">Оставить заявку</a>
+      <a href="#catalog" class="btn btn-ghost" data-i18n="hero_cta2">Смотреть апартаменты</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n"><span>100%</span></div><div class="l" data-i18n="hs_ready">готовность</div></div>
+      <div class="hstat"><div class="n" data-count="85">0</div><div class="l" data-i18n="hs_units">юнитов в продаже</div></div>
+      <div class="hstat"><div class="n">8–12<span>%</span></div><div class="l" data-i18n="hs_yield">доход в сезон</div></div>
+      <div class="hstat"><div class="n" data-count="1.9" data-suffix=" млн">0</div><div class="l" data-i18n="hs_tourists">туристов в год</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="about_eye">О проекте</span>
+      <h2 class="sec-title" data-i18n="about_title">Курортная резиденция премиум-класса</h2>
+      <p class="sec-sub" data-i18n="about_text">Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.</p>
+      <div class="feat-row">
+        <div class="feat-chip"><i>🛎️</i><span data-i18n="chip_reception">Ресепшен 24/7</span></div>
+        <div class="feat-chip"><i>🍽️</i><span data-i18n="chip_rest">Ресторан / кафе</span></div>
+        <div class="feat-chip"><i>🌳</i><span data-i18n="chip_area">Закрытая территория</span></div>
+        <div class="feat-chip"><i>🏔️</i><span data-i18n="chip_view">Панорама гор</span></div>
+      </div>
+    </div>
+    <div class="about-media reveal">
+      <div class="ph" data-asset="__PHOTO_ABOUT__"></div>
+      <div class="tag"><b>100%</b><span data-i18n="about_tag">готов к заселению</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVANTAGES ============ -->
+<section id="advantages" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="adv_eye">Почему ВЕРШИНА</span>
+      <h2 class="sec-title" data-i18n="adv_title">Единственный готовый — пока другие строят</h2>
+      <p class="sec-sub" data-i18n="adv_sub">Прямые конкуренты Кисловодска сдаются в 2026–2028 годах. Наш объект готов и приносит доход уже сейчас.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal"><div class="ico">✅</div><h3 data-i18n="adv1_t">Готов и сдан</h3><p data-i18n="adv1_p">Введён в эксплуатацию. Ноль строительных рисков, немедленный денежный поток.</p></div>
+      <div class="adv-card reveal"><div class="ico">🏔️</div><h3 data-i18n="adv2_t">Вид на горы</h3><p data-i18n="adv2_p">Панорама Кавказского хребта — ключевой актив премиального позиционирования.</p></div>
+      <div class="adv-card reveal"><div class="ico">🛎️</div><h3 data-i18n="adv3_t">Отельная модель</h3><p data-i18n="adv3_p">Профессиональный ресепшен — объект готов к гостиничной эксплуатации без вложений.</p></div>
+      <div class="adv-card reveal"><div class="ico">🍽️</div><h3 data-i18n="adv4_t">Свой ресторан</h3><p data-i18n="adv4_p">Собственная точка питания — дополнительный доход и конкурентное преимущество.</p></div>
+      <div class="adv-card reveal"><div class="ico">🌳</div><h3 data-i18n="adv5_t">Закрытая территория</h3><p data-i18n="adv5_p">Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.</p></div>
+      <div class="adv-card reveal"><div class="ico">💎</div><h3 data-i18n="adv6_t">Дефицитный актив</h3><p data-i18n="adv6_p">Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section id="catalog">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="cat_eye">Каталог</span>
+      <h2 class="sec-title" data-i18n="cat_title">Апартаменты и квартиры</h2>
+      <p class="sec-sub" data-i18n="cat_sub">Выберите формат — под сдачу в аренду или для собственного отдыха.</p>
+    </div>
+    <div class="filters">
+      <button class="active" data-filter="all" data-i18n="f_all">Все</button>
+      <button data-filter="apart" data-i18n="f_apart">Апарт-номера</button>
+      <button data-filter="flat" data-i18n="f_flat">Квартиры</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- ============ INVESTOR ============ -->
+<section id="investor" class="investor">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="inv_eye">Инвестору</span>
+      <h2 class="sec-title" data-i18n="inv_title">Доход, подтверждённый рынком</h2>
+      <p class="sec-sub" data-i18n="inv_sub">Честные цифры без завышений. Кисловодск — самый дорогой и быстрорастущий курорт КМВ.</p>
+    </div>
+
+    <div class="inv-top">
+      <div class="inv-stat reveal"><div class="n">8–12%</div><div class="l" data-i18n="is1">Доходность от аренды в сезон (годовых)</div></div>
+      <div class="inv-stat reveal"><div class="n">5–15т ₽</div><div class="l" data-i18n="is2">Ставка посуточной аренды за ночь</div></div>
+      <div class="inv-stat reveal"><div class="n">+47%</div><div class="l" data-i18n="is3">Рост цены за м² за полугодие</div></div>
+    </div>
+
+    <div class="inv-facts">
+      <div class="fact reveal"><b>~1,9 млн</b><span data-i18n="fct1">туристов в Кисловодске за 2024 год</span></div>
+      <div class="fact reveal"><b>80%+</b><span data-i18n="fct2">сезонная загрузка качественных объектов</span></div>
+      <div class="fact reveal"><b>13%</b><span data-i18n="fct3">объектов региона — уровня 4–5★ (дефицит)</span></div>
+      <div class="fact reveal"><b>592 млрд ₽</b><span data-i18n="fct4">госпрограмма развития КМВ до 2030 (№2540-р)</span></div>
+    </div>
+
+    <div class="b2b reveal">
+      <span class="eyebrow" data-i18n="b2b_eye">Для институционального покупателя</span>
+      <h3><span data-i18n="b2b_ta">Весь пул единым лотом — </span><span data-i18n="b2b_tb">300–500 млн ₽</span></h3>
+      <p data-i18n="b2b_p">Оставшиеся 50–100 юнитов приобретаются единым лотом. Продажа без ипотеки, 100% оплата. Готовый объект с денежным потоком — вход в растущий рынок без премии за стройку.</p>
+      <div class="deal-steps">
+        <div class="step"><div class="num">1</div><h4 data-i18n="ds1_t">NDA и знакомство</h4><p data-i18n="ds1_p">Соглашение о конфиденциальности, полный пакет документации.</p></div>
+        <div class="step"><div class="num">2</div><h4 data-i18n="ds2_t">Осмотр и проверка</h4><p data-i18n="ds2_p">Выезд на объект, проверка права собственности и техсостояния.</p></div>
+        <div class="step"><div class="num">3</div><h4 data-i18n="ds3_t">Согласование</h4><p data-i18n="ds3_p">Цена, структура оплаты, перечень передаваемых юнитов.</p></div>
+        <div class="step"><div class="num">4</div><h4 data-i18n="ds4_t">Сделка</h4><p data-i18n="ds4_p">Договор купли-продажи, 100% оплата, передача ключей.</p></div>
+      </div>
+      <a href="#contact" class="btn btn-gold" data-i18n="b2b_cta">Запросить меморандум</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section id="calc">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="calc_eye">Калькулятор доходности</span>
+      <h2 class="sec-title" data-i18n="calc_title">Рассчитайте свой доход</h2>
+      <p class="sec-sub" data-i18n="calc_sub">Ориентировочная модель за 30 секунд. Точный расчёт — при просмотре объекта.</p>
+    </div>
+    <div class="calc-wrap reveal">
+      <div class="calc-form">
+        <div class="field">
+          <label data-i18n="calc_type">Тип юнита</label>
+          <div class="seg" id="segType">
+            <button class="active" data-type="apart" data-i18n="calc_apart">Апарт-номер</button>
+            <button data-type="flat" data-i18n="calc_flat">Квартира</button>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="calc_area">Площадь</label>
+          <input type="range" id="area" min="20" max="130" value="42">
+          <div class="range-val"><span>20 м²</span><b id="areaV">42 м²</b><span>130 м²</span></div>
+        </div>
+        <div class="field">
+          <label data-i18n="calc_rate">Средний тариф, ₽/сутки</label>
+          <input type="range" id="rate" min="4000" max="22000" step="500" value="10000">
+          <div class="range-val"><span>4 000</span><b id="rateV">10 000 ₽</b><span>22 000</span></div>
+        </div>
+        <div class="field">
+          <label data-i18n="calc_load">Загрузка в сезон, %</label>
+          <input type="range" id="load" min="40" max="95" value="80">
+          <div class="range-val"><span>40%</span><b id="loadV">80%</b><span>95%</span></div>
+        </div>
+      </div>
+      <div class="calc-res">
+        <div class="r-label" data-i18n="calc_income">Доход в год</div>
+        <div class="r-big" id="incomeV">0 <span>₽</span></div>
+        <div style="margin-top:26px">
+          <div class="r-row"><span data-i18n="calc_price">Ориентировочная цена юнита</span><b id="priceV">0 ₽</b></div>
+          <div class="r-row"><span data-i18n="calc_yield">Доходность, годовых</span><b id="yieldV">0%</b></div>
+          <div class="r-row"><span data-i18n="calc_pay">Окупаемость от аренды</span><b id="payV">0 лет</b></div>
+        </div>
+        <a href="#contact" class="btn btn-gold" style="margin-top:28px; justify-content:center" data-i18n="calc_cta">Получить персональный расчёт</a>
+        <p class="calc-note" data-i18n="calc_note">* Расчёт носит информационный характер и не является публичной офертой. Итоговая доходность зависит от сезона, управления и рыночных условий.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section id="location" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="loc_eye">Локация</span>
+      <h2 class="sec-title" data-i18n="loc_title">В сердце курортного Кисловодска</h2>
+      <p class="sec-sub" data-i18n="loc_sub">Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-map reveal">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Кисловодск&output=embed" title="Карта Кисловодска"></iframe>
+      </div>
+      <div class="reveal">
+        <ul class="loc-list">
+          <li><span class="ico">🌳</span><div><b data-i18n="l1_t">Национальный парк</b><span data-i18n="l1_p">Крупнейший курортный парк России, терренкуры</span></div></li>
+          <li><span class="ico">💧</span><div><b data-i18n="l2_t">Нарзанные источники</b><span data-i18n="l2_p">Знаменитые минеральные воды в пешей доступности</span></div></li>
+          <li><span class="ico">🎭</span><div><b data-i18n="l3_t">Курортный бульвар</b><span data-i18n="l3_p">Исторический центр, рестораны, филармония</span></div></li>
+          <li><span class="ico">✈️</span><div><b data-i18n="l4_t">Аэропорт Минеральные Воды</b><span data-i18n="l4_p">~1 час на автомобиле</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container" style="max-width:900px">
+    <div class="center">
+      <span class="eyebrow" data-i18n="faq_eye">Вопросы</span>
+      <h2 class="sec-title" data-i18n="faq_title">Частые вопросы</h2>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="ct_eye">Заявка</span>
+      <h2 class="sec-title" data-i18n="ct_title">Оставьте заявку</h2>
+      <p class="sec-sub" data-i18n="ct_sub">Свяжемся в течение 15 минут, вышлем презентацию и подберём юнит под вашу цель.</p>
+      <form id="leadForm">
+        <div class="form-el"><label data-i18n="ct_name">Ваше имя</label><input type="text" id="fName" required></div>
+        <div class="form-el"><label data-i18n="ct_phone">Телефон</label><input type="tel" id="fPhone" required placeholder="+7 ..."></div>
+        <div class="form-el"><label data-i18n="ct_type">Тип запроса</label>
+          <select id="fType">
+            <option data-i18n="ct_o1">Покупка юнита</option>
+            <option data-i18n="ct_o2">Инвестиции / доход</option>
+            <option data-i18n="ct_o3">Весь пул (единый лот)</option>
+            <option data-i18n="ct_o4">Консультация</option>
+          </select>
+        </div>
+        <div class="form-el"><label data-i18n="ct_msg">Сообщение (необязательно)</label><textarea id="fMsg"></textarea></div>
+        <label class="consent"><input type="checkbox" id="fConsent" required style="width:auto;margin-top:3px"><span data-i18n="ct_consent">Я согласен на обработку персональных данных в соответствии с </span><a href="#" onclick="return false" data-i18n="ct_policy">политикой конфиденциальности</a></label>
+        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center" data-i18n="ct_submit">Отправить заявку</button>
+      </form>
+    </div>
+    <div class="contact-info reveal">
+      <h3 data-i18n="ci_title">Контакты</h3>
+      <p style="color:var(--text-2); margin-bottom:20px" data-i18n="ci_sub">Отдел продаж комплекса</p>
+      <div class="ci-item"><div class="ico">📞</div><div><b>+7 (000) 000-00-00</b><span data-i18n="ci_phone">Ежедневно 9:00–21:00</span></div></div>
+      <a class="ci-item" href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener"><div class="ico">✈️</div><div><b>Telegram</b><span>@AbdulAzizDigital</span></div></a>
+      <div class="ci-item"><div class="ico">📍</div><div><b data-i18n="ci_loc">Кисловодск</b><span data-i18n="ci_loc2">2-я санитарная зона · точный адрес по заявке</span></div></div>
+      <div class="demo-note" data-i18n="demo_note">⚙️ Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#hero" class="logo"><svg viewBox="0 0 100 100" style="width:24px;height:24px"><path d="M12 74 L40 30 L54 52 L66 34 L88 74 Z" fill="#C9A96E"/></svg><span data-i18n="brand">ВЕРШИНА</span></a>
+        <p data-i18n="foot_about">Готовый апарт-комплекс премиум-класса с видом на горы Кавказа. Кисловодск, вторая санитарная зона.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_nav">Навигация</h4>
+        <a href="#about" data-i18n="nav_about">О проекте</a>
+        <a href="#catalog" data-i18n="nav_apart">Апартаменты</a>
+        <a href="#investor" data-i18n="nav_invest">Инвестору</a>
+        <a href="#contact" data-i18n="nav_contacts">Контакты</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_docs">Документы</h4>
+        <a href="#" onclick="return false" data-i18n="foot_privacy">Политика конфиденциальности</a>
+        <a href="#" onclick="return false" data-i18n="foot_consent">Согласие на обработку ПДн</a>
+        <a href="#" onclick="return false" data-i18n="foot_terms">Пользовательское соглашение</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_copy">© 2026 ВЕРШИНА. Демонстрационная версия сайта.</span>
+      <span data-i18n="foot_made">Сделано в студии Abdul Aziz Digital</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="float-btn" title="Написать в Telegram">✈️</a>
+
+<div class="cookie" id="cookie">
+  <p data-i18n="cookie_txt">Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с <a href="#" onclick="return false">политикой конфиденциальности</a>.</p>
+  <button id="cookieOk" data-i18n="cookie_ok">Принять</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ i18n ============ */
+const I18N={
+ ru:{
+  brand:"ВЕРШИНА",
+  nav_about:"О проекте",nav_apart:"Апартаменты",nav_invest:"Инвестору",nav_loc:"Локация",nav_contacts:"Контакты",cta_request:"Оставить заявку",
+  hero_badge:"100% готов · введён в эксплуатацию",hero_h1a:"Готовый апарт-комплекс с видом на ",hero_h1b:"горы Кавказа",
+  hero_lead:"Кисловодск, вторая санитарная зона. Апартаменты и квартиры под доход и для жизни. Актив, который приносит деньги уже сегодня — без стройки и рисков.",
+  hero_cta1:"Оставить заявку",hero_cta2:"Смотреть апартаменты",
+  hs_ready:"готовность",hs_units:"юнитов в продаже",hs_yield:"доход в сезон",hs_tourists:"туристов в год",
+  about_eye:"О проекте",about_title:"Курортная резиденция премиум-класса",
+  about_text:"Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.",
+  chip_reception:"Ресепшен 24/7",chip_rest:"Ресторан / кафе",chip_area:"Закрытая территория",chip_view:"Панорама гор",about_tag:"готов к заселению",
+  adv_eye:"Почему ВЕРШИНА",adv_title:"Единственный готовый — пока другие строят",adv_sub:"Прямые конкуренты Кисловодска сдаются в 2026–2028 годах. Наш объект готов и приносит доход уже сейчас.",
+  adv1_t:"Готов и сдан",adv1_p:"Введён в эксплуатацию. Ноль строительных рисков, немедленный денежный поток.",
+  adv2_t:"Вид на горы",adv2_p:"Панорама Кавказского хребта — ключевой актив премиального позиционирования.",
+  adv3_t:"Отельная модель",adv3_p:"Профессиональный ресепшен — объект готов к гостиничной эксплуатации без вложений.",
+  adv4_t:"Свой ресторан",adv4_p:"Собственная точка питания — дополнительный доход и конкурентное преимущество.",
+  adv5_t:"Закрытая территория",adv5_p:"Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.",
+  adv6_t:"Дефицитный актив",adv6_p:"Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.",
+  cat_eye:"Каталог",cat_title:"Апартаменты и квартиры",cat_sub:"Выберите формат — под сдачу в аренду или для собственного отдыха.",
+  f_all:"Все",f_apart:"Апарт-номера",f_flat:"Квартиры",
+  inv_eye:"Инвестору",inv_title:"Доход, подтверждённый рынком",inv_sub:"Честные цифры без завышений. Кисловодск — самый дорогой и быстрорастущий курорт КМВ.",
+  is1:"Доходность от аренды в сезон (годовых)",is2:"Ставка посуточной аренды за ночь",is3:"Рост цены за м² за полугодие",
+  fct1:"туристов в Кисловодске за 2024 год",fct2:"сезонная загрузка качественных объектов",fct3:"объектов региона — уровня 4–5★ (дефицит)",fct4:"госпрограмма развития КМВ до 2030 (№2540-р)",
+  b2b_eye:"Для институционального покупателя",b2b_ta:"Весь пул единым лотом — ",b2b_tb:"300–500 млн ₽",
+  b2b_p:"Оставшиеся 50–100 юнитов приобретаются единым лотом. Продажа без ипотеки, 100% оплата. Готовый объект с денежным потоком — вход в растущий рынок без премии за стройку.",
+  ds1_t:"NDA и знакомство",ds1_p:"Соглашение о конфиденциальности, полный пакет документации.",
+  ds2_t:"Осмотр и проверка",ds2_p:"Выезд на объект, проверка права собственности и техсостояния.",
+  ds3_t:"Согласование",ds3_p:"Цена, структура оплаты, перечень передаваемых юнитов.",
+  ds4_t:"Сделка",ds4_p:"Договор купли-продажи, 100% оплата, передача ключей.",b2b_cta:"Запросить меморандум",
+  calc_eye:"Калькулятор доходности",calc_title:"Рассчитайте свой доход",calc_sub:"Ориентировочная модель за 30 секунд. Точный расчёт — при просмотре объекта.",
+  calc_type:"Тип юнита",calc_apart:"Апарт-номер",calc_flat:"Квартира",calc_area:"Площадь",calc_rate:"Средний тариф, ₽/сутки",calc_load:"Загрузка в сезон, %",
+  calc_income:"Доход в год",calc_price:"Ориентировочная цена юнита",calc_yield:"Доходность, годовых",calc_pay:"Окупаемость от аренды",calc_cta:"Получить персональный расчёт",
+  calc_note:"* Расчёт носит информационный характер и не является публичной офертой. Итоговая доходность зависит от сезона, управления и рыночных условий.",
+  loc_eye:"Локация",loc_title:"В сердце курортного Кисловодска",loc_sub:"Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.",
+  l1_t:"Национальный парк",l1_p:"Крупнейший курортный парк России, терренкуры",l2_t:"Нарзанные источники",l2_p:"Знаменитые минеральные воды в пешей доступности",
+  l3_t:"Курортный бульвар",l3_p:"Исторический центр, рестораны, филармония",l4_t:"Аэропорт Минеральные Воды",l4_p:"~1 час на автомобиле",
+  faq_eye:"Вопросы",faq_title:"Частые вопросы",
+  ct_eye:"Заявка",ct_title:"Оставьте заявку",ct_sub:"Свяжемся в течение 15 минут, вышлем презентацию и подберём юнит под вашу цель.",
+  ct_name:"Ваше имя",ct_phone:"Телефон",ct_type:"Тип запроса",ct_o1:"Покупка юнита",ct_o2:"Инвестиции / доход",ct_o3:"Весь пул (единый лот)",ct_o4:"Консультация",
+  ct_msg:"Сообщение (необязательно)",ct_consent:"Я согласен на обработку персональных данных в соответствии с ",ct_policy:"политикой конфиденциальности",ct_submit:"Отправить заявку",
+  ci_title:"Контакты",ci_sub:"Отдел продаж комплекса",ci_phone:"Ежедневно 9:00–21:00",ci_loc:"Кисловодск",ci_loc2:"2-я санитарная зона · точный адрес по заявке",
+  demo_note:"⚙️ Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.",
+  foot_about:"Готовый апарт-комплекс премиум-класса с видом на горы Кавказа. Кисловодск, вторая санитарная зона.",
+  foot_nav:"Навигация",foot_docs:"Документы",foot_privacy:"Политика конфиденциальности",foot_consent:"Согласие на обработку ПДн",foot_terms:"Пользовательское соглашение",
+  foot_copy:"© 2026 ВЕРШИНА. Демонстрационная версия сайта.",foot_made:"Сделано в студии Abdul Aziz Digital",
+  cookie_txt:'Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с политикой конфиденциальности.',cookie_ok:"Принять",
+  toast_ok:"Заявка отправлена! Открываем Telegram…",
+  unit_apart:"Апарт-номер",unit_flat:"Квартира",unit_view:"Вид на горы",price_req:"по запросу",m2:"м²",floor:"этаж",lvl:"уровня",
+  years:"лет"
+ },
+ en:{
+  brand:"VERSHINA",
+  nav_about:"Project",nav_apart:"Apartments",nav_invest:"Investors",nav_loc:"Location",nav_contacts:"Contacts",cta_request:"Request a call",
+  hero_badge:"100% ready · commissioned",hero_h1a:"A ready apart-complex with a view of the ",hero_h1b:"Caucasus mountains",
+  hero_lead:"Kislovodsk, second sanitary zone. Apartments and residences for income and living. An asset that earns from day one — no construction, no risk.",
+  hero_cta1:"Request a call",hero_cta2:"View apartments",
+  hs_ready:"readiness",hs_units:"units for sale",hs_yield:"seasonal yield",hs_tourists:"tourists / year",
+  about_eye:"The Project",about_title:"A premium resort residence",
+  about_text:"A mixed-use complex fully built and commissioned in the resort capital of the North Caucasus. Ground floor — apart-hotel units under a hotel model, upper levels — two-storey residences. Part of the units is already sold; the remaining pool is available.",
+  chip_reception:"24/7 reception",chip_rest:"Restaurant / café",chip_area:"Gated territory",chip_view:"Mountain panorama",about_tag:"move-in ready",
+  adv_eye:"Why VERSHINA",adv_title:"The only ready one — while others are building",adv_sub:"Kislovodsk's direct competitors complete in 2026–2028. Our asset is ready and earning today.",
+  adv1_t:"Ready & commissioned",adv1_p:"Fully commissioned. Zero construction risk, immediate cash flow.",
+  adv2_t:"Mountain view",adv2_p:"Panorama of the Caucasus range — the key asset of premium positioning.",
+  adv3_t:"Hotel model",adv3_p:"Professional reception — ready for hotel operation with no extra investment.",
+  adv4_t:"On-site restaurant",adv4_p:"Own dining venue — extra income and a competitive edge.",
+  adv5_t:"Gated territory",adv5_p:"Landscaping, greenery and private leisure zones for residents and guests.",
+  adv6_t:"Scarce asset",adv6_p:"Second sanitary zone — limited development. Quality supply on the market is acutely scarce.",
+  cat_eye:"Catalogue",cat_title:"Apartments & residences",cat_sub:"Choose a format — for rental income or for your own getaway.",
+  f_all:"All",f_apart:"Apart-units",f_flat:"Residences",
+  inv_eye:"Investors",inv_title:"Income confirmed by the market",inv_sub:"Honest figures, no inflation. Kislovodsk is the most expensive and fastest-growing resort of the CMW region.",
+  is1:"Rental yield in season (annual)",is2:"Nightly rental rate",is3:"Price-per-m² growth in six months",
+  fct1:"tourists in Kislovodsk in 2024",fct2:"seasonal occupancy of quality properties",fct3:"of region's properties are 4–5★ (a deficit)",fct4:"state CMW development programme to 2030 (No.2540-r)",
+  b2b_eye:"For an institutional buyer",b2b_ta:"The entire pool as one lot — ",b2b_tb:"₽300–500M",
+  b2b_p:"The remaining 50–100 units are acquired as a single lot. Sale without mortgage, 100% payment. A ready, cash-flowing asset — entry into a growing market with no construction premium.",
+  ds1_t:"NDA & introduction",ds1_p:"Confidentiality agreement and full documentation package.",
+  ds2_t:"Inspection & due diligence",ds2_p:"Site visit, verification of title and technical condition.",
+  ds3_t:"Terms",ds3_p:"Price, payment structure and the list of transferred units.",
+  ds4_t:"Closing",ds4_p:"Purchase agreement, 100% payment, handover of keys.",b2b_cta:"Request the memorandum",
+  calc_eye:"Yield calculator",calc_title:"Calculate your income",calc_sub:"An indicative model in 30 seconds. Exact figures — during a viewing.",
+  calc_type:"Unit type",calc_apart:"Apart-unit",calc_flat:"Residence",calc_area:"Area",calc_rate:"Average rate, ₽/night",calc_load:"Seasonal occupancy, %",
+  calc_income:"Income per year",calc_price:"Indicative unit price",calc_yield:"Annual yield",calc_pay:"Payback from rent",calc_cta:"Get a personal calculation",
+  calc_note:"* This calculation is informational only and is not a public offer. Actual yield depends on season, management and market conditions.",
+  loc_eye:"Location",loc_title:"In the heart of resort Kislovodsk",loc_sub:"The second sanitary zone — a clean, protected location next to the main attractions.",
+  l1_t:"National Park",l1_p:"Russia's largest resort park, walking trails",l2_t:"Narzan springs",l2_p:"Famous mineral waters within walking distance",
+  l3_t:"Resort Boulevard",l3_p:"Historic centre, restaurants, philharmonic hall",l4_t:"Mineralnye Vody Airport",l4_p:"~1 hour by car",
+  faq_eye:"FAQ",faq_title:"Frequently asked questions",
+  ct_eye:"Enquiry",ct_title:"Leave a request",ct_sub:"We'll get in touch within 15 minutes, send the presentation and match a unit to your goal.",
+  ct_name:"Your name",ct_phone:"Phone",ct_type:"Request type",ct_o1:"Buy a unit",ct_o2:"Investment / income",ct_o3:"Entire pool (single lot)",ct_o4:"Consultation",
+  ct_msg:"Message (optional)",ct_consent:"I consent to the processing of personal data in accordance with the ",ct_policy:"privacy policy",ct_submit:"Send request",
+  ci_title:"Contacts",ci_sub:"Sales office of the complex",ci_phone:"Daily 9:00–21:00",ci_loc:"Kislovodsk",ci_loc2:"2nd sanitary zone · exact address on request",
+  demo_note:"⚙️ Demo version. Name, photos, prices, address and contacts are placeholders, replaced with the real object data before launch.",
+  foot_about:"A ready premium apart-complex with a view of the Caucasus mountains. Kislovodsk, second sanitary zone.",
+  foot_nav:"Navigation",foot_docs:"Documents",foot_privacy:"Privacy policy",foot_consent:"Personal data consent",foot_terms:"Terms of use",
+  foot_copy:"© 2026 VERSHINA. Demonstration version.",foot_made:"Made by Abdul Aziz Digital studio",
+  cookie_txt:'We use cookies to improve the site. By continuing, you agree to the privacy policy.',cookie_ok:"Accept",
+  toast_ok:"Request sent! Opening Telegram…",
+  unit_apart:"Apart-unit",unit_flat:"Residence",unit_view:"Mountain view",price_req:"on request",m2:"m²",floor:"floor",lvl:"levels",
+  years:"yrs"
+ }
+};
+let LANG='ru';
+
+/* ============ UNIT DATA ============ */
+const UNITS=[
+ {t:'apart',name:'Studio Vista',area:24,floor:'1 / '+1,view:1,price:'от 10,8 млн ₽',img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80',badge:'apart'},
+ {t:'apart',name:'Junior Suite',area:38,floor:'1 / '+1,view:1,price:'от 16,5 млн ₽',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80',badge:'apart'},
+ {t:'apart',name:'Panorama Suite',area:52,floor:'1 / '+1,view:1,price:'от 23,4 млн ₽',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',badge:'apart'},
+ {t:'flat',name:'Duplex Classic',area:78,floor:'4 / 2',view:1,price:'от 26,5 млн ₽',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',badge:'flat'},
+ {t:'flat',name:'Duplex Grand',area:104,floor:'4 / 2',view:1,price:'от 35,9 млн ₽',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80',badge:'flat'},
+ {t:'flat',name:'Penthouse Vershina',area:128,floor:'4 / 2',view:1,price:'по запросу',img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80',badge:'flat'}
+];
+
+/* ============ FAQ DATA ============ */
+const FAQ={
+ ru:[
+  ['Объект действительно готов?','Да, комплекс полностью построен и введён в эксплуатацию. Это не котлован и не стройка — юниты можно осматривать и заселять сразу, доход от аренды начинается без ожидания.'],
+  ['Какая реальная доходность?','По независимым рыночным данным доходность от посуточной аренды качественных объектов в Кисловодске — 8–12% годовых в сезон. Плюс потенциал роста стоимости актива: цены на новостройки за последнее полугодие выросли на 47%.'],
+  ['Что значит «вторая санитарная зона»?','Это зона курортной охраны с ограниченной застройкой — именно поэтому качественного предложения мало, а актив редкий. Полный пакет разрешительных документов передаётся при осмотре и подписании NDA.'],
+  ['Можно купить весь пул сразу?','Да. Оставшиеся 50–100 юнитов приобретаются единым лотом за 300–500 млн ₽, без ипотеки, 100% оплата. Схема сделки — NDA, осмотр, согласование условий, договор.'],
+  ['Как проходит сделка?','Подписываем соглашение о конфиденциальности, передаём документацию, организуем осмотр объекта и проверку права собственности, согласуем условия и заключаем договор купли-продажи.']
+ ],
+ en:[
+  ['Is the property really ready?','Yes, the complex is fully built and commissioned. It is not a construction site — units can be inspected and occupied immediately, and rental income starts with no waiting.'],
+  ['What is the real yield?','Per independent market data, nightly-rental yield of quality properties in Kislovodsk is 8–12% annually in season, plus asset appreciation potential — new-build prices rose 47% over the last half-year.'],
+  ['What does "second sanitary zone" mean?','It is a resort-protection zone with limited development — which is exactly why quality supply is scarce and the asset is rare. The full permit package is provided during the viewing and after signing an NDA.'],
+  ['Can I buy the entire pool at once?','Yes. The remaining 50–100 units are acquired as a single lot for ₽300–500M, without mortgage, 100% payment. The deal flow is NDA, inspection, terms, contract.'],
+  ['How does the deal work?','We sign a confidentiality agreement, share documentation, arrange a site visit and title verification, agree the terms and sign the purchase agreement.']
+ ]
+};
+
+/* ============ RENDER ============ */
+function txt(k){return (I18N[LANG][k]!==undefined)?I18N[LANG][k]:k}
+
+function renderCards(filter='all'){
+ const box=document.getElementById('cards'); box.innerHTML='';
+ UNITS.filter(u=>filter==='all'||u.t===filter).forEach(u=>{
+  const priceTxt = (u.price==='по запросу') ? txt('price_req') : u.price;
+  const typeName = u.t==='apart'?txt('unit_apart'):txt('unit_flat');
+  const floorLabel = u.t==='apart'?txt('floor'):txt('lvl');
+  const el=document.createElement('article'); el.className='uc reveal';
+  el.innerHTML=`
+   <div class="uc-img" style="background-image:url('${u.img}')"><span class="uc-badge">${typeName}</span></div>
+   <div class="uc-body">
+     <h3>${u.name}</h3>
+     <div class="uc-loc">${txt('unit_view')} · ${typeName}</div>
+     <div class="uc-meta">
+       <div>${txt('calc_area')}<b>${u.area} ${txt('m2')}</b></div>
+       <div>${u.t==='apart'?txt('floor'):txt('lvl')}<b>${u.floor}</b></div>
+     </div>
+     <div class="uc-foot">
+       <div class="uc-price">${priceTxt}</div>
+       <a href="#contact" class="uc-btn">${txt('cta_request')}</a>
+     </div>
+   </div>`;
+  box.appendChild(el);
+ });
+ observeReveal();
+}
+
+function renderFAQ(){
+ const box=document.getElementById('faqList'); box.innerHTML='';
+ FAQ[LANG].forEach(([q,a])=>{
+  const it=document.createElement('div'); it.className='faq-item';
+  it.innerHTML=`<button class="faq-q">${q}<span class="pm">+</span></button><div class="faq-a"><p>${a}</p></div>`;
+  const btn=it.querySelector('.faq-q'), ans=it.querySelector('.faq-a');
+  btn.addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+    if(!open){it.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+  });
+  box.appendChild(it);
+ });
+}
+
+/* ============ LANG SWITCH ============ */
+function applyLang(l){
+ LANG=l; document.documentElement.lang=l;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{
+   const k=el.getAttribute('data-i18n'); if(I18N[l][k]!==undefined) el.textContent=I18N[l][k];
+ });
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+ document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
+ const active=document.querySelector('.filters button.active')?.dataset.filter||'all';
+ renderCards(active); renderFAQ(); calc();
+}
+
+/* ============ CALCULATOR ============ */
+let calcType='apart';
+function fmt(n){return Math.round(n).toLocaleString('ru-RU')}
+function calc(){
+ const area=+document.getElementById('area').value;
+ const rate=+document.getElementById('rate').value;
+ const load=+document.getElementById('load').value;
+ document.getElementById('areaV').textContent=area+' '+txt('m2');
+ document.getElementById('rateV').textContent=fmt(rate)+' ₽';
+ document.getElementById('loadV').textContent=load+'%';
+ const pricePerM2 = calcType==='apart'?450000:340000;
+ const price=area*pricePerM2;
+ // seasonal model: ~5 high-season months of nightly rent
+ const income=rate*(load/100)*150 + rate*0.35*(load/100)*215; // season + off-season discounted
+ const yieldP=income/price*100;
+ const payback=price/income;
+ document.getElementById('incomeV').innerHTML=fmt(income)+' <span>₽</span>';
+ document.getElementById('priceV').textContent=fmt(price)+' ₽';
+ document.getElementById('yieldV').textContent=yieldP.toFixed(1)+'%';
+ document.getElementById('payV').textContent=payback.toFixed(1)+' '+txt('years');
+}
+
+/* ============ COUNTERS ============ */
+function runCounters(){
+ document.querySelectorAll('[data-count]').forEach(el=>{
+  if(el.dataset.done)return; el.dataset.done=1;
+  const target=parseFloat(el.dataset.count), suf=el.dataset.suffix||'', dur=1400, t0=performance.now();
+  const dec = target%1!==0?1:0;
+  function step(t){const p=Math.min((t-t0)/dur,1); const v=(target*p).toFixed(dec); el.textContent=v+suf; if(p<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+ });
+}
+
+/* ============ REVEAL ============ */
+let io;
+function observeReveal(){
+ if(!io) io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+ document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* ============ INIT ============ */
+document.addEventListener('DOMContentLoaded',()=>{
+ renderCards(); renderFAQ(); calc(); observeReveal();
+
+ // header scroll
+ const header=document.getElementById('header');
+ addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+
+ // lang
+ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+
+ // burger
+ const mm=document.getElementById('mobileMenu');
+ document.getElementById('burger').addEventListener('click',()=>mm.classList.add('open'));
+ document.getElementById('closeMenu').addEventListener('click',()=>mm.classList.remove('open'));
+ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+ // filters
+ document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  renderCards(b.dataset.filter);
+ }));
+
+ // calc events
+ ['area','rate','load'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+ document.querySelectorAll('#segType button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#segType button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); calcType=b.dataset.type; calc();
+ }));
+
+ // counters when hero visible
+ setTimeout(runCounters,300);
+
+ // cookie
+ const cookie=document.getElementById('cookie');
+ if(!localStorage.getItem('ck_ok')) setTimeout(()=>cookie.classList.add('show'),1400);
+ document.getElementById('cookieOk').addEventListener('click',()=>{localStorage.setItem('ck_ok','1');cookie.classList.remove('show')});
+
+ // form
+ document.getElementById('leadForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('fName').value, phone=document.getElementById('fPhone').value,
+        type=document.getElementById('fType').value, msg=document.getElementById('fMsg').value;
+  const toast=document.getElementById('toast'); toast.textContent=txt('toast_ok'); toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3500);
+  const text=encodeURIComponent(`Заявка с сайта ВЕРШИНА:\nИмя: ${name}\nТелефон: ${phone}\nЗапрос: ${type}\n${msg?'Сообщение: '+msg:''}`);
+  setTimeout(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'),700);
+  e.target.reset();
+ });
+});
+</script>
+</body>
+</html>
