@@ -125,10 +125,10 @@ header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); paddin
   background:var(--grad-ph);
 }
 .hero-bg{
-  position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80');
-  background-size:cover; background-position:center; opacity:.34;
+  position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80');
+  background-size:cover; background-position:center; opacity:.68;
 }
-.hero::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,16,30,.55) 0%,rgba(5,16,30,.35) 40%,var(--bg) 100%)}
+.hero::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(5,16,30,.94) 0%,rgba(5,16,30,.62) 42%,rgba(5,16,30,.22) 100%),linear-gradient(180deg,rgba(5,16,30,.15) 60%,var(--bg) 100%)}
 .hero .container{position:relative; z-index:2}
 .hero-badge{
   display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border:1px solid var(--border-2);
@@ -369,6 +369,30 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <div class="hstat"><div class="n" data-count="85">0</div><div class="l" data-i18n="hs_units">юнитов в продаже</div></div>
       <div class="hstat"><div class="n">8–12<span>%</span></div><div class="l" data-i18n="hs_yield">доход в сезон</div></div>
       <div class="hstat"><div class="n" data-count="1.9" data-suffix=" млн">0</div><div class="l" data-i18n="hs_tourists">туристов в год</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS (что получает инвестор) ============ -->
+<section id="benefits" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="ben_eye">Что вы получаете</span>
+      <h2 class="sec-title" data-i18n="ben_title">Что инвестор получает от вложения</h2>
+      <p class="sec-sub" data-i18n="ben_sub">Не просто квадратные метры — готовый доходный актив под ключ.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal"><div class="ico">🔑</div><h3 data-i18n="b1_t">Доход с первого месяца</h3><p data-i18n="b1_p">Готовый объект приносит деньги сразу — без ожидания стройки и рисков.</p></div>
+      <div class="adv-card reveal"><div class="ico">🛎️</div><h3 data-i18n="b2_t">Управляющая компания</h3><p data-i18n="b2_p">Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.</p></div>
+      <div class="adv-card reveal"><div class="ico">🛋️</div><h3 data-i18n="b3_t">Готово и меблировано</h3><p data-i18n="b3_p">Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.</p></div>
+      <div class="adv-card reveal"><div class="ico">📈</div><h3 data-i18n="b4_t">Рост стоимости актива</h3><p data-i18n="b4_p">Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.</p></div>
+      <div class="adv-card reveal"><div class="ico">🛡️</div><h3 data-i18n="b5_t">Юридическая чистота</h3><p data-i18n="b5_p">Проверенные документы, безопасная сделка и полное сопровождение.</p></div>
+      <div class="adv-card reveal"><div class="ico">💧</div><h3 data-i18n="b6_t">Ликвидность</h3><p data-i18n="b6_p">Дефицитный курортный актив во 2-й санзоне легко перепродать.</p></div>
+      <div class="adv-card reveal"><div class="ico">👤</div><h3 data-i18n="b7_t">Персональный менеджер</h3><p data-i18n="b7_p">Ведёт вас от заявки до ключей и первой выплаты по аренде.</p></div>
+      <div class="adv-card reveal"><div class="ico">🏔️</div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама гор — то, за что платят премию и туристы, и покупатели.</p></div>
+    </div>
+    <div class="center" style="margin-top:48px">
+      <a href="#contact" class="btn btn-gold" data-i18n="ben_cta">Получить подборку и расчёт</a>
     </div>
   </div>
 </section>
@@ -632,6 +656,15 @@ const I18N={
   hero_lead:"Кисловодск, вторая санитарная зона. Апартаменты и квартиры под доход и для жизни. Актив, который приносит деньги уже сегодня — без стройки и рисков.",
   hero_cta1:"Оставить заявку",hero_cta2:"Смотреть апартаменты",
   hs_ready:"готовность",hs_units:"юнитов в продаже",hs_yield:"доход в сезон",hs_tourists:"туристов в год",
+  ben_eye:"Что вы получаете",ben_title:"Что инвестор получает от вложения",ben_sub:"Не просто квадратные метры — готовый доходный актив под ключ.",ben_cta:"Получить подборку и расчёт",
+  b1_t:"Доход с первого месяца",b1_p:"Готовый объект приносит деньги сразу — без ожидания стройки и рисков.",
+  b2_t:"Управляющая компания",b2_p:"Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.",
+  b3_t:"Готово и меблировано",b3_p:"Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.",
+  b4_t:"Рост стоимости актива",b4_p:"Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.",
+  b5_t:"Юридическая чистота",b5_p:"Проверенные документы, безопасная сделка и полное сопровождение.",
+  b6_t:"Ликвидность",b6_p:"Дефицитный курортный актив во 2-й санзоне легко перепродать.",
+  b7_t:"Персональный менеджер",b7_p:"Ведёт вас от заявки до ключей и первой выплаты по аренде.",
+  b8_t:"Видовые апартаменты",b8_p:"Панорама гор — то, за что платят премию и туристы, и покупатели.",
   about_eye:"О проекте",about_title:"Курортная резиденция премиум-класса",
   about_text:"Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.",
   chip_reception:"Ресепшен 24/7",chip_rest:"Ресторан / кафе",chip_area:"Закрытая территория",chip_view:"Панорама гор",about_tag:"готов к заселению",
@@ -681,6 +714,15 @@ const I18N={
   hero_lead:"Kislovodsk, second sanitary zone. Apartments and residences for income and living. An asset that earns from day one — no construction, no risk.",
   hero_cta1:"Request a call",hero_cta2:"View apartments",
   hs_ready:"readiness",hs_units:"units for sale",hs_yield:"seasonal yield",hs_tourists:"tourists / year",
+  ben_eye:"What you get",ben_title:"What the investor gets from the deal",ben_sub:"Not just square metres — a ready, income-generating asset, turnkey.",ben_cta:"Get a selection & calculation",
+  b1_t:"Income from month one",b1_p:"A ready property earns immediately — no waiting for construction, no risk.",
+  b2_t:"Management company",b2_p:"We rent out and service the unit for you — passive income, no hassle.",
+  b3_t:"Ready & furnished",b3_p:"Move in or rent out at once: no renovation, no extra spend.",
+  b4_t:"Asset appreciation",b4_p:"Kislovodsk leads the CMW region: +47% per m² in six months. Capital at work.",
+  b5_t:"Clean legal title",b5_p:"Verified documents, a safe transaction and full support.",
+  b6_t:"Liquidity",b6_p:"A scarce resort asset in the 2nd sanitary zone is easy to resell.",
+  b7_t:"Personal manager",b7_p:"Guides you from enquiry to keys and your first rental payout.",
+  b8_t:"Rooms with a view",b8_p:"A mountain panorama — what both tourists and buyers pay a premium for.",
   about_eye:"The Project",about_title:"A premium resort residence",
   about_text:"A mixed-use complex fully built and commissioned in the resort capital of the North Caucasus. Ground floor — apart-hotel units under a hotel model, upper levels — two-storey residences. Part of the units is already sold; the remaining pool is available.",
   chip_reception:"24/7 reception",chip_rest:"Restaurant / café",chip_area:"Gated territory",chip_view:"Mountain panorama",about_tag:"move-in ready",
