@@ -376,6 +376,27 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .uc-plan svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .uc-img.plan-view{background-size:contain !important; background-repeat:no-repeat; background-position:center; background-color:#efeae0}
 
+/* ============ HALAL MODE ============ */
+.halal-toggle{display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border:1px solid var(--border); border-radius:100px; font-size:12px; letter-spacing:.5px; color:var(--text-2); background:none; cursor:pointer; transition:all .3s}
+.halal-toggle svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.halal-toggle:hover{color:#fff; border-color:var(--border-2)}
+.halal-toggle.active{background:var(--gold); color:#0a1524; border-color:var(--gold); font-weight:600}
+.halal-badge{display:none; align-items:center; gap:8px; margin-top:16px; padding:8px 15px; border:1px solid rgba(201,169,110,.5); border-radius:100px; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-l); width:max-content}
+.halal-badge svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+body.halal .halal-badge{display:inline-flex}
+.halal{margin-top:28px; border:1px solid rgba(201,169,110,.3); border-radius:var(--r-lg); padding:44px; background:linear-gradient(135deg,rgba(201,169,110,.06),rgba(27,94,255,.04)); transition:box-shadow .5s var(--ease),border-color .5s}
+body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(201,169,110,.35),0 24px 60px rgba(201,169,110,.13)}
+.halal-head{display:flex; align-items:center; gap:18px; margin-bottom:16px}
+.halal-seal{width:58px;height:58px;flex-shrink:0; border-radius:50%; border:1px solid var(--gold); display:flex;align-items:center;justify-content:center; color:var(--gold)}
+.halal-seal svg{width:30px;height:30px;stroke:currentColor;stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.halal-sub{color:var(--text-2); max-width:64ch; margin-bottom:32px; font-size:15px}
+.halal-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+.halal-card{padding:26px 24px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface)}
+.halal-card .ico{width:44px;height:44px; color:rgba(201,169,110,.9); display:flex;align-items:center;justify-content:center; margin-bottom:16px}
+.halal-card .ico svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.halal-card h4{font-family:var(--serif); font-size:19px; color:#fff; margin-bottom:8px; font-weight:400}
+.halal-card p{color:var(--text-2); font-size:14px}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -405,6 +426,9 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   .plan-info{padding:26px}
   .cf-controls{grid-template-columns:1fr; gap:22px}
   .cat-filter{padding:22px 18px}
+  .halal-grid{grid-template-columns:1fr}
+  .halal{padding:30px 22px}
+  .halal-toggle span{display:none}
   .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
   .sec-title{font-size:32px}
 }
@@ -431,6 +455,7 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
         <button data-lang="ru" class="active">RU</button>
         <button data-lang="en">EN</button>
       </div>
+      <button class="halal-toggle" id="halalToggle" title="Халяль-режим"><svg viewBox="0 0 32 32"><path d="M21 7a9 9 0 1 0 0 18 7 7 0 0 1 0-18z"/><path d="M26 9l1 2.2 2.4.3-1.7 1.7.4 2.4-2.1-1.1-2.1 1.1.4-2.4-1.7-1.7 2.4-.3z"/></svg><span data-i18n="halal_mode">Халяль</span></button>
       <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
       <button class="burger" id="burger">☰</button>
     </div>
@@ -458,6 +483,7 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <a href="#contact" class="btn btn-gold" data-i18n="hero_cta1">Оставить заявку</a>
       <a href="#catalog" class="btn btn-ghost" data-i18n="hero_cta2">Смотреть апартаменты</a>
     </div>
+    <span class="halal-badge"><svg viewBox="0 0 32 32"><path d="M21 7a9 9 0 1 0 0 18 7 7 0 0 1 0-18z"/><path d="M26 9l1 2.2 2.4.3-1.7 1.7.4 2.4-2.1-1.1-2.1 1.1.4-2.4-1.7-1.7 2.4-.3z"/></svg><span data-i18n="halal_badge">Халяль-инвестиция</span></span>
     <div class="hero-stats">
       <div class="hstat"><div class="n"><span>100%</span></div><div class="l" data-i18n="hs_ready">готовность</div></div>
       <div class="hstat"><div class="n" data-count="85">0</div><div class="l" data-i18n="hs_units">юнитов в продаже</div></div>
@@ -630,6 +656,22 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       </div>
       <a href="#contact" class="btn btn-gold" data-i18n="b2b_cta">Запросить меморандум</a>
     </div>
+
+    <div class="halal reveal" id="halalBlock">
+      <div class="halal-head">
+        <div class="halal-seal"><svg viewBox="0 0 32 32"><path d="M20 5a11 11 0 1 0 0 22 8.5 8.5 0 0 1 0-22z"/><path d="M25.5 8l1.2 2.6 2.8.4-2 2 .5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-2 2.8-.4z"/></svg></div>
+        <div>
+          <span class="eyebrow" data-i18n="halal_eye">Халяль-инвестиция</span>
+          <h3 class="growth-title" style="margin:2px 0 0" data-i18n="halal_title">Вложение по нормам шариата</h3>
+        </div>
+      </div>
+      <p class="halal-sub" data-i18n="halal_sub">Актив и сделку можно структурировать без риба — по этическим принципам ислама.</p>
+      <div class="halal-grid">
+        <div class="halal-card"><div class="ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M8 8l16 16"/><circle cx="12" cy="12" r="2"/><circle cx="20" cy="20" r="2"/><path d="M21 11L11 21"/></svg></div><h4 data-i18n="halal1_t">Без процентов (риба)</h4><p data-i18n="halal1_p">Беспроцентная рассрочка или 100% оплата — без ипотеки и процентных схем.</p></div>
+        <div class="halal-card"><div class="ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M8 8l16 16"/></svg></div><h4 data-i18n="halal2_t">Без харам-деятельности</h4><p data-i18n="halal2_p">На территории нет алкоголя и азартных игр — доход из дозволенных источников.</p></div>
+        <div class="halal-card"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 5v22M9 27h14"/><path d="M6 11h20"/><path d="M6 11l-3 6a4 4 0 0 0 6 0zM26 11l-3 6a4 4 0 0 0 6 0z"/></svg></div><h4 data-i18n="halal3_t">Этичная сделка</h4><p data-i18n="halal3_p">Прозрачные условия, честный договор, доход от реальной аренды.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -795,6 +837,10 @@ const I18N={
   brand:"ВЕРШИНА",
   nav_about:"О проекте",nav_apart:"Апартаменты",nav_invest:"Инвестору",nav_loc:"Локация",nav_contacts:"Контакты",cta_request:"Оставить заявку",
   hero_badge:"100% готов · введён в эксплуатацию",hero_h1a:"Готовый апарт-комплекс с видом на ",hero_h1b:"горы Кавказа",
+  halal_mode:"Халяль",halal_badge:"Халяль-инвестиция",halal_eye:"Халяль-инвестиция",halal_title:"Вложение по нормам шариата",halal_sub:"Актив и сделку можно структурировать без риба — по этическим принципам ислама.",
+  halal1_t:"Без процентов (риба)",halal1_p:"Беспроцентная рассрочка или 100% оплата — без ипотеки и процентных схем.",
+  halal2_t:"Без харам-деятельности",halal2_p:"На территории нет алкоголя и азартных игр — доход из дозволенных источников.",
+  halal3_t:"Этичная сделка",halal3_p:"Прозрачные условия, честный договор, доход от реальной аренды.",
   hero_lead:"Кисловодск, вторая санитарная зона. Апартаменты и квартиры под доход и для жизни. Актив, который приносит деньги уже сегодня — без стройки и рисков.",
   hero_cta1:"Оставить заявку",hero_cta2:"Смотреть апартаменты",
   hs_ready:"готовность",hs_units:"юнитов в продаже",hs_yield:"доход в сезон",hs_tourists:"туристов в год",
@@ -862,6 +908,10 @@ const I18N={
   brand:"VERSHINA",
   nav_about:"Project",nav_apart:"Apartments",nav_invest:"Investors",nav_loc:"Location",nav_contacts:"Contacts",cta_request:"Request a call",
   hero_badge:"100% ready · commissioned",hero_h1a:"A ready apart-complex with a view of the ",hero_h1b:"Caucasus mountains",
+  halal_mode:"Halal",halal_badge:"Halal investment",halal_eye:"Halal investment",halal_title:"An investment aligned with Sharia",halal_sub:"The asset and the deal can be structured without riba — on ethical Islamic principles.",
+  halal1_t:"No interest (riba)",halal1_p:"Interest-free instalments or 100% payment — no mortgage, no interest schemes.",
+  halal2_t:"No haram activity",halal2_p:"No alcohol or gambling on the premises — income from permissible sources.",
+  halal3_t:"Ethical transaction",halal3_p:"Transparent terms, a fair contract, income from real rent.",
   hero_lead:"Kislovodsk, second sanitary zone. Apartments and residences for income and living. An asset that earns from day one — no construction, no risk.",
   hero_cta1:"Request a call",hero_cta2:"View apartments",
   hs_ready:"readiness",hs_units:"units for sale",hs_yield:"seasonal yield",hs_tourists:"tourists / year",
@@ -1140,6 +1190,14 @@ function observeReveal(){
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
  applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal();
+
+ // halal mode
+ const halalBtn=document.getElementById('halalToggle');
+ if(halalBtn){
+   const setHalal=(on,scroll)=>{document.body.classList.toggle('halal',on); halalBtn.classList.toggle('active',on); localStorage.setItem('halal',on?'1':'0'); if(on&&scroll){const el=document.getElementById('halalBlock'); if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}};
+   halalBtn.addEventListener('click',()=>setHalal(!document.body.classList.contains('halal'),true));
+   if(localStorage.getItem('halal')==='1') setHalal(true,false);
+ }
 
  // header scroll
  const header=document.getElementById('header');
