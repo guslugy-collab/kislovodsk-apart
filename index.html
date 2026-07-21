@@ -267,7 +267,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:20px;heig
 .consent a{color:var(--gold); text-decoration:underline}
 .contact-info h3{font-size:26px; color:#fff; margin-bottom:8px}
 .ci-item{display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--border)}
-.ci-item .ico{width:44px;height:44px; border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex;align-items:center;justify-content:center; font-size:20px}
+.ci-item .ico{width:44px;height:44px; display:flex;align-items:center;justify-content:center; color:rgba(201,169,110,.9)}
+.ci-item .ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .ci-item b{color:#fff; font-size:16px; display:block}
 .ci-item span{font-size:13px; color:var(--text-2)}
 .demo-note{margin-top:24px; padding:16px 20px; border:1px dashed var(--border-2); border-radius:var(--r-sm); font-size:12px; color:var(--text-3)}
@@ -285,6 +286,7 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 /* ============ FLOAT + COOKIE + TOAST ============ */
 .float-btn{position:fixed; right:24px; bottom:24px; z-index:90; width:60px;height:60px; border-radius:50%; background:var(--grad-gold); display:flex;align-items:center;justify-content:center; font-size:28px; box-shadow:0 10px 30px rgba(201,169,110,.4); transition:transform .3s; animation:pulse 2.6s infinite}
 .float-btn:hover{transform:scale(1.08)}
+.float-btn svg{width:26px;height:26px;stroke:#0C1B30;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,169,110,.5)}70%{box-shadow:0 0 0 16px rgba(201,169,110,0)}100%{box-shadow:0 0 0 0 rgba(201,169,110,0)}}
 .cookie{position:fixed; left:24px; bottom:24px; right:100px; max-width:520px; z-index:95; background:var(--surface-2); border:1px solid var(--border-2); border-radius:var(--r-md); padding:20px 24px; display:flex; gap:18px; align-items:center; box-shadow:0 20px 50px rgba(0,0,0,.5); transform:translateY(150%); transition:transform .5s var(--ease)}
 .cookie.show{transform:none}
@@ -301,7 +303,8 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .infra-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:34px}
 .infra-tile{display:flex; align-items:center; gap:14px; padding:18px 20px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface); transition:all .4s var(--ease)}
 .infra-tile:hover{border-color:rgba(201,169,110,.4); transform:translateY(-3px); background:var(--surface-2)}
-.infra-tile .ic{font-size:24px; width:46px;height:46px;flex-shrink:0; border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex;align-items:center;justify-content:center}
+.infra-tile .ic{width:46px;height:46px;flex-shrink:0; display:flex;align-items:center;justify-content:center; color:rgba(201,169,110,.9)}
+.infra-tile .ic svg{width:26px;height:26px;stroke:currentColor;stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .infra-tile b{color:#fff; font-size:15px; font-weight:500; font-family:var(--sans); display:block}
 .infra-tile span{display:block; color:var(--text-2); font-size:12px; margin-top:2px}
 
@@ -326,6 +329,8 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .pin{position:absolute; transform:translate(-50%,-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; background:none; border:none}
 .pin .dot{position:relative; width:42px;height:42px;border-radius:50%; background:rgba(5,16,30,.72); border:1px solid var(--gold); backdrop-filter:blur(4px); display:flex;align-items:center;justify-content:center; font-size:18px; transition:all .3s var(--ease); box-shadow:0 4px 14px rgba(0,0,0,.45)}
 .pin:hover .dot,.pin.active .dot{background:var(--gold); transform:scale(1.14)}
+.pin .dot svg{width:22px;height:22px;stroke:var(--gold);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.pin:hover .dot svg,.pin.active .dot svg{stroke:#05101E}
 .pin .dot::after{content:''; position:absolute; inset:-1px; border-radius:50%; border:1px solid var(--gold); opacity:0}
 .pin.active .dot::after{animation:planping 1.9s ease-out infinite}
 @keyframes planping{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.1);opacity:0}}
@@ -339,8 +344,37 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .plan-list button{text-align:left; padding:11px 14px; border-radius:var(--r-sm); color:var(--text-2); font-size:14px; display:flex; gap:10px; align-items:center; transition:all .25s; border:1px solid transparent; background:none; cursor:pointer}
 .plan-list button:hover{color:#fff; background:var(--surface-2)}
 .plan-list button.active{color:var(--gold); border-color:var(--border-2); background:var(--surface-2)}
+.plan-list button svg{width:19px;height:19px;flex-shrink:0;stroke:currentColor;stroke-width:1.35;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .plan-info .btn{margin-top:auto}
 @media (prefers-reduced-motion: reduce){.pin.active .dot::after{animation:none}}
+
+/* ============ CATALOG FILTER ============ */
+.cat-filter{border:1px solid var(--border); border-radius:var(--r-lg); background:var(--surface); padding:26px 28px; margin-bottom:40px}
+.cf-top{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:26px}
+.cf-tabs{display:flex; gap:10px; flex-wrap:wrap}
+.cf-tabs button{padding:10px 22px; border:1px solid var(--border); border-radius:100px; font-size:14px; color:var(--text-2); transition:all .3s; background:none; cursor:pointer}
+.cf-tabs button.active{background:var(--gold); color:#0a1524; font-weight:600; border-color:var(--gold)}
+.cf-reset{font-size:13px; color:var(--text-2); text-decoration:underline; background:none; border:none; cursor:pointer}
+.cf-reset:hover{color:var(--gold)}
+.cf-controls{display:grid; grid-template-columns:1fr 1fr auto; gap:30px; align-items:center}
+.cf-field label{display:flex; gap:10px; align-items:baseline; font-size:12px; color:var(--text-2); letter-spacing:1px; text-transform:uppercase; margin-bottom:14px}
+.cf-field label b{color:var(--gold); font-family:var(--serif); font-size:15px; text-transform:none; letter-spacing:0}
+.cf-rooms{display:flex; gap:8px}
+.cf-rooms button{min-width:46px; height:40px; padding:0 12px; border:1px solid var(--border); border-radius:var(--r-sm); color:var(--text-2); background:none; cursor:pointer; transition:all .3s; font-size:14px}
+.cf-rooms button:hover{border-color:var(--border-2); color:#fff}
+.cf-rooms button.active{background:var(--accent); color:#fff; border-color:var(--accent)}
+.cf-count{margin-top:20px; font-size:13px; color:var(--text-3); letter-spacing:.5px}
+.dual{position:relative; height:34px}
+.dual-track{position:absolute; top:50%; transform:translateY(-50%); left:0; right:0; height:4px; background:var(--border-2); border-radius:4px}
+.dual-fill{position:absolute; height:100%; background:var(--gold); border-radius:4px}
+.dual input[type=range]{position:absolute; top:0; left:0; width:100%; height:34px; margin:0; -webkit-appearance:none; appearance:none; background:none; pointer-events:none}
+.dual input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; pointer-events:auto; width:20px;height:20px;border-radius:50%; background:var(--gold-l); border:3px solid var(--bg); cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.dual input[type=range]::-moz-range-thumb{pointer-events:auto; width:16px;height:16px;border-radius:50%; background:var(--gold-l); border:3px solid var(--bg); cursor:pointer}
+.uc-plan{position:absolute; top:14px; right:14px; padding:6px 11px; font-size:11px; letter-spacing:.5px; background:rgba(5,16,30,.75); backdrop-filter:blur(6px); border:1px solid var(--border-2); border-radius:var(--r-sm); color:#fff; cursor:pointer; transition:all .3s; z-index:2}
+.uc-plan:hover{background:var(--gold); color:#0a1524; border-color:var(--gold)}
+.uc-plan{display:inline-flex; align-items:center; gap:6px}
+.uc-plan svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.uc-img.plan-view{background-size:contain !important; background-repeat:no-repeat; background-position:center; background-color:#efeae0}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
@@ -369,6 +403,8 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   .plan{min-height:320px}
   .plan .dot{width:36px;height:36px;font-size:16px}
   .plan-info{padding:26px}
+  .cf-controls{grid-template-columns:1fr; gap:22px}
+  .cat-filter{padding:22px 18px}
   .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
   .sec-title{font-size:32px}
 }
@@ -440,14 +476,14 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <p class="sec-sub" data-i18n="ben_sub">Не просто квадратные метры — готовый доходный актив под ключ.</p>
     </div>
     <div class="adv-grid">
-      <div class="adv-card reveal"><div class="ico">🔑</div><h3 data-i18n="b1_t">Доход с первого месяца</h3><p data-i18n="b1_p">Готовый объект приносит деньги сразу — без ожидания стройки и рисков.</p></div>
-      <div class="adv-card reveal"><div class="ico">🛎️</div><h3 data-i18n="b2_t">Управляющая компания</h3><p data-i18n="b2_p">Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.</p></div>
-      <div class="adv-card reveal"><div class="ico">🛋️</div><h3 data-i18n="b3_t">Готово и меблировано</h3><p data-i18n="b3_p">Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.</p></div>
-      <div class="adv-card reveal"><div class="ico">📈</div><h3 data-i18n="b4_t">Рост стоимости актива</h3><p data-i18n="b4_p">Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.</p></div>
-      <div class="adv-card reveal"><div class="ico">🛡️</div><h3 data-i18n="b5_t">Юридическая чистота</h3><p data-i18n="b5_p">Проверенные документы, безопасная сделка и полное сопровождение.</p></div>
-      <div class="adv-card reveal"><div class="ico">💧</div><h3 data-i18n="b6_t">Ликвидность</h3><p data-i18n="b6_p">Дефицитный курортный актив во 2-й санзоне легко перепродать.</p></div>
-      <div class="adv-card reveal"><div class="ico">👤</div><h3 data-i18n="b7_t">Персональный менеджер</h3><p data-i18n="b7_p">Ведёт вас от заявки до ключей и первой выплаты по аренде.</p></div>
-      <div class="adv-card reveal"><div class="ico">🏔️</div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама гор — то, за что платят премию и туристы, и покупатели.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><rect x="3" y="8" width="26" height="16" rx="2"/><circle cx="16" cy="16" r="3.5"/><path d="M7 12v8M25 12v8"/></svg></div><h3 data-i18n="b1_t">Доход с первого месяца</h3><p data-i18n="b1_p">Готовый объект приносит деньги сразу — без ожидания стройки и рисков.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg></div><h3 data-i18n="b2_t">Управляющая компания</h3><p data-i18n="b2_p">Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 15v-3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v3"/><path d="M6 15a3 3 0 0 0-3 3v4h26v-4a3 3 0 0 0-3-3 3 3 0 0 0-3 3v1H9v-1a3 3 0 0 0-3-3z"/><path d="M6 22v3M26 22v3"/></svg></div><h3 data-i18n="b3_t">Готово и меблировано</h3><p data-i18n="b3_p">Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 4v24h24"/><path d="M8 21l6-7 4 4 8-10"/><path d="M22 12h4v4"/></svg></div><h3 data-i18n="b4_t">Рост стоимости актива</h3><p data-i18n="b4_p">Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="b5_t">Юридическая чистота</h3><p data-i18n="b5_p">Проверенные документы, безопасная сделка и полное сопровождение.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 4s9 10 9 16a9 9 0 0 1-18 0c0-6 9-16 9-16z"/><path d="M11 20a5 5 0 0 0 4 4"/></svg></div><h3 data-i18n="b6_t">Ликвидность</h3><p data-i18n="b6_p">Дефицитный курортный актив во 2-й санзоне легко перепродать.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 20v-5a10 10 0 0 1 20 0v5"/><path d="M4 20a2 2 0 0 1 2-2h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2z"/><path d="M28 20a2 2 0 0 0-2-2h-1.5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1H26a2 2 0 0 0 2-2z"/><path d="M24 24v1a3 3 0 0 1-3 3h-3"/></svg></div><h3 data-i18n="b7_t">Персональный менеджер</h3><p data-i18n="b7_p">Ведёт вас от заявки до ключей и первой выплаты по аренде.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама гор — то, за что платят премию и туристы, и покупатели.</p></div>
     </div>
     <div class="center" style="margin-top:48px">
       <a href="#contact" class="btn btn-gold" data-i18n="ben_cta">Получить подборку и расчёт</a>
@@ -463,12 +499,12 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <h2 class="sec-title" data-i18n="about_title">Курортная резиденция премиум-класса</h2>
       <p class="sec-sub" data-i18n="about_text">Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.</p>
       <div class="infra-grid">
-        <div class="infra-tile reveal"><div class="ic">🛎️</div><div><b data-i18n="chip_reception">Ресепшен 24/7</b><span data-i18n="chip_reception_d">Гостиничная стойка регистрации</span></div></div>
-        <div class="infra-tile reveal"><div class="ic">🍽️</div><div><b data-i18n="chip_rest">Ресторан / кафе</b><span data-i18n="chip_rest_d">Своя точка питания и доход</span></div></div>
-        <div class="infra-tile reveal"><div class="ic">🌳</div><div><b data-i18n="chip_area">Закрытая территория</b><span data-i18n="chip_area_d">Благоустройство и охрана</span></div></div>
-        <div class="infra-tile reveal"><div class="ic">🌿</div><div><b data-i18n="chip_relax">Зоны отдыха</b><span data-i18n="chip_relax_d">Озеленение и приватные зоны</span></div></div>
-        <div class="infra-tile reveal"><div class="ic">🏔️</div><div><b data-i18n="chip_view">Панорамные виды</b><span data-i18n="chip_view_d">На горы Кавказа</span></div></div>
-        <div class="infra-tile reveal"><div class="ic">🛏️</div><div><b data-i18n="chip_hotel">Отельный сервис</b><span data-i18n="chip_hotel_d">Готово к сдаче в аренду</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg></div><div><b data-i18n="chip_reception">Ресепшен 24/7</b><span data-i18n="chip_reception_d">Гостиничная стойка регистрации</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M9 4v10a3 3 0 0 0 6 0V4M12 4v24M23 4c-2.5 0-4 3-4 7s1.5 6 4 6v11"/></svg></div><div><b data-i18n="chip_rest">Ресторан / кафе</b><span data-i18n="chip_rest_d">Своя точка питания и доход</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M16 3c-4 0-7 3-7 6.5 0 1 .3 1.9.8 2.7C7.4 13 6 15 6 17.4 6 21 9 24 13 24h6c4 0 7-3 7-6.6 0-2.4-1.4-4.4-3.8-5.2.5-.8.8-1.7.8-2.7C23 6 20 3 16 3z"/><path d="M16 24v5"/></svg></div><div><b data-i18n="chip_area">Закрытая территория</b><span data-i18n="chip_area_d">Благоустройство и охрана</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M27 5C15 5 6 12 6 22c0 1.5.3 3 .3 3s2.5-6.5 8.7-10.5C9 19 7.5 25 7.5 25 22 26 28 17 27 5z"/></svg></div><div><b data-i18n="chip_relax">Зоны отдыха</b><span data-i18n="chip_relax_d">Озеленение и приватные зоны</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><div><b data-i18n="chip_view">Панорамные виды</b><span data-i18n="chip_view_d">На горы Кавказа</span></div></div>
+        <div class="infra-tile reveal"><div class="ic"><svg viewBox="0 0 32 32"><path d="M3 11v14M3 21h26v4M29 21v-3a3 3 0 0 0-3-3H12v6"/><circle cx="8" cy="12.5" r="2.2"/></svg></div><div><b data-i18n="chip_hotel">Отельный сервис</b><span data-i18n="chip_hotel_d">Готово к сдаче в аренду</span></div></div>
       </div>
     </div>
     <div class="about-media reveal">
@@ -505,10 +541,43 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <h2 class="sec-title" data-i18n="cat_title">Апартаменты и квартиры</h2>
       <p class="sec-sub" data-i18n="cat_sub">Выберите формат — под сдачу в аренду или для собственного отдыха.</p>
     </div>
-    <div class="filters">
-      <button class="active" data-filter="all" data-i18n="f_all">Все</button>
-      <button data-filter="apart" data-i18n="f_apart">Апарт-номера</button>
-      <button data-filter="flat" data-i18n="f_flat">Квартиры</button>
+    <div class="cat-filter reveal">
+      <div class="cf-top">
+        <div class="cf-tabs">
+          <button class="active" data-filter="all" data-i18n="f_all">Все</button>
+          <button data-filter="apart" data-i18n="f_apart">Апарт-номера</button>
+          <button data-filter="flat" data-i18n="f_flat">Квартиры</button>
+        </div>
+        <button class="cf-reset" id="cfReset" data-i18n="cf_reset">Сбросить</button>
+      </div>
+      <div class="cf-controls">
+        <div class="cf-field">
+          <label><span data-i18n="cf_price">Цена, ₽</span> <b id="prLabel"></b></label>
+          <div class="dual" id="prRange">
+            <div class="dual-track"><div class="dual-fill"></div></div>
+            <input type="range" class="lo" min="8000000" max="50000000" step="100000">
+            <input type="range" class="hi" min="8000000" max="50000000" step="100000">
+          </div>
+        </div>
+        <div class="cf-field">
+          <label><span data-i18n="cf_area">Площадь, м²</span> <b id="arLabel"></b></label>
+          <div class="dual" id="arRange">
+            <div class="dual-track"><div class="dual-fill"></div></div>
+            <input type="range" class="lo" min="20" max="130" step="1">
+            <input type="range" class="hi" min="20" max="130" step="1">
+          </div>
+        </div>
+        <div class="cf-field">
+          <label data-i18n="cf_rooms">Комнат</label>
+          <div class="cf-rooms" id="cfRooms">
+            <button type="button" data-r="0" data-i18n="cf_studio">Студия</button>
+            <button type="button" data-r="1">1</button>
+            <button type="button" data-r="2">2</button>
+            <button type="button" data-r="3">3</button>
+          </div>
+        </div>
+      </div>
+      <div class="cf-count" id="cfCount"></div>
     </div>
     <div class="cards" id="cards"></div>
   </div>
@@ -673,10 +742,10 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
     <div class="contact-info reveal">
       <h3 data-i18n="ci_title">Контакты</h3>
       <p style="color:var(--text-2); margin-bottom:20px" data-i18n="ci_sub">Отдел продаж комплекса</p>
-      <div class="ci-item"><div class="ico">📞</div><div><b>+7 (000) 000-00-00</b><span data-i18n="ci_phone">Ежедневно 9:00–21:00</span></div></div>
-      <a class="ci-item" href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener"><div class="ico">✈️</div><div><b>Telegram</b><span>@AbdulAzizDigital</span></div></a>
-      <div class="ci-item"><div class="ico">📍</div><div><b data-i18n="ci_loc">Кисловодск</b><span data-i18n="ci_loc2">2-я санитарная зона · точный адрес по заявке</span></div></div>
-      <div class="demo-note" data-i18n="demo_note">⚙️ Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.</div>
+      <div class="ci-item"><div class="ico"><svg viewBox="0 0 32 32"><path d="M11 5H6a2 2 0 0 0-2 2c0 11 10 21 21 21a2 2 0 0 0 2-2v-5l-6-2-3 3a16 16 0 0 1-8-8l3-3z"/></svg></div><div><b>+7 (000) 000-00-00</b><span data-i18n="ci_phone">Ежедневно 9:00–21:00</span></div></div>
+      <a class="ci-item" href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener"><div class="ico"><svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg></div><div><b>Telegram</b><span>@AbdulAzizDigital</span></div></a>
+      <div class="ci-item"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 29s10-9 10-17A10 10 0 0 0 6 12c0 8 10 17 10 17z"/><circle cx="16" cy="12" r="3.5"/></svg></div><div><b data-i18n="ci_loc">Кисловодск</b><span data-i18n="ci_loc2">2-я санитарная зона · точный адрес по заявке</span></div></div>
+      <div class="demo-note" data-i18n="demo_note">Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.</div>
     </div>
   </div>
 </section>
@@ -710,7 +779,7 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   </div>
 </footer>
 
-<a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="float-btn" title="Написать в Telegram">✈️</a>
+<a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="float-btn" title="Написать в Telegram"><svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg></a>
 
 <div class="cookie" id="cookie">
   <p data-i18n="cookie_txt">Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с <a href="#" onclick="return false">политикой конфиденциальности</a>.</p>
@@ -751,6 +820,7 @@ const I18N={
   adv6_t:"Дефицитный актив",adv6_p:"Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.",
   cat_eye:"Каталог",cat_title:"Апартаменты и квартиры",cat_sub:"Выберите формат — под сдачу в аренду или для собственного отдыха.",
   f_all:"Все",f_apart:"Апарт-номера",f_flat:"Квартиры",
+  cf_price:"Цена, ₽",cf_area:"Площадь, м²",cf_rooms:"Комнат",cf_studio:"Студия",cf_reset:"Сбросить",cf_found:"Найдено",cf_none:"По заданным параметрам ничего не найдено",u_plan:"Планировка",u_photo:"Фото",mln:"млн",
   inv_eye:"Инвестору",inv_title:"Доход, подтверждённый рынком",inv_sub:"Честные цифры без завышений. Кисловодск — самый дорогой и быстрорастущий курорт КМВ.",
   is1:"Доходность от аренды в сезон (годовых)",is2:"Ставка посуточной аренды за ночь",is3:"Рост цены за м² за полугодие",
   fct1:"туристов в Кисловодске за 2024 год",fct2:"сезонная загрузка качественных объектов",fct3:"объектов региона — уровня 4–5★ (дефицит)",fct4:"госпрограмма развития КМВ до 2030 (№2540-р)",
@@ -779,7 +849,7 @@ const I18N={
   ct_name:"Ваше имя",ct_phone:"Телефон",ct_type:"Тип запроса",ct_o1:"Покупка юнита",ct_o2:"Инвестиции / доход",ct_o3:"Весь пул (единый лот)",ct_o4:"Консультация",
   ct_msg:"Сообщение (необязательно)",ct_consent:"Я согласен на обработку персональных данных в соответствии с ",ct_policy:"политикой конфиденциальности",ct_submit:"Отправить заявку",
   ci_title:"Контакты",ci_sub:"Отдел продаж комплекса",ci_phone:"Ежедневно 9:00–21:00",ci_loc:"Кисловодск",ci_loc2:"2-я санитарная зона · точный адрес по заявке",
-  demo_note:"⚙️ Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.",
+  demo_note:"Демо-версия. Название, фото, цены, адрес и контакты — плейсхолдеры, заменяются на реальные данные объекта перед запуском.",
   foot_about:"Готовый апарт-комплекс премиум-класса с видом на горы Кавказа. Кисловодск, вторая санитарная зона.",
   foot_nav:"Навигация",foot_docs:"Документы",foot_privacy:"Политика конфиденциальности",foot_consent:"Согласие на обработку ПДн",foot_terms:"Пользовательское соглашение",
   foot_copy:"© 2026 ВЕРШИНА. Демонстрационная версия сайта.",foot_made:"Сделано в студии Abdul Aziz Digital",
@@ -817,6 +887,7 @@ const I18N={
   adv6_t:"Scarce asset",adv6_p:"Second sanitary zone — limited development. Quality supply on the market is acutely scarce.",
   cat_eye:"Catalogue",cat_title:"Apartments & residences",cat_sub:"Choose a format — for rental income or for your own getaway.",
   f_all:"All",f_apart:"Apart-units",f_flat:"Residences",
+  cf_price:"Price, ₽",cf_area:"Area, m²",cf_rooms:"Rooms",cf_studio:"Studio",cf_reset:"Reset",cf_found:"Found",cf_none:"Nothing matches your filters",u_plan:"Floor plan",u_photo:"Photo",mln:"M",
   inv_eye:"Investors",inv_title:"Income confirmed by the market",inv_sub:"Honest figures, no inflation. Kislovodsk is the most expensive and fastest-growing resort of the CMW region.",
   is1:"Rental yield in season (annual)",is2:"Nightly rental rate",is3:"Price-per-m² growth in six months",
   fct1:"tourists in Kislovodsk in 2024",fct2:"seasonal occupancy of quality properties",fct3:"of region's properties are 4–5★ (a deficit)",fct4:"state CMW development programme to 2030 (No.2540-r)",
@@ -845,7 +916,7 @@ const I18N={
   ct_name:"Your name",ct_phone:"Phone",ct_type:"Request type",ct_o1:"Buy a unit",ct_o2:"Investment / income",ct_o3:"Entire pool (single lot)",ct_o4:"Consultation",
   ct_msg:"Message (optional)",ct_consent:"I consent to the processing of personal data in accordance with the ",ct_policy:"privacy policy",ct_submit:"Send request",
   ci_title:"Contacts",ci_sub:"Sales office of the complex",ci_phone:"Daily 9:00–21:00",ci_loc:"Kislovodsk",ci_loc2:"2nd sanitary zone · exact address on request",
-  demo_note:"⚙️ Demo version. Name, photos, prices, address and contacts are placeholders, replaced with the real object data before launch.",
+  demo_note:"Demo version. Name, photos, prices, address and contacts are placeholders, replaced with the real object data before launch.",
   foot_about:"A ready premium apart-complex with a view of the Caucasus mountains. Kislovodsk, second sanitary zone.",
   foot_nav:"Navigation",foot_docs:"Documents",foot_privacy:"Privacy policy",foot_consent:"Personal data consent",foot_terms:"Terms of use",
   foot_copy:"© 2026 VERSHINA. Demonstration version.",foot_made:"Made by Abdul Aziz Digital studio",
@@ -859,12 +930,12 @@ let LANG='ru';
 
 /* ============ UNIT DATA ============ */
 const UNITS=[
- {t:'apart',name:'Studio Vista',area:24,floor:'1 / '+1,view:1,price:'от 10,8 млн ₽',img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80',badge:'apart'},
- {t:'apart',name:'Junior Suite',area:38,floor:'1 / '+1,view:1,price:'от 16,5 млн ₽',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80',badge:'apart'},
- {t:'apart',name:'Panorama Suite',area:52,floor:'1 / '+1,view:1,price:'от 23,4 млн ₽',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',badge:'apart'},
- {t:'flat',name:'Duplex Classic',area:78,floor:'4 / 2',view:1,price:'от 26,5 млн ₽',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',badge:'flat'},
- {t:'flat',name:'Duplex Grand',area:104,floor:'4 / 2',view:1,price:'от 35,9 млн ₽',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80',badge:'flat'},
- {t:'flat',name:'Penthouse Vershina',area:128,floor:'4 / 2',view:1,price:'по запросу',img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80',badge:'flat'}
+ {t:'apart',name:'Studio Vista',area:24,rooms:0,pr:10800000,price:'от 10,8 млн ₽',img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80'},
+ {t:'apart',name:'Junior Suite',area:38,rooms:1,pr:16500000,price:'от 16,5 млн ₽',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80'},
+ {t:'apart',name:'Panorama Suite',area:52,rooms:1,pr:23400000,price:'от 23,4 млн ₽',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80'},
+ {t:'flat',name:'Duplex Classic',area:78,rooms:2,pr:26500000,price:'от 26,5 млн ₽',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'},
+ {t:'flat',name:'Duplex Grand',area:104,rooms:3,pr:35900000,price:'от 35,9 млн ₽',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80'},
+ {t:'flat',name:'Penthouse Vershina',area:128,rooms:3,pr:48000000,price:'по запросу',img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80'}
 ];
 
 /* ============ FAQ DATA ============ */
@@ -888,21 +959,32 @@ const FAQ={
 /* ============ RENDER ============ */
 function txt(k){return (I18N[LANG][k]!==undefined)?I18N[LANG][k]:k}
 
-function renderCards(filter='all'){
+const PLAN_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#efeae0"/><g stroke="#0c1b30" stroke-width="4" fill="none"><rect x="28" y="28" width="344" height="244"/><line x1="205" y1="28" x2="205" y2="272"/><line x1="28" y1="158" x2="205" y2="158"/><line x1="205" y1="120" x2="372" y2="120"/></g><g fill="#0c1b30" font-family="Inter,sans-serif" font-size="14"><text x="66" y="98">Гостиная</text><text x="66" y="228">Спальня</text><text x="252" y="82">Кухня</text><text x="252" y="210">С/У</text></g></svg>';
+const PLAN_URL='data:image/svg+xml,'+encodeURIComponent(PLAN_SVG);
+const PR_MIN=8000000, PR_MAX=50000000, AR_MIN=20, AR_MAX=130;
+let curType='all', prLo=PR_MIN, prHi=PR_MAX, arLo=AR_MIN, arHi=AR_MAX;
+const roomsSel=new Set();
+function fmtMln(v){return (v/1e6).toFixed(1).replace('.',',')}
+
+function renderCardList(units){
  const box=document.getElementById('cards'); box.innerHTML='';
- UNITS.filter(u=>filter==='all'||u.t===filter).forEach(u=>{
+ if(!units.length){box.innerHTML='<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:40px 0">'+txt('cf_none')+'</p>'; return;}
+ units.forEach(u=>{
   const priceTxt = (u.price==='по запросу') ? txt('price_req') : u.price;
   const typeName = u.t==='apart'?txt('unit_apart'):txt('unit_flat');
-  const floorLabel = u.t==='apart'?txt('floor'):txt('lvl');
+  const roomsTxt = u.rooms===0?txt('cf_studio'):u.rooms;
   const el=document.createElement('article'); el.className='uc reveal';
   el.innerHTML=`
-   <div class="uc-img" style="background-image:url('${u.img}')"><span class="uc-badge">${typeName}</span></div>
+   <div class="uc-img" style="background-image:url('${u.img}')" data-photo="${u.img}">
+     <span class="uc-badge">${typeName}</span>
+     <button class="uc-plan" type="button"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>${txt('u_plan')}</button>
+   </div>
    <div class="uc-body">
      <h3>${u.name}</h3>
      <div class="uc-loc">${txt('unit_view')} · ${typeName}</div>
      <div class="uc-meta">
        <div>${txt('calc_area')}<b>${u.area} ${txt('m2')}</b></div>
-       <div>${u.t==='apart'?txt('floor'):txt('lvl')}<b>${u.floor}</b></div>
+       <div>${txt('cf_rooms')}<b>${roomsTxt}</b></div>
      </div>
      <div class="uc-foot">
        <div class="uc-price">${priceTxt}</div>
@@ -911,7 +993,32 @@ function renderCards(filter='all'){
    </div>`;
   box.appendChild(el);
  });
+ box.querySelectorAll('.uc-plan').forEach(btn=>btn.addEventListener('click',()=>{
+   const img=btn.closest('.uc-img'); const plan=img.classList.toggle('plan-view');
+   img.style.backgroundImage='url("'+(plan?PLAN_URL:img.dataset.photo)+'")';
+   btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>'+(plan?txt('u_photo'):txt('u_plan'));
+ }));
  observeReveal();
+}
+
+function applyFilters(){
+ const list=UNITS.filter(u=> (curType==='all'||u.t===curType)
+   && u.pr>=prLo && u.pr<=prHi && u.area>=arLo && u.area<=arHi
+   && (roomsSel.size===0 || roomsSel.has(u.rooms)) );
+ renderCardList(list);
+ const c=document.getElementById('cfCount'); if(c)c.textContent=txt('cf_found')+': '+list.length;
+}
+
+function initDual(id,lo,hi,onChange){
+ const wrap=document.getElementById(id); if(!wrap)return;
+ const a=wrap.querySelector('.lo'), b=wrap.querySelector('.hi'), fill=wrap.querySelector('.dual-fill');
+ const MIN=+a.min, MAX=+a.max; a.value=lo; b.value=hi;
+ function upd(){
+   let x=+a.value, y=+b.value; if(x>y){const t=x;x=y;y=t;}
+   fill.style.left=((x-MIN)/(MAX-MIN)*100)+'%'; fill.style.width=(((y-x)/(MAX-MIN))*100)+'%';
+   onChange(x,y);
+ }
+ a.addEventListener('input',upd); b.addEventListener('input',upd); upd();
 }
 
 function renderFAQ(){
@@ -931,12 +1038,12 @@ function renderFAQ(){
 
 /* ============ INTERACTIVE PLAN ============ */
 const PLAN=[
- {ic:'🛎️',x:46,y:60,t:'plan1_t',d:'plan1_d'},
- {ic:'🍽️',x:60,y:50,t:'plan2_t',d:'plan2_d'},
- {ic:'🌳',x:22,y:30,t:'plan3_t',d:'plan3_d'},
- {ic:'💧',x:80,y:38,t:'plan4_t',d:'plan4_d'},
- {ic:'🧸',x:33,y:74,t:'plan5_t',d:'plan5_d'},
- {ic:'🎭',x:70,y:73,t:'plan6_t',d:'plan6_d'}
+ {ic:'<svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg>',x:46,y:60,t:'plan1_t',d:'plan1_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M9 4v10a3 3 0 0 0 6 0V4M12 4v24M23 4c-2.5 0-4 3-4 7s1.5 6 4 6v11"/></svg>',x:60,y:50,t:'plan2_t',d:'plan2_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M16 3c-4 0-7 3-7 6.5 0 1 .3 1.9.8 2.7C7.4 13 6 15 6 17.4 6 21 9 24 13 24h6c4 0 7-3 7-6.6 0-2.4-1.4-4.4-3.8-5.2.5-.8.8-1.7.8-2.7C23 6 20 3 16 3z"/><path d="M16 24v5"/></svg>',x:22,y:30,t:'plan3_t',d:'plan3_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M16 4s9 10 9 16a9 9 0 0 1-18 0c0-6 9-16 9-16z"/><path d="M11 20a5 5 0 0 0 4 4"/></svg>',x:80,y:38,t:'plan4_t',d:'plan4_d'},
+ {ic:'<svg viewBox="0 0 32 32"><rect x="4" y="17" width="11" height="11" rx="1.5"/><rect x="17" y="17" width="11" height="11" rx="1.5"/><rect x="10.5" y="4" width="11" height="11" rx="1.5"/></svg>',x:33,y:74,t:'plan5_t',d:'plan5_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M4 12L16 4l12 8M3 27h26M4 23h24M6 12v11M12 12v11M20 12v11M26 12v11"/></svg>',x:70,y:73,t:'plan6_t',d:'plan6_d'}
 ];
 let planSel=0;
 function selectPlan(i){planSel=i; renderPlan();}
@@ -951,7 +1058,7 @@ function renderPlan(){
    b.addEventListener('click',()=>selectPlan(i)); plan.appendChild(b);
  });
  list.innerHTML='';
- PLAN.forEach((p,i)=>{const b=document.createElement('button'); if(i===planSel)b.className='active'; b.textContent=p.ic+'  '+txt(p.t); b.addEventListener('click',()=>selectPlan(i)); list.appendChild(b);});
+ PLAN.forEach((p,i)=>{const b=document.createElement('button'); if(i===planSel)b.className='active'; b.innerHTML=p.ic+'<span>'+txt(p.t)+'</span>'; b.addEventListener('click',()=>selectPlan(i)); list.appendChild(b);});
  document.getElementById('planTitle').textContent=txt(PLAN[planSel].t);
  document.getElementById('planDesc').textContent=txt(PLAN[planSel].d);
 }
@@ -964,8 +1071,8 @@ function applyLang(l){
  });
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
  document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
- const active=document.querySelector('.filters button.active')?.dataset.filter||'all';
- renderCards(active); renderFAQ(); calc(); refreshBars(); renderPlan();
+ applyFilters(); renderFAQ(); calc(); refreshBars(); renderPlan();
+ ['prRange','arRange'].forEach(id=>{const w=document.getElementById(id); if(w)w.querySelector('.lo').dispatchEvent(new Event('input'));});
 }
 
 /* ============ CALCULATOR ============ */
@@ -1032,7 +1139,7 @@ function observeReveal(){
 
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
- renderCards(); renderFAQ(); calc(); renderPlan(); observeReveal();
+ applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal();
 
  // header scroll
  const header=document.getElementById('header');
@@ -1047,11 +1154,23 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.getElementById('closeMenu').addEventListener('click',()=>mm.classList.remove('open'));
  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
 
- // filters
- document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-  renderCards(b.dataset.filter);
+ // catalog filters
+ document.querySelectorAll('.cf-tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.cf-tabs button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  curType=b.dataset.filter; applyFilters();
  }));
+ document.querySelectorAll('#cfRooms button').forEach(b=>b.addEventListener('click',()=>{
+  const r=+b.dataset.r; if(roomsSel.has(r)){roomsSel.delete(r);b.classList.remove('active');}else{roomsSel.add(r);b.classList.add('active');} applyFilters();
+ }));
+ initDual('prRange',prLo,prHi,(x,y)=>{prLo=x;prHi=y; const el=document.getElementById('prLabel'); if(el)el.textContent=fmtMln(x)+' – '+fmtMln(y)+' '+txt('mln'); applyFilters();});
+ initDual('arRange',arLo,arHi,(x,y)=>{arLo=x;arHi=y; const el=document.getElementById('arLabel'); if(el)el.textContent=x+' – '+y+' '+txt('m2'); applyFilters();});
+ const rst=document.getElementById('cfReset'); if(rst)rst.addEventListener('click',()=>{
+  curType='all'; prLo=PR_MIN;prHi=PR_MAX;arLo=AR_MIN;arHi=AR_MAX; roomsSel.clear();
+  document.querySelectorAll('.cf-tabs button').forEach((x,i)=>x.classList.toggle('active',i===0));
+  document.querySelectorAll('#cfRooms button').forEach(x=>x.classList.remove('active'));
+  ['prRange','arRange'].forEach(id=>{const w=document.getElementById(id); const lo=w.querySelector('.lo'),hi=w.querySelector('.hi'); lo.value=lo.min; hi.value=hi.max; lo.dispatchEvent(new Event('input'));});
+  applyFilters();
+ });
 
  // calc events
  ['area','rate','load'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
