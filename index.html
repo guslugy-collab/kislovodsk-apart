@@ -161,7 +161,9 @@ header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); paddin
 .adv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
 .adv-card{padding:38px 32px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface); transition:all .4s var(--ease)}
 .adv-card:hover{border-color:rgba(201,169,110,.4); transform:translateY(-4px); background:var(--surface-2)}
-.adv-card .ico{width:52px;height:52px;border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:22px}
+.adv-card .ico{width:46px;height:46px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; color:rgba(201,169,110,.9)}
+.adv-card .ico svg{width:100%; height:100%; stroke:currentColor; stroke-width:1.25; fill:none; stroke-linecap:round; stroke-linejoin:round; transition:color .4s var(--ease)}
+.adv-card:hover .ico{color:#C9A96E}
 .adv-card h3{font-size:22px; color:#fff; margin-bottom:12px}
 .adv-card p{font-size:15px; color:var(--text-2)}
 
@@ -485,12 +487,12 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <p class="sec-sub" data-i18n="adv_sub">Прямые конкуренты Кисловодска сдаются в 2026–2028 годах. Наш объект готов и приносит доход уже сейчас.</p>
     </div>
     <div class="adv-grid">
-      <div class="adv-card reveal"><div class="ico">✅</div><h3 data-i18n="adv1_t">Готов и сдан</h3><p data-i18n="adv1_p">Введён в эксплуатацию. Ноль строительных рисков, немедленный денежный поток.</p></div>
-      <div class="adv-card reveal"><div class="ico">🏔️</div><h3 data-i18n="adv2_t">Вид на горы</h3><p data-i18n="adv2_p">Панорама Кавказского хребта — ключевой актив премиального позиционирования.</p></div>
-      <div class="adv-card reveal"><div class="ico">🛎️</div><h3 data-i18n="adv3_t">Отельная модель</h3><p data-i18n="adv3_p">Профессиональный ресепшен — объект готов к гостиничной эксплуатации без вложений.</p></div>
-      <div class="adv-card reveal"><div class="ico">🍽️</div><h3 data-i18n="adv4_t">Свой ресторан</h3><p data-i18n="adv4_p">Собственная точка питания — дополнительный доход и конкурентное преимущество.</p></div>
-      <div class="adv-card reveal"><div class="ico">🌳</div><h3 data-i18n="adv5_t">Закрытая территория</h3><p data-i18n="adv5_p">Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.</p></div>
-      <div class="adv-card reveal"><div class="ico">💎</div><h3 data-i18n="adv6_t">Дефицитный актив</h3><p data-i18n="adv6_p">Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 17l7 7L28 8"/></svg></div><h3 data-i18n="adv1_t">Готов и сдан</h3><p data-i18n="adv1_p">Введён в эксплуатацию. Ноль строительных рисков, немедленный денежный поток.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><h3 data-i18n="adv2_t">Вид на горы</h3><p data-i18n="adv2_p">Панорама Кавказского хребта — ключевой актив премиального позиционирования.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg></div><h3 data-i18n="adv3_t">Отельная модель</h3><p data-i18n="adv3_p">Профессиональный ресепшен — объект готов к гостиничной эксплуатации без вложений.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 4v10a3 3 0 0 0 6 0V4M12 4v24M23 4c-2.5 0-4 3-4 7s1.5 6 4 6v11"/></svg></div><h3 data-i18n="adv4_t">Свой ресторан</h3><p data-i18n="adv4_p">Собственная точка питания — дополнительный доход и конкурентное преимущество.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="adv5_t">Закрытая территория</h3><p data-i18n="adv5_p">Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 5h14l5 7-12 15L4 12z"/><path d="M4 12h24M12 5l-3 7 7 15 7-15-3-7"/></svg></div><h3 data-i18n="adv6_t">Дефицитный актив</h3><p data-i18n="adv6_p">Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.</p></div>
     </div>
   </div>
 </section>
