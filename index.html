@@ -127,7 +127,9 @@ header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); paddin
 .hero-bg{
   position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80');
   background-size:cover; background-position:center; opacity:.68;
+  animation:kenburns 26s ease-in-out infinite alternate;
 }
+@media (prefers-reduced-motion: reduce){.hero-bg{animation:none}}
 .hero::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(5,16,30,.94) 0%,rgba(5,16,30,.62) 42%,rgba(5,16,30,.22) 100%),linear-gradient(180deg,rgba(5,16,30,.15) 60%,var(--bg) 100%)}
 .hero .container{position:relative; z-index:2}
 .hero-badge{
@@ -290,6 +292,30 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .toast{position:fixed; top:24px; left:50%; transform:translate(-50%,-300%); z-index:200; background:#0f2a1c; border:1px solid #2f7d52; color:#a8e6c2; padding:16px 28px; border-radius:var(--r-sm); font-size:14px; transition:transform .5s var(--ease); max-width:92vw; text-align:center}
 .toast.show{transform:translate(-50%,0)}
 
+/* ============ KEN BURNS (hero) ============ */
+@keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.09)}}
+
+/* ============ INFRASTRUCTURE GRID ============ */
+.infra-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:34px}
+.infra-tile{display:flex; align-items:center; gap:14px; padding:18px 20px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface); transition:all .4s var(--ease)}
+.infra-tile:hover{border-color:rgba(201,169,110,.4); transform:translateY(-3px); background:var(--surface-2)}
+.infra-tile .ic{font-size:24px; width:46px;height:46px;flex-shrink:0; border-radius:var(--r-sm); background:rgba(201,169,110,.12); display:flex;align-items:center;justify-content:center}
+.infra-tile b{color:#fff; font-size:15px; font-weight:500; font-family:var(--sans); display:block}
+.infra-tile span{display:block; color:var(--text-2); font-size:12px; margin-top:2px}
+
+/* ============ GROWTH CHART ============ */
+.growth{margin-bottom:66px}
+.growth-title{font-family:var(--serif); font-size:clamp(24px,3vw,34px); color:#fff; margin-bottom:10px}
+.growth-sub{color:var(--text-2); font-size:15px; margin-bottom:44px; max-width:62ch}
+.bars{display:flex; align-items:flex-end; gap:16px; height:300px; padding-top:44px; border-bottom:1px solid var(--border-2)}
+.bar{flex:1; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end}
+.bar .fill{position:relative; width:100%; max-width:96px; height:0; background:linear-gradient(180deg,var(--gold-l),var(--gold)); border-radius:10px 10px 0 0; transition:height 1.2s var(--ease)}
+.bar.in .fill{height:var(--h)}
+.bar .v{position:absolute; top:-34px; left:50%; transform:translateX(-50%); font-family:var(--serif); font-size:clamp(15px,1.8vw,20px); color:#fff; white-space:nowrap}
+.bar .yr{margin-top:14px; color:var(--text-2); font-size:14px; letter-spacing:1px}
+.bar:last-child .fill{box-shadow:0 -6px 44px rgba(201,169,110,.4)}
+.growth-note{margin-top:20px; font-size:12px; color:var(--text-3); line-height:1.55}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -297,6 +323,7 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   .adv-grid,.cards,.inv-top{grid-template-columns:repeat(2,1fr)}
   .inv-facts,.deal-steps{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
+  .infra-grid{grid-template-columns:repeat(2,1fr)}
   .b2b{padding:36px 28px}
   .calc-form,.calc-res{padding:34px}
 }
@@ -310,7 +337,9 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   .hero-stats{gap:28px}
   .hero-cta{flex-direction:column; align-items:stretch}
   .hero-cta .btn{justify-content:center}
-  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid{grid-template-columns:1fr}
+  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid,.infra-grid{grid-template-columns:1fr}
+  .bars{height:230px; gap:8px; padding-top:38px}
+  .bar .fill{max-width:60px}
   .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
   .sec-title{font-size:32px}
 }
@@ -404,11 +433,13 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <span class="eyebrow" data-i18n="about_eye">О проекте</span>
       <h2 class="sec-title" data-i18n="about_title">Курортная резиденция премиум-класса</h2>
       <p class="sec-sub" data-i18n="about_text">Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.</p>
-      <div class="feat-row">
-        <div class="feat-chip"><i>🛎️</i><span data-i18n="chip_reception">Ресепшен 24/7</span></div>
-        <div class="feat-chip"><i>🍽️</i><span data-i18n="chip_rest">Ресторан / кафе</span></div>
-        <div class="feat-chip"><i>🌳</i><span data-i18n="chip_area">Закрытая территория</span></div>
-        <div class="feat-chip"><i>🏔️</i><span data-i18n="chip_view">Панорама гор</span></div>
+      <div class="infra-grid">
+        <div class="infra-tile reveal"><div class="ic">🛎️</div><div><b data-i18n="chip_reception">Ресепшен 24/7</b><span data-i18n="chip_reception_d">Гостиничная стойка регистрации</span></div></div>
+        <div class="infra-tile reveal"><div class="ic">🍽️</div><div><b data-i18n="chip_rest">Ресторан / кафе</b><span data-i18n="chip_rest_d">Своя точка питания и доход</span></div></div>
+        <div class="infra-tile reveal"><div class="ic">🌳</div><div><b data-i18n="chip_area">Закрытая территория</b><span data-i18n="chip_area_d">Благоустройство и охрана</span></div></div>
+        <div class="infra-tile reveal"><div class="ic">🌿</div><div><b data-i18n="chip_relax">Зоны отдыха</b><span data-i18n="chip_relax_d">Озеленение и приватные зоны</span></div></div>
+        <div class="infra-tile reveal"><div class="ic">🏔️</div><div><b data-i18n="chip_view">Панорамные виды</b><span data-i18n="chip_view_d">На горы Кавказа</span></div></div>
+        <div class="infra-tile reveal"><div class="ic">🛏️</div><div><b data-i18n="chip_hotel">Отельный сервис</b><span data-i18n="chip_hotel_d">Готово к сдаче в аренду</span></div></div>
       </div>
     </div>
     <div class="about-media reveal">
@@ -474,6 +505,19 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <div class="fact reveal"><b>80%+</b><span data-i18n="fct2">сезонная загрузка качественных объектов</span></div>
       <div class="fact reveal"><b>13%</b><span data-i18n="fct3">объектов региона — уровня 4–5★ (дефицит)</span></div>
       <div class="fact reveal"><b>592 млрд ₽</b><span data-i18n="fct4">госпрограмма развития КМВ до 2030 (№2540-р)</span></div>
+    </div>
+
+    <div class="growth reveal" id="growth">
+      <span class="eyebrow" data-i18n="growth_eye">Рост капитала</span>
+      <h3 class="growth-title" data-i18n="growth_title">Стоимость метра растёт год к году</h3>
+      <p class="growth-sub" data-i18n="growth_sub">Прогноз динамики цены м² в премиум-сегменте Кисловодска — ваш актив дорожает вместе с рынком.</p>
+      <div class="bars" id="bars">
+        <div class="bar" style="--h:64%"><div class="fill"><span class="v" data-val="380">0</span></div><div class="yr">2025</div></div>
+        <div class="bar" style="--h:75%"><div class="fill"><span class="v" data-val="440">0</span></div><div class="yr">2026</div></div>
+        <div class="bar" style="--h:87%"><div class="fill"><span class="v" data-val="510">0</span></div><div class="yr">2027</div></div>
+        <div class="bar" style="--h:100%"><div class="fill"><span class="v" data-val="590">0</span></div><div class="yr">2028</div></div>
+      </div>
+      <p class="growth-note" data-i18n="growth_note">* Оценочный прогноз на основе рыночной динамики Кисловодска. Не является публичной офертой и гарантией доходности.</p>
     </div>
 
     <div class="b2b reveal">
@@ -667,7 +711,8 @@ const I18N={
   b8_t:"Видовые апартаменты",b8_p:"Панорама гор — то, за что платят премию и туристы, и покупатели.",
   about_eye:"О проекте",about_title:"Курортная резиденция премиум-класса",
   about_text:"Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.",
-  chip_reception:"Ресепшен 24/7",chip_rest:"Ресторан / кафе",chip_area:"Закрытая территория",chip_view:"Панорама гор",about_tag:"готов к заселению",
+  chip_reception:"Ресепшен 24/7",chip_reception_d:"Гостиничная стойка регистрации",chip_rest:"Ресторан / кафе",chip_rest_d:"Своя точка питания и доход",chip_area:"Закрытая территория",chip_area_d:"Благоустройство и охрана",chip_relax:"Зоны отдыха",chip_relax_d:"Озеленение и приватные зоны",chip_view:"Панорамные виды",chip_view_d:"На горы Кавказа",chip_hotel:"Отельный сервис",chip_hotel_d:"Готово к сдаче в аренду",about_tag:"готов к заселению",
+  growth_eye:"Рост капитала",growth_title:"Стоимость метра растёт год к году",growth_sub:"Прогноз динамики цены м² в премиум-сегменте Кисловодска — ваш актив дорожает вместе с рынком.",growth_note:"* Оценочный прогноз на основе рыночной динамики Кисловодска. Не является публичной офертой и гарантией доходности.",growth_unit:"тыс ₽",
   adv_eye:"Почему ВЕРШИНА",adv_title:"Единственный готовый — пока другие строят",adv_sub:"Прямые конкуренты Кисловодска сдаются в 2026–2028 годах. Наш объект готов и приносит доход уже сейчас.",
   adv1_t:"Готов и сдан",adv1_p:"Введён в эксплуатацию. Ноль строительных рисков, немедленный денежный поток.",
   adv2_t:"Вид на горы",adv2_p:"Панорама Кавказского хребта — ключевой актив премиального позиционирования.",
@@ -725,7 +770,8 @@ const I18N={
   b8_t:"Rooms with a view",b8_p:"A mountain panorama — what both tourists and buyers pay a premium for.",
   about_eye:"The Project",about_title:"A premium resort residence",
   about_text:"A mixed-use complex fully built and commissioned in the resort capital of the North Caucasus. Ground floor — apart-hotel units under a hotel model, upper levels — two-storey residences. Part of the units is already sold; the remaining pool is available.",
-  chip_reception:"24/7 reception",chip_rest:"Restaurant / café",chip_area:"Gated territory",chip_view:"Mountain panorama",about_tag:"move-in ready",
+  chip_reception:"24/7 reception",chip_reception_d:"Hotel-grade front desk",chip_rest:"Restaurant / café",chip_rest_d:"On-site dining & extra income",chip_area:"Gated territory",chip_area_d:"Landscaping & security",chip_relax:"Leisure zones",chip_relax_d:"Greenery & private areas",chip_view:"Panoramic views",chip_view_d:"Of the Caucasus mountains",chip_hotel:"Hotel service",chip_hotel_d:"Ready to rent out",about_tag:"move-in ready",
+  growth_eye:"Capital growth",growth_title:"Price per m² rises year on year",growth_sub:"Projected price-per-m² dynamics in Kislovodsk's premium segment — your asset appreciates with the market.",growth_note:"* An indicative projection based on Kislovodsk market dynamics. Not a public offer or a guarantee of returns.",growth_unit:"k ₽",
   adv_eye:"Why VERSHINA",adv_title:"The only ready one — while others are building",adv_sub:"Kislovodsk's direct competitors complete in 2026–2028. Our asset is ready and earning today.",
   adv1_t:"Ready & commissioned",adv1_p:"Fully commissioned. Zero construction risk, immediate cash flow.",
   adv2_t:"Mountain view",adv2_p:"Panorama of the Caucasus range — the key asset of premium positioning.",
@@ -849,7 +895,7 @@ function applyLang(l){
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
  document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
  const active=document.querySelector('.filters button.active')?.dataset.filter||'all';
- renderCards(active); renderFAQ(); calc();
+ renderCards(active); renderFAQ(); calc(); refreshBars();
 }
 
 /* ============ CALCULATOR ============ */
@@ -885,10 +931,32 @@ function runCounters(){
  });
 }
 
-/* ============ REVEAL ============ */
+/* ============ GROWTH CHART ANIM ============ */
+let growthDone=false;
+function animateGrowth(){
+ if(growthDone)return; growthDone=true;
+ const bars=document.getElementById('bars'); if(!bars)return;
+ bars.querySelectorAll('.bar').forEach((bar,i)=>setTimeout(()=>bar.classList.add('in'), i*140));
+ bars.querySelectorAll('.v').forEach(el=>{
+  const target=+el.dataset.val, dur=1200, t0=performance.now();
+  (function step(t){const p=Math.min((t-t0)/dur,1); el.textContent=Math.round(target*p)+' '+txt('growth_unit'); if(p<1)requestAnimationFrame(step);})(t0);
+ });
+}
+function refreshBars(){ if(growthDone) document.querySelectorAll('#bars .v').forEach(el=>el.textContent=el.dataset.val+' '+txt('growth_unit')); }
+
+/* ============ REVEAL (со ступенчатым появлением) ============ */
 let io;
 function observeReveal(){
- if(!io) io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+ if(!io) io=new IntersectionObserver((es)=>{es.forEach(e=>{
+   if(e.isIntersecting){
+     const el=e.target;
+     const sibs=[...el.parentNode.children].filter(c=>c.classList.contains('reveal'));
+     el.style.transitionDelay=(Math.min(Math.max(0,sibs.indexOf(el)),6)*70)+'ms';
+     el.classList.add('in');
+     if(el.id==='growth') animateGrowth();
+     io.unobserve(el);
+   }
+ })},{threshold:.12});
  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
 }
 
