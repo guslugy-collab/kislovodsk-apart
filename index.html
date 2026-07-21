@@ -316,6 +316,30 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .bar:last-child .fill{box-shadow:0 -6px 44px rgba(201,169,110,.4)}
 .growth-note{margin-top:20px; font-size:12px; color:var(--text-3); line-height:1.55}
 
+/* ============ INTERACTIVE PLAN ============ */
+.plan-wrap{display:grid; grid-template-columns:1.55fr 1fr; gap:28px; align-items:stretch}
+.plan{position:relative; border-radius:var(--r-lg); overflow:hidden; min-height:460px; background:var(--grad-ph); border:1px solid var(--border)}
+.plan-img{position:absolute; inset:0; background-size:cover; background-position:center}
+.plan::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,16,30,.1),rgba(5,16,30,.5)); pointer-events:none}
+.pin{position:absolute; transform:translate(-50%,-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; background:none; border:none}
+.pin .dot{position:relative; width:42px;height:42px;border-radius:50%; background:rgba(5,16,30,.72); border:1px solid var(--gold); backdrop-filter:blur(4px); display:flex;align-items:center;justify-content:center; font-size:18px; transition:all .3s var(--ease); box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.pin:hover .dot,.pin.active .dot{background:var(--gold); transform:scale(1.14)}
+.pin .dot::after{content:''; position:absolute; inset:-1px; border-radius:50%; border:1px solid var(--gold); opacity:0}
+.pin.active .dot::after{animation:planping 1.9s ease-out infinite}
+@keyframes planping{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.1);opacity:0}}
+.pin .lbl{font-size:11px; background:rgba(5,16,30,.82); padding:4px 10px; border-radius:100px; color:#fff; white-space:nowrap; opacity:0; transform:translateY(-4px); transition:all .3s; pointer-events:none}
+.pin:hover .lbl,.pin.active .lbl{opacity:1; transform:none}
+.pin.active .lbl{color:var(--gold-l)}
+.plan-info{background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg); padding:34px; display:flex; flex-direction:column}
+.plan-info h3{font-size:26px; color:#fff; margin:8px 0 12px}
+.plan-info>p{color:var(--text-2); font-size:15px}
+.plan-list{margin:22px 0 24px; display:flex; flex-direction:column; gap:4px}
+.plan-list button{text-align:left; padding:11px 14px; border-radius:var(--r-sm); color:var(--text-2); font-size:14px; display:flex; gap:10px; align-items:center; transition:all .25s; border:1px solid transparent; background:none; cursor:pointer}
+.plan-list button:hover{color:#fff; background:var(--surface-2)}
+.plan-list button.active{color:var(--gold); border-color:var(--border-2); background:var(--surface-2)}
+.plan-info .btn{margin-top:auto}
+@media (prefers-reduced-motion: reduce){.pin.active .dot::after{animation:none}}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -337,9 +361,12 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
   .hero-stats{gap:28px}
   .hero-cta{flex-direction:column; align-items:stretch}
   .hero-cta .btn{justify-content:center}
-  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid,.infra-grid{grid-template-columns:1fr}
+  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid,.infra-grid,.plan-wrap{grid-template-columns:1fr}
   .bars{height:230px; gap:8px; padding-top:38px}
   .bar .fill{max-width:60px}
+  .plan{min-height:320px}
+  .plan .dot{width:36px;height:36px;font-size:16px}
+  .plan-info{padding:26px}
   .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
   .sec-title{font-size:32px}
 }
@@ -591,17 +618,17 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
       <h2 class="sec-title" data-i18n="loc_title">В сердце курортного Кисловодска</h2>
       <p class="sec-sub" data-i18n="loc_sub">Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.</p>
     </div>
-    <div class="loc-grid">
-      <div class="loc-map reveal">
-        <iframe loading="lazy" src="https://www.google.com/maps?q=Кисловодск&output=embed" title="Карта Кисловодска"></iframe>
+    <div class="plan-wrap reveal">
+      <div class="plan" id="plan">
+        <div class="plan-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80')"></div>
+        <!-- метки добавляются скриптом -->
       </div>
-      <div class="reveal">
-        <ul class="loc-list">
-          <li><span class="ico">🌳</span><div><b data-i18n="l1_t">Национальный парк</b><span data-i18n="l1_p">Крупнейший курортный парк России, терренкуры</span></div></li>
-          <li><span class="ico">💧</span><div><b data-i18n="l2_t">Нарзанные источники</b><span data-i18n="l2_p">Знаменитые минеральные воды в пешей доступности</span></div></li>
-          <li><span class="ico">🎭</span><div><b data-i18n="l3_t">Курортный бульвар</b><span data-i18n="l3_p">Исторический центр, рестораны, филармония</span></div></li>
-          <li><span class="ico">✈️</span><div><b data-i18n="l4_t">Аэропорт Минеральные Воды</b><span data-i18n="l4_p">~1 час на автомобиле</span></div></li>
-        </ul>
+      <div class="plan-info">
+        <span class="eyebrow" data-i18n="plan_hint">Точка на плане</span>
+        <h3 id="planTitle">—</h3>
+        <p id="planDesc">—</p>
+        <div class="plan-list" id="planList"></div>
+        <a class="btn btn-ghost" href="https://www.google.com/maps?q=Кисловодск" target="_blank" rel="noopener" data-i18n="plan_map">Смотреть на Google Картах</a>
       </div>
     </div>
   </div>
@@ -738,6 +765,13 @@ const I18N={
   loc_eye:"Локация",loc_title:"В сердце курортного Кисловодска",loc_sub:"Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.",
   l1_t:"Национальный парк",l1_p:"Крупнейший курортный парк России, терренкуры",l2_t:"Нарзанные источники",l2_p:"Знаменитые минеральные воды в пешей доступности",
   l3_t:"Курортный бульвар",l3_p:"Исторический центр, рестораны, филармония",l4_t:"Аэропорт Минеральные Воды",l4_p:"~1 час на автомобиле",
+  plan_hint:"Точка на плане",plan_map:"Смотреть на Google Картах",
+  plan1_t:"Ресепшен и лобби",plan1_d:"Гостиничная стойка регистрации 24/7 у главного входа комплекса.",
+  plan2_t:"Ресторан",plan2_d:"Собственный ресторан и кафе на территории — завтраки и рум-сервис.",
+  plan3_t:"Национальный парк",plan3_d:"Крупнейший курортный парк России с терренкурами — в пешей доступности.",
+  plan4_t:"Нарзанные источники",plan4_d:"Знаменитая минеральная вода Кисловодска совсем рядом.",
+  plan5_t:"Детский сад",plan5_d:"Детский сад в шаговой доступности от комплекса.",
+  plan6_t:"Курортный бульвар",plan6_d:"Исторический центр: рестораны, филармония, набережная.",
   faq_eye:"Вопросы",faq_title:"Частые вопросы",
   ct_eye:"Заявка",ct_title:"Оставьте заявку",ct_sub:"Свяжемся в течение 15 минут, вышлем презентацию и подберём юнит под вашу цель.",
   ct_name:"Ваше имя",ct_phone:"Телефон",ct_type:"Тип запроса",ct_o1:"Покупка юнита",ct_o2:"Инвестиции / доход",ct_o3:"Весь пул (единый лот)",ct_o4:"Консультация",
@@ -797,6 +831,13 @@ const I18N={
   loc_eye:"Location",loc_title:"In the heart of resort Kislovodsk",loc_sub:"The second sanitary zone — a clean, protected location next to the main attractions.",
   l1_t:"National Park",l1_p:"Russia's largest resort park, walking trails",l2_t:"Narzan springs",l2_p:"Famous mineral waters within walking distance",
   l3_t:"Resort Boulevard",l3_p:"Historic centre, restaurants, philharmonic hall",l4_t:"Mineralnye Vody Airport",l4_p:"~1 hour by car",
+  plan_hint:"Point on the plan",plan_map:"Open in Google Maps",
+  plan1_t:"Reception & lobby",plan1_d:"A 24/7 hotel-grade front desk at the main entrance.",
+  plan2_t:"Restaurant",plan2_d:"An on-site restaurant and café — breakfasts and room service.",
+  plan3_t:"National Park",plan3_d:"Russia's largest resort park with walking trails — within reach.",
+  plan4_t:"Narzan springs",plan4_d:"Kislovodsk's famous mineral water is right nearby.",
+  plan5_t:"Kindergarten",plan5_d:"A kindergarten within walking distance of the complex.",
+  plan6_t:"Resort Boulevard",plan6_d:"Historic centre: restaurants, philharmonic, promenade.",
   faq_eye:"FAQ",faq_title:"Frequently asked questions",
   ct_eye:"Enquiry",ct_title:"Leave a request",ct_sub:"We'll get in touch within 15 minutes, send the presentation and match a unit to your goal.",
   ct_name:"Your name",ct_phone:"Phone",ct_type:"Request type",ct_o1:"Buy a unit",ct_o2:"Investment / income",ct_o3:"Entire pool (single lot)",ct_o4:"Consultation",
@@ -886,6 +927,33 @@ function renderFAQ(){
  });
 }
 
+/* ============ INTERACTIVE PLAN ============ */
+const PLAN=[
+ {ic:'🛎️',x:46,y:60,t:'plan1_t',d:'plan1_d'},
+ {ic:'🍽️',x:60,y:50,t:'plan2_t',d:'plan2_d'},
+ {ic:'🌳',x:22,y:30,t:'plan3_t',d:'plan3_d'},
+ {ic:'💧',x:80,y:38,t:'plan4_t',d:'plan4_d'},
+ {ic:'🧸',x:33,y:74,t:'plan5_t',d:'plan5_d'},
+ {ic:'🎭',x:70,y:73,t:'plan6_t',d:'plan6_d'}
+];
+let planSel=0;
+function selectPlan(i){planSel=i; renderPlan();}
+function renderPlan(){
+ const plan=document.getElementById('plan'), list=document.getElementById('planList');
+ if(!plan||!list)return;
+ plan.querySelectorAll('.pin').forEach(p=>p.remove());
+ PLAN.forEach((p,i)=>{
+   const b=document.createElement('button'); b.className='pin'+(i===planSel?' active':'');
+   b.style.left=p.x+'%'; b.style.top=p.y+'%';
+   b.innerHTML='<span class="dot">'+p.ic+'</span><span class="lbl">'+txt(p.t)+'</span>';
+   b.addEventListener('click',()=>selectPlan(i)); plan.appendChild(b);
+ });
+ list.innerHTML='';
+ PLAN.forEach((p,i)=>{const b=document.createElement('button'); if(i===planSel)b.className='active'; b.textContent=p.ic+'  '+txt(p.t); b.addEventListener('click',()=>selectPlan(i)); list.appendChild(b);});
+ document.getElementById('planTitle').textContent=txt(PLAN[planSel].t);
+ document.getElementById('planDesc').textContent=txt(PLAN[planSel].d);
+}
+
 /* ============ LANG SWITCH ============ */
 function applyLang(l){
  LANG=l; document.documentElement.lang=l;
@@ -895,7 +963,7 @@ function applyLang(l){
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
  document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
  const active=document.querySelector('.filters button.active')?.dataset.filter||'all';
- renderCards(active); renderFAQ(); calc(); refreshBars();
+ renderCards(active); renderFAQ(); calc(); refreshBars(); renderPlan();
 }
 
 /* ============ CALCULATOR ============ */
@@ -962,7 +1030,7 @@ function observeReveal(){
 
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
- renderCards(); renderFAQ(); calc(); observeReveal();
+ renderCards(); renderFAQ(); calc(); renderPlan(); observeReveal();
 
  // header scroll
  const header=document.getElementById('header');
