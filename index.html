@@ -110,14 +110,34 @@ header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); paddin
 .lang{display:flex; gap:2px; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden}
 .lang button{padding:7px 12px; font-size:12px; letter-spacing:1px; color:var(--text-2)}
 .lang button.active{background:var(--gold); color:#0a1524; font-weight:600}
-.burger{display:none; font-size:24px; color:#fff}
+.burger{display:none; align-items:center; gap:9px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#fff}
+.burger .bl{display:inline-flex; flex-direction:column; gap:4px}
+.burger .bl i{display:block; width:22px; height:1.5px; background:currentColor; transition:transform .3s}
 .mobile-menu{
-  position:fixed; inset:0; background:rgba(5,16,30,.98); z-index:99; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:30px; transform:translateX(100%); transition:transform .45s var(--ease);
+  position:fixed; inset:0; background:linear-gradient(165deg,#0b1a2e 0%,#05101E 70%); z-index:120;
+  display:flex; flex-direction:column; justify-content:space-between; padding:26px clamp(24px,7vw,90px) 40px;
+  transform:translateX(100%); transition:transform .5s var(--ease); overflow-y:auto;
 }
 .mobile-menu.open{transform:none}
-.mobile-menu a{font-size:24px; font-family:var(--serif); color:#fff}
-.mobile-menu .close{position:absolute; top:26px; right:28px; font-size:34px; color:var(--text-2)}
+.mm-top{display:flex; align-items:center; justify-content:space-between}
+.mm-label{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-l)}
+.mobile-menu .close{font-size:26px; line-height:1; color:#fff; background:none; transition:transform .3s}
+.mobile-menu .close:hover{transform:rotate(90deg)}
+.mm-nav{display:grid; grid-template-columns:1fr 1fr; gap:10px 48px; padding:28px 0}
+.mm-nav a{font-family:var(--serif); font-size:clamp(26px,6vw,40px); color:#fff; transition:color .3s; opacity:0; transform:translateY(18px)}
+.mobile-menu.open .mm-nav a{animation:mmIn .6s var(--ease) forwards}
+.mm-nav a:nth-child(1){animation-delay:.08s}.mm-nav a:nth-child(2){animation-delay:.14s}.mm-nav a:nth-child(3){animation-delay:.2s}.mm-nav a:nth-child(4){animation-delay:.26s}.mm-nav a:nth-child(5){animation-delay:.32s}.mm-nav a:nth-child(6){animation-delay:.38s}
+.mm-nav a:hover{color:var(--gold)}
+@keyframes mmIn{to{opacity:1; transform:none}}
+.mm-foot{display:flex; flex-direction:column; gap:16px; border-top:1px solid var(--border); padding-top:26px}
+.mm-phone{font-family:var(--serif); font-size:clamp(24px,5vw,32px); color:#fff; transition:color .3s}
+.mm-phone:hover{color:var(--gold)}
+.mm-foot .btn{align-self:flex-start}
+.mm-addr{font-size:12px; color:var(--text-3); letter-spacing:.5px; margin-top:4px}
+.mm-addr b{display:block; color:var(--text-2); font-size:15px; font-weight:400; margin-top:4px; font-family:var(--serif)}
+.mm-tg{display:inline-flex; align-items:center; gap:10px; color:var(--gold-l); font-size:14px; transition:color .3s}
+.mm-tg:hover{color:var(--gold)}
+.mm-tg svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 /* ============ HERO ============ */
 .hero{
@@ -531,7 +551,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 @media(max-width:640px){
   .container{padding:0 20px}
   .nav-links{display:none}
-  .burger{display:block}
+  .burger{display:inline-flex}
   .nav-right .btn{display:none}
   section{padding:64px 0}
   .hero{padding-top:100px}
@@ -594,19 +614,30 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       </div>
       <button class="halal-toggle" id="halalToggle" title="Халяль-режим"><svg viewBox="0 0 32 32"><path d="M21 7a9 9 0 1 0 0 18 7 7 0 0 1 0-18z"/><path d="M26 9l1 2.2 2.4.3-1.7 1.7.4 2.4-2.1-1.1-2.1 1.1.4-2.4-1.7-1.7 2.4-.3z"/></svg><span data-i18n="halal_mode">Халяль</span></button>
       <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
-      <button class="burger" id="burger">☰</button>
+      <button class="burger" id="burger"><span data-i18n="menu_label">Меню</span><span class="bl"><i></i><i></i></span></button>
     </div>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <button class="close" id="closeMenu">×</button>
-  <a href="#about" data-i18n="nav_about">О проекте</a>
-  <a href="#catalog" data-i18n="nav_apart">Апартаменты</a>
-  <a href="#investor" data-i18n="nav_invest">Инвестору</a>
-  <a href="#location" data-i18n="nav_loc">Локация</a>
-  <a href="#contact" data-i18n="nav_contacts">Контакты</a>
-  <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
+  <div class="mm-top">
+    <span class="mm-label" data-i18n="menu_label">Меню</span>
+    <button class="close" id="closeMenu" aria-label="Закрыть">✕</button>
+  </div>
+  <nav class="mm-nav">
+    <a href="#about" data-i18n="nav_about">О проекте</a>
+    <a href="#location" data-i18n="nav_loc">Локация</a>
+    <a href="#catalog" data-i18n="nav_apart">Апартаменты</a>
+    <a href="#investor" data-i18n="nav_invest">Инвестору</a>
+    <a href="#faq" data-i18n="nav_faq">Вопросы</a>
+    <a href="#contact" data-i18n="nav_contacts">Контакты</a>
+  </nav>
+  <div class="mm-foot">
+    <a href="tel:+70000000000" class="mm-phone">+7 (000) 000-00-00</a>
+    <a href="#contact" class="btn btn-gold" data-i18n="cta_request">Оставить заявку</a>
+    <div class="mm-addr"><span data-i18n="mm_office">Офис продаж</span><b data-i18n="ci_loc2">2-я санитарная зона · точный адрес по заявке</b></div>
+    <a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="mm-tg"><svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg><span data-i18n="mm_tg">Наш Telegram-канал</span></a>
+  </div>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -1061,6 +1092,7 @@ const I18N={
  ru:{
   brand:"ВЕРШИНА",
   nav_about:"О проекте",nav_apart:"Апартаменты",nav_invest:"Инвестору",nav_loc:"Локация",nav_contacts:"Контакты",cta_request:"Оставить заявку",
+  menu_label:"Меню",nav_faq:"Вопросы",mm_office:"Офис продаж",mm_tg:"Наш Telegram-канал",
   hero_badge:"100% готов · введён в эксплуатацию",hero_h1a:"Готовый апарт-комплекс с видом на ",hero_h1b:"горы Кавказа",
   halal_mode:"Халяль",halal_badge:"Халяль-инвестиция",halal_eye:"Халяль-инвестиция",halal_title:"Вложение по нормам шариата",halal_sub:"Актив и сделку можно структурировать без риба — по этическим принципам ислама.",
   halal1_t:"Без процентов (риба)",halal1_p:"Только 100% оплата — без ипотеки и процентных схем.",
@@ -1159,6 +1191,7 @@ const I18N={
  en:{
   brand:"VERSHINA",
   nav_about:"Project",nav_apart:"Apartments",nav_invest:"Investors",nav_loc:"Location",nav_contacts:"Contacts",cta_request:"Request a call",
+  menu_label:"Menu",nav_faq:"FAQ",mm_office:"Sales office",mm_tg:"Our Telegram channel",
   hero_badge:"100% ready · commissioned",hero_h1a:"A ready apart-complex with a view of the ",hero_h1b:"Caucasus mountains",
   halal_mode:"Halal",halal_badge:"Halal investment",halal_eye:"Halal investment",halal_title:"An investment aligned with Sharia",halal_sub:"The asset and the deal can be structured without riba — on ethical Islamic principles.",
   halal1_t:"No interest (riba)",halal1_p:"100% payment only — no mortgage, no interest schemes.",
@@ -1677,9 +1710,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
  // burger
  const mm=document.getElementById('mobileMenu');
- document.getElementById('burger').addEventListener('click',()=>mm.classList.add('open'));
- document.getElementById('closeMenu').addEventListener('click',()=>mm.classList.remove('open'));
- mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+ const openMM=()=>{mm.classList.add('open'); document.body.style.overflow='hidden';};
+ const closeMM=()=>{mm.classList.remove('open'); document.body.style.overflow='';};
+ document.getElementById('burger').addEventListener('click',openMM);
+ document.getElementById('closeMenu').addEventListener('click',closeMM);
+ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMM));
 
  // catalog filters
  document.querySelectorAll('.cf-tabs button').forEach(b=>b.addEventListener('click',()=>{
