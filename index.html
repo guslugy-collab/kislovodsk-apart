@@ -537,6 +537,16 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 .vid-frame .vf-ic svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .vid-frame p{color:var(--text-2); font-size:14px; max-width:36ch}
 
+/* ============ LOCATION TOGGLE + MAP ============ */
+.loc-toggle{display:flex; gap:10px; justify-content:center; margin-bottom:34px}
+.loc-toggle button{padding:10px 28px; border:1px solid var(--border); border-radius:100px; font-size:14px; color:var(--text-2); background:none; cursor:pointer; transition:all .3s var(--ease)}
+.loc-toggle button:hover{border-color:var(--border-2); color:#fff}
+.loc-toggle button.active{background:var(--gold); color:#0a1524; font-weight:600; border-color:var(--gold)}
+.loc-list .ico svg{width:22px;height:22px;stroke:var(--gold);stroke-width:1.35;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#locMapWrap .plan-info{justify-content:flex-start}
+#locMapWrap .loc-list{margin-bottom:24px}
+#locMapWrap .plan-info .btn{margin-top:auto}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -931,7 +941,11 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <h2 class="sec-title" data-i18n="loc_title">В сердце курортного Кисловодска</h2>
       <p class="sec-sub" data-i18n="loc_sub">Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.</p>
     </div>
-    <div class="plan-wrap reveal">
+    <div class="loc-toggle" id="locToggle">
+      <button class="active" type="button" data-loc="plan" data-i18n="loc_tab_plan">Схема</button>
+      <button type="button" data-loc="map" data-i18n="loc_tab_map">Карта</button>
+    </div>
+    <div class="plan-wrap reveal" id="locPlan">
       <div class="plan" id="plan">
         <div class="plan-img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80')"></div>
         <!-- метки добавляются скриптом -->
@@ -941,6 +955,21 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
         <h3 id="planTitle">—</h3>
         <p id="planDesc">—</p>
         <div class="plan-list" id="planList"></div>
+        <a class="btn btn-ghost" href="https://www.google.com/maps?q=Кисловодск" target="_blank" rel="noopener" data-i18n="plan_map">Смотреть на Google Картах</a>
+      </div>
+    </div>
+    <div class="plan-wrap" id="locMapWrap" hidden>
+      <div class="loc-map">
+        <iframe src="https://www.google.com/maps?q=%D0%9A%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D0%BA&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Кисловодск"></iframe>
+      </div>
+      <div class="plan-info">
+        <span class="eyebrow" data-i18n="loc_near">Рядом с объектом</span>
+        <ul class="loc-list">
+          <li><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3c-4 0-7 3-7 6.5 0 1 .3 1.9.8 2.7C7.4 13 6 15 6 17.4 6 21 9 24 13 24h6c4 0 7-3 7-6.6 0-2.4-1.4-4.4-3.8-5.2.5-.8.8-1.7.8-2.7C23 6 20 3 16 3z"/><path d="M16 24v5"/></svg></div><div><b data-i18n="l1_t">Национальный парк</b><span data-i18n="l1_p">Крупнейший курортный парк России, терренкуры</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 4s9 10 9 16a9 9 0 0 1-18 0c0-6 9-16 9-16z"/><path d="M11 20a5 5 0 0 0 4 4"/></svg></div><div><b data-i18n="l2_t">Нарзанные источники</b><span data-i18n="l2_p">Знаменитые минеральные воды в пешей доступности</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 12L16 4l12 8M3 27h26M4 23h24M6 12v11M12 12v11M20 12v11M26 12v11"/></svg></div><div><b data-i18n="l3_t">Курортный бульвар</b><span data-i18n="l3_p">Исторический центр, рестораны, филармония</span></div></li>
+          <li><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><div><b data-i18n="l4_t">Аэропорт Минеральные Воды</b><span data-i18n="l4_p">~1 час на автомобиле</span></div></li>
+        </ul>
         <a class="btn btn-ghost" href="https://www.google.com/maps?q=Кисловодск" target="_blank" rel="noopener" data-i18n="plan_map">Смотреть на Google Картах</a>
       </div>
     </div>
@@ -1140,6 +1169,7 @@ const I18N={
   loc_eye:"Локация",loc_title:"В сердце курортного Кисловодска",loc_sub:"Вторая санитарная зона — экологически чистое расположение рядом с главными точками притяжения.",
   l1_t:"Национальный парк",l1_p:"Крупнейший курортный парк России, терренкуры",l2_t:"Нарзанные источники",l2_p:"Знаменитые минеральные воды в пешей доступности",
   l3_t:"Курортный бульвар",l3_p:"Исторический центр, рестораны, филармония",l4_t:"Аэропорт Минеральные Воды",l4_p:"~1 час на автомобиле",
+  loc_tab_plan:"Схема",loc_tab_map:"Карта",loc_near:"Рядом с объектом",
   plan_hint:"Точка на плане",plan_map:"Смотреть на Google Картах",
   plan1_t:"Ресепшен и лобби",plan1_d:"Гостиничная стойка регистрации 24/7 у главного входа комплекса.",
   plan2_t:"Ресторан",plan2_d:"Собственный ресторан и кафе на территории — завтраки и рум-сервис.",
@@ -1239,6 +1269,7 @@ const I18N={
   loc_eye:"Location",loc_title:"In the heart of resort Kislovodsk",loc_sub:"The second sanitary zone — a clean, protected location next to the main attractions.",
   l1_t:"National Park",l1_p:"Russia's largest resort park, walking trails",l2_t:"Narzan springs",l2_p:"Famous mineral waters within walking distance",
   l3_t:"Resort Boulevard",l3_p:"Historic centre, restaurants, philharmonic hall",l4_t:"Mineralnye Vody Airport",l4_p:"~1 hour by car",
+  loc_tab_plan:"Plan",loc_tab_map:"Map",loc_near:"Near the property",
   plan_hint:"Point on the plan",plan_map:"Open in Google Maps",
   plan1_t:"Reception & lobby",plan1_d:"A 24/7 hotel-grade front desk at the main entrance.",
   plan2_t:"Restaurant",plan2_d:"An on-site restaurant and café — breakfasts and room service.",
@@ -1704,6 +1735,14 @@ document.addEventListener('DOMContentLoaded',()=>{
  // header scroll
  const header=document.getElementById('header');
  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+
+ // location schema/map toggle
+ document.querySelectorAll('#locToggle button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#locToggle button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  const map=b.dataset.loc==='map';
+  const p=document.getElementById('locPlan'), m=document.getElementById('locMapWrap');
+  if(p)p.hidden=map; if(m)m.hidden=!map;
+ }));
 
  // lang
  document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
