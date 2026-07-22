@@ -640,13 +640,19 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   .b2b{padding:36px 28px}
   .calc-form,.calc-res{padding:34px}
 }
-@media(max-width:1100px){
+@media(max-width:1280px){
   .nav-links{display:none}
   .burger{display:inline-flex}
+  .nav-right{gap:12px}
+  .nav-right .btn{display:none}
 }
 @media(max-width:640px){
   .container{padding:0 20px}
-  .nav-right .btn{display:none}
+  .burger span:not(.bl){display:none}
+  .burger{gap:0}
+  .nav-right{gap:10px}
+  .logo span{font-size:18px}
+  .logo svg{width:22px; height:22px}
   section{padding:64px 0}
   .hero{padding-top:100px}
   .hero-stats{gap:28px}
