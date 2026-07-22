@@ -685,6 +685,12 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+  <div class="pl-logo"><svg viewBox="0 0 100 100"><path d="M12 74 L40 30 L54 52 L66 34 L88 74 Z" fill="#C9A96E"/></svg><span>ВЕР<b>ШИНА</b></span></div>
+  <div class="pl-bar"><i></i></div>
+</div>
+
 <!-- ============ HEADER ============ -->
 <header id="header">
   <div class="container nav">
@@ -1974,6 +1980,19 @@ document.addEventListener('DOMContentLoaded',()=>{
  // header scroll
  const header=document.getElementById('header');
  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+
+ // preloader
+ (function(){const p=document.getElementById('preloader'); if(!p)return; let hid=false;
+   const hide=()=>{if(hid)return; hid=true; p.classList.add('done'); setTimeout(()=>{p.style.display='none';},700);};
+   addEventListener('load',()=>setTimeout(hide,300)); setTimeout(hide,2200);})();
+
+ // hero parallax (на контейнере .hero-bg, не трогает слайды)
+ const heroBg=document.querySelector('#hero .hero-bg');
+ if(heroBg && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+   let tick=false;
+   addEventListener('scroll',()=>{ if(tick)return; tick=true;
+     requestAnimationFrame(()=>{ const y=scrollY; if(y<innerHeight) heroBg.style.transform='translateY('+(y*0.4)+'px)'; tick=false; }); });
+ }
 
  // location schema/map toggle
  document.querySelectorAll('#locToggle button').forEach(b=>b.addEventListener('click',()=>{
