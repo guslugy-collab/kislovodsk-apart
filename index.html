@@ -124,14 +124,38 @@ header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); paddin
   min-height:100vh; display:flex; align-items:center; position:relative; padding-top:120px; overflow:hidden;
   background:var(--grad-ph);
 }
-.hero-bg{
-  position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80');
-  background-size:cover; background-position:center; opacity:.68;
-  animation:kenburns 26s ease-in-out infinite alternate;
+.hero-bg{position:absolute; inset:0; opacity:.72; overflow:hidden}
+.hero-slide{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  opacity:0; will-change:opacity,transform; animation:heroSlide 28s linear infinite;
 }
-@media (prefers-reduced-motion: reduce){.hero-bg{animation:none}}
-.hero::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(5,16,30,.94) 0%,rgba(5,16,30,.62) 42%,rgba(5,16,30,.22) 100%),linear-gradient(180deg,rgba(5,16,30,.15) 60%,var(--bg) 100%)}
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:7s}
+.hero-slide:nth-child(3){animation-delay:14s}
+.hero-slide:nth-child(4){animation-delay:21s}
+@keyframes heroSlide{
+  0%{opacity:0; transform:scale(1.04)}
+  3%{opacity:1}
+  22%{opacity:1}
+  25%{opacity:0; transform:scale(1.13)}
+  100%{opacity:0; transform:scale(1.13)}
+}
+.hero::after{content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,rgba(5,16,30,.94) 0%,rgba(5,16,30,.62) 42%,rgba(5,16,30,.22) 100%),linear-gradient(180deg,rgba(5,16,30,.15) 60%,var(--bg) 100%)}
 .hero .container{position:relative; z-index:2}
+/* staged entrance — фон появляется первым, затем текст */
+@keyframes heroRise{from{opacity:0; transform:translateY(26px)} to{opacity:1; transform:none}}
+.hero-badge,.hero h1,.hero p.lead,.hero-cta,.halal-badge,.hero-stats{opacity:0; animation:heroRise .9s var(--ease) forwards}
+.hero-badge{animation-delay:.6s}
+.hero h1{animation-delay:.9s}
+.hero p.lead{animation-delay:1.25s}
+.hero-cta{animation-delay:1.55s}
+.halal-badge{animation-delay:1.8s}
+.hero-stats{animation-delay:2s}
+@media (prefers-reduced-motion: reduce){
+  .hero-slide{animation:none}
+  .hero-slide:nth-child(n+2){display:none}
+  .hero-badge,.hero h1,.hero p.lead,.hero-cta,.halal-badge,.hero-stats{opacity:1; animation:none}
+}
 .hero-badge{
   display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border:1px solid var(--border-2);
   border-radius:100px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-l); margin-bottom:30px;
@@ -397,6 +421,55 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 .halal-card h4{font-family:var(--serif); font-size:19px; color:#fff; margin-bottom:8px; font-weight:400}
 .halal-card p{color:var(--text-2); font-size:14px}
 
+/* ============ STOCK / SCARCITY ============ */
+.stock{display:flex; align-items:center; gap:30px; flex-wrap:wrap; border:1px solid rgba(201,169,110,.32); border-radius:var(--r-lg); background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(27,94,255,.03)); padding:24px 32px; margin-bottom:40px}
+.stock-n{display:flex; align-items:baseline; gap:10px; flex-shrink:0}
+.stock-n b{font-family:var(--serif); font-size:46px; color:var(--gold); line-height:1; font-weight:500}
+.stock-n span{font-size:13px; color:var(--text-2); max-width:12ch}
+.stock-mid{flex:1; min-width:200px}
+.stock-bar{height:8px; background:var(--surface-2); border-radius:8px; overflow:hidden}
+.stock-bar span{display:block; height:100%; width:0; background:var(--grad-gold); border-radius:8px; transition:width 1.3s var(--ease)}
+.stock-sub{font-size:12px; color:var(--text-3); margin-top:9px; letter-spacing:.3px}
+.stock-tag{flex-shrink:0; font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold-l); border:1px solid rgba(201,169,110,.4); border-radius:100px; padding:8px 16px; max-width:220px; line-height:1.35}
+
+/* ============ MOBILE ACTION BAR ============ */
+.mbar{display:none}
+
+/* ============ QUIZ ============ */
+.quiz-ov{position:fixed; inset:0; z-index:150; background:rgba(3,9,18,.74); backdrop-filter:blur(7px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .35s var(--ease)}
+.quiz-ov.show{opacity:1; pointer-events:auto}
+.quiz{width:100%; max-width:600px; max-height:92vh; overflow-y:auto; background:var(--surface); border:1px solid var(--border-2); border-radius:var(--r-lg); padding:42px 44px; position:relative; transform:translateY(22px) scale(.98); transition:transform .4s var(--ease); box-shadow:0 40px 90px rgba(0,0,0,.5)}
+.quiz-ov.show .quiz{transform:none}
+.quiz-x{position:absolute; top:16px; right:20px; font-size:30px; line-height:1; color:var(--text-2); background:none; border:none}
+.quiz-x:hover{color:#fff}
+.quiz-prog{height:4px; background:var(--border-2); border-radius:4px; overflow:hidden; margin:14px 0 10px}
+.quiz-prog span{display:block; height:100%; width:0; background:var(--grad-gold); border-radius:4px; transition:width .45s var(--ease)}
+.quiz-steplbl{font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--text-3); margin-bottom:22px}
+.quiz h3{font-size:clamp(23px,3vw,28px); color:#fff; margin-bottom:24px; line-height:1.2}
+.quiz-opts{display:flex; flex-direction:column; gap:12px}
+.quiz-opt{text-align:left; padding:17px 20px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface-2); color:#fff; font-size:16px; display:flex; align-items:center; gap:16px; transition:all .25s var(--ease); cursor:pointer}
+.quiz-opt:hover{border-color:var(--gold); transform:translateX(3px)}
+.quiz-opt.sel{border-color:var(--gold); box-shadow:inset 0 0 0 1px var(--gold)}
+.quiz-opt .qi{width:38px;height:38px;flex-shrink:0; border-radius:50%; border:1px solid var(--border-2); display:flex;align-items:center;justify-content:center; color:var(--gold)}
+.quiz-opt .qi svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.35;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.quiz-opt.sel .qi{background:var(--gold); color:#0a1524; border-color:var(--gold)}
+.quiz-field{margin-bottom:16px}
+.quiz-field label{display:block; font-size:13px; color:var(--text-2); margin-bottom:8px}
+.quiz-field input{width:100%; padding:15px 18px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--r-sm); color:#fff; font-family:inherit; font-size:15px; transition:border-color .3s}
+.quiz-field input:focus{outline:none; border-color:var(--gold)}
+.quiz-consent{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--text-3); margin:18px 0 22px}
+.quiz-consent input{width:auto; margin-top:3px; flex-shrink:0}
+.quiz-nav{display:flex; gap:12px; align-items:center; margin-top:24px}
+.quiz-back{font-size:14px; color:var(--text-2); background:none; border:none; padding:12px 6px; cursor:pointer}
+.quiz-back:hover{color:#fff}
+.quiz-nav .btn{margin-left:auto; justify-content:center}
+.quiz-result{text-align:center; padding:14px 0 4px}
+.quiz-result .qr-check{width:64px;height:64px;border-radius:50%; background:linear-gradient(135deg,rgba(201,169,110,.2),rgba(201,169,110,.08)); border:1px solid var(--gold); display:flex;align-items:center;justify-content:center; margin:0 auto 20px; color:var(--gold)}
+.quiz-result .qr-check svg{width:30px;height:30px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.quiz-result .big{font-family:var(--serif); font-size:60px; color:var(--gold); line-height:1}
+.quiz-result p{color:var(--text-2); font-size:15px; max-width:40ch; margin:12px auto 26px}
+.quiz-result .btn{justify-content:center}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -431,6 +504,21 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   .halal-toggle span{display:none}
   .cookie{left:12px; right:12px; bottom:96px; flex-direction:column; align-items:stretch; text-align:left}
   .sec-title{font-size:32px}
+  /* mobile action bar */
+  body{padding-bottom:66px}
+  .float-btn{display:none}
+  .mbar{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:96; background:rgba(8,21,38,.97); backdrop-filter:blur(12px); border-top:1px solid var(--border-2); padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+  .mbar-b{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border-radius:var(--r-sm); color:var(--text-2); font-size:11px; letter-spacing:.3px}
+  .mbar-b svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .mbar-cta{background:var(--grad-gold); color:#0a1524; font-weight:600}
+  .mbar-cta svg{stroke:#0a1524}
+  /* stock */
+  .stock{padding:22px; gap:18px}
+  .stock-n b{font-size:38px}
+  .stock-tag{max-width:100%}
+  /* quiz */
+  .quiz{padding:32px 24px}
+  .quiz-result .big{font-size:48px}
 }
 </style>
 </head>
@@ -474,13 +562,18 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
-  <div class="hero-bg" data-asset="__HERO_VIDEO__"></div>
+  <div class="hero-bg" data-asset="__HERO_VIDEO__">
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2000&q=80')"></div>
+  </div>
   <div class="container">
     <div class="hero-badge"><span class="dot"></span><span data-i18n="hero_badge">100% готов · введён в эксплуатацию</span></div>
     <h1><span data-i18n="hero_h1a">Готовый апарт-комплекс с видом на </span><em data-i18n="hero_h1b">горы Кавказа</em></h1>
     <p class="lead" data-i18n="hero_lead">Кисловодск, вторая санитарная зона. Апартаменты и квартиры под доход и для жизни. Актив, который приносит деньги уже сегодня — без стройки и рисков.</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn btn-gold" data-i18n="hero_cta1">Оставить заявку</a>
+      <button type="button" class="btn btn-gold" data-quiz data-i18n="quiz_open">Подобрать апартамент</button>
       <a href="#catalog" class="btn btn-ghost" data-i18n="hero_cta2">Смотреть апартаменты</a>
     </div>
     <span class="halal-badge"><svg viewBox="0 0 32 32"><path d="M21 7a9 9 0 1 0 0 18 7 7 0 0 1 0-18z"/><path d="M26 9l1 2.2 2.4.3-1.7 1.7.4 2.4-2.1-1.1-2.1 1.1.4-2.4-1.7-1.7 2.4-.3z"/></svg><span data-i18n="halal_badge">Халяль-инвестиция</span></span>
@@ -512,7 +605,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама гор — то, за что платят премию и туристы, и покупатели.</p></div>
     </div>
     <div class="center" style="margin-top:48px">
-      <a href="#contact" class="btn btn-gold" data-i18n="ben_cta">Получить подборку и расчёт</a>
+      <button type="button" class="btn btn-gold" data-quiz data-i18n="ben_cta">Получить подборку и расчёт</button>
     </div>
   </div>
 </section>
@@ -566,6 +659,14 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <span class="eyebrow" data-i18n="cat_eye">Каталог</span>
       <h2 class="sec-title" data-i18n="cat_title">Апартаменты и квартиры</h2>
       <p class="sec-sub" data-i18n="cat_sub">Выберите формат — под сдачу в аренду или для собственного отдыха.</p>
+    </div>
+    <div class="stock reveal" id="stock">
+      <div class="stock-n"><b id="stockLeft">0</b><span data-i18n="stock_left">юнитов осталось в пуле</span></div>
+      <div class="stock-mid">
+        <div class="stock-bar"><span id="stockFill"></span></div>
+        <div class="stock-sub" id="stockSub"></div>
+      </div>
+      <div class="stock-tag" data-i18n="stock_tag">2-я санзона · новых объектов не строят</div>
     </div>
     <div class="cat-filter reveal">
       <div class="cf-top">
@@ -830,6 +931,24 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 
 <div class="toast" id="toast"></div>
 
+<!-- ============ MOBILE ACTION BAR ============ -->
+<div class="mbar" id="mbar">
+  <a href="tel:+70000000000" class="mbar-b"><svg viewBox="0 0 32 32"><path d="M11 5H6a2 2 0 0 0-2 2c0 11 10 21 21 21a2 2 0 0 0 2-2v-5l-6-2-3 3a16 16 0 0 1-8-8l3-3z"/></svg><span data-i18n="mbar_call">Позвонить</span></a>
+  <a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="mbar-b"><svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg><span data-i18n="mbar_tg">Telegram</span></a>
+  <button type="button" class="mbar-b mbar-cta" data-quiz><svg viewBox="0 0 32 32"><path d="M6 4h16l6 6v18H6z"/><path d="M22 4v6h6M11 16h10M11 21h10"/></svg><span data-i18n="mbar_pick">Подобрать</span></button>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div class="quiz-ov" id="quizOv">
+  <div class="quiz" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+    <button class="quiz-x" id="quizX" aria-label="Close">&times;</button>
+    <span class="eyebrow" id="quizTitle" data-i18n="quiz_title">Подбор апартамента</span>
+    <div class="quiz-prog"><span id="quizBar"></span></div>
+    <div class="quiz-steplbl" id="quizStepLbl"></div>
+    <div id="quizBody"></div>
+  </div>
+</div>
+
 <script>
 /* ============ i18n ============ */
 const I18N={
@@ -901,6 +1020,17 @@ const I18N={
   foot_copy:"© 2026 ВЕРШИНА. Демонстрационная версия сайта.",foot_made:"Сделано в студии Abdul Aziz Digital",
   cookie_txt:'Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с политикой конфиденциальности.',cookie_ok:"Принять",
   toast_ok:"Заявка отправлена! Открываем Telegram…",
+  quiz_open:"Подобрать апартамент",quiz_title:"Подбор апартамента",quiz_step:"Шаг",quiz_of:"из",quiz_back:"Назад",
+  quiz_goal:"Какая у вас цель?",quiz_g1:"Сдавать в аренду (доход)",quiz_g2:"Для себя и семьи",quiz_g3:"Инвестировать в весь пул",
+  quiz_budget:"Ваш бюджет?",quiz_b1:"до 15 млн ₽",quiz_b2:"15–25 млн ₽",quiz_b3:"25–40 млн ₽",quiz_b4:"от 40 млн ₽",
+  quiz_format:"Какой формат интересует?",quiz_f1:"Студия / апарт-номер",quiz_f2:"1–2 комнаты",quiz_f3:"Дуплекс / пентхаус",
+  quiz_contact:"Куда прислать подборку?",quiz_name:"Ваше имя",quiz_phone:"Телефон",
+  quiz_consent:"Согласен на обработку персональных данных",quiz_submit:"Показать подборку",
+  quiz_result_sub:"вариантов под ваши параметры. Заявка отправлена — менеджер пришлёт подборку с ценами и планировками.",
+  quiz_result_none:"Точных совпадений нет — менеджер подберёт варианты вручную и свяжется с вами.",
+  quiz_result_cta:"Смотреть подборку",
+  mbar_call:"Позвонить",mbar_tg:"Telegram",mbar_pick:"Подобрать",
+  stock_left:"юнитов осталось в пуле",stock_tag:"2-я санзона · новых объектов не строят",stock_sold:"Продано {s} из {t} · пул ограничен",
   unit_apart:"Апарт-номер",unit_flat:"Квартира",unit_view:"Вид на горы",price_req:"по запросу",m2:"м²",floor:"этаж",lvl:"уровня",
   years:"лет"
  },
@@ -972,6 +1102,17 @@ const I18N={
   foot_copy:"© 2026 VERSHINA. Demonstration version.",foot_made:"Made by Abdul Aziz Digital studio",
   cookie_txt:'We use cookies to improve the site. By continuing, you agree to the privacy policy.',cookie_ok:"Accept",
   toast_ok:"Request sent! Opening Telegram…",
+  quiz_open:"Find my apartment",quiz_title:"Apartment finder",quiz_step:"Step",quiz_of:"of",quiz_back:"Back",
+  quiz_goal:"What's your goal?",quiz_g1:"Rent out (income)",quiz_g2:"For myself & family",quiz_g3:"Invest in the whole pool",
+  quiz_budget:"Your budget?",quiz_b1:"up to ₽15M",quiz_b2:"₽15–25M",quiz_b3:"₽25–40M",quiz_b4:"from ₽40M",
+  quiz_format:"Which format?",quiz_f1:"Studio / apart-unit",quiz_f2:"1–2 rooms",quiz_f3:"Duplex / penthouse",
+  quiz_contact:"Where to send the selection?",quiz_name:"Your name",quiz_phone:"Phone",
+  quiz_consent:"I consent to the processing of personal data",quiz_submit:"Show my selection",
+  quiz_result_sub:"units match your criteria. Request sent — a manager will send the selection with prices and floor plans.",
+  quiz_result_none:"No exact matches — a manager will curate options and get in touch.",
+  quiz_result_cta:"View the selection",
+  mbar_call:"Call",mbar_tg:"Telegram",mbar_pick:"Find unit",
+  stock_left:"units left in the pool",stock_tag:"2nd sanitary zone · no new builds",stock_sold:"Sold {s} of {t} · limited pool",
   unit_apart:"Apart-unit",unit_flat:"Residence",unit_view:"Mountain view",price_req:"on request",m2:"m²",floor:"floor",lvl:"levels",
   years:"yrs"
  }
@@ -986,6 +1127,30 @@ const UNITS=[
  {t:'flat',name:'Duplex Classic',area:78,rooms:2,pr:26500000,price:'от 26,5 млн ₽',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'},
  {t:'flat',name:'Duplex Grand',area:104,rooms:3,pr:35900000,price:'от 35,9 млн ₽',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80'},
  {t:'flat',name:'Penthouse Vershina',area:128,rooms:3,pr:48000000,price:'по запросу',img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80'}
+];
+
+/* ============ STOCK (демо-плейсхолдер — заменить на реальные данные объекта) ============ */
+const STOCK={total:120, left:85};
+
+/* ============ QUIZ DATA ============ */
+const QUIZ=[
+ {key:'goal', t:'quiz_goal', opts:[
+   {v:'rent', i:'quiz_g1', ic:'<svg viewBox="0 0 32 32"><path d="M5 14 16 5l11 9"/><path d="M8 12v14h16V12"/><path d="M14 26v-6h4v6"/></svg>'},
+   {v:'live', i:'quiz_g2', ic:'<svg viewBox="0 0 32 32"><path d="M4 26h24M6 26V13l10-7 10 7v13"/><path d="M13 26v-7h6v7"/></svg>'},
+   {v:'pool', i:'quiz_g3', ic:'<svg viewBox="0 0 32 32"><path d="M5 28V9l9-4v23M14 28V13l13-4v19M5 28h22"/><path d="M19 14v3M23 14v3M19 20v3M23 20v3M9 12v3M9 19v3"/></svg>'}
+ ]},
+ {key:'budget', t:'quiz_budget', opts:[
+   {v:'b1', i:'quiz_b1', range:[0,15000000], ic:'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v14M13 12h5a2.5 2.5 0 0 1 0 5h-4a2.5 2.5 0 0 0 0 5h5"/></svg>'},
+   {v:'b2', i:'quiz_b2', range:[15000000,25000000], ic:'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v14M13 12h5a2.5 2.5 0 0 1 0 5h-4a2.5 2.5 0 0 0 0 5h5"/></svg>'},
+   {v:'b3', i:'quiz_b3', range:[25000000,40000000], ic:'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v14M13 12h5a2.5 2.5 0 0 1 0 5h-4a2.5 2.5 0 0 0 0 5h5"/></svg>'},
+   {v:'b4', i:'quiz_b4', range:[40000000,999000000], ic:'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v14M13 12h5a2.5 2.5 0 0 1 0 5h-4a2.5 2.5 0 0 0 0 5h5"/></svg>'}
+ ]},
+ {key:'format', t:'quiz_format', opts:[
+   {v:'studio', i:'quiz_f1', type:'apart', ic:'<svg viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="2"/><path d="M5 20h22M20 20v7"/></svg>'},
+   {v:'family', i:'quiz_f2', rooms:[1,2], ic:'<svg viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M16 6v20M4 16h24"/></svg>'},
+   {v:'lux', i:'quiz_f3', rooms:[3], ic:'<svg viewBox="0 0 32 32"><path d="M4 27V12l8-5v6l8-5v6l8-5v18z"/><path d="M4 27h24"/></svg>'}
+ ]},
+ {key:'contact', t:'quiz_contact', contact:true}
 ];
 
 /* ============ FAQ DATA ============ */
@@ -1121,7 +1286,7 @@ function applyLang(l){
  });
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
  document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
- applyFilters(); renderFAQ(); calc(); refreshBars(); renderPlan();
+ applyFilters(); renderFAQ(); calc(); refreshBars(); renderPlan(); renderStockSub();
  ['prRange','arRange'].forEach(id=>{const w=document.getElementById(id); if(w)w.querySelector('.lo').dispatchEvent(new Event('input'));});
 }
 
@@ -1187,9 +1352,118 @@ function observeReveal(){
  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
 }
 
+/* ============ STOCK ============ */
+function renderStockSub(){
+ const el=document.getElementById('stockSub'); if(!el)return;
+ el.textContent=txt('stock_sold').replace('{s}',STOCK.total-STOCK.left).replace('{t}',STOCK.total);
+}
+function initStock(){
+ const s=document.getElementById('stock'); if(!s)return;
+ const leftEl=document.getElementById('stockLeft'), fill=document.getElementById('stockFill');
+ const sold=STOCK.total-STOCK.left;
+ renderStockSub();
+ const obs=new IntersectionObserver(es=>es.forEach(e=>{
+   if(e.isIntersecting){
+     fill.style.width=(sold/STOCK.total*100)+'%';
+     const dur=1200,t0=performance.now();
+     (function st(t){const p=Math.min((t-t0)/dur,1); leftEl.textContent=Math.round(STOCK.left*p); if(p<1)requestAnimationFrame(st);})(t0);
+     obs.disconnect();
+   }
+ }),{threshold:.4});
+ obs.observe(s);
+}
+
+/* ============ QUIZ ============ */
+let qStep=0; const qAns={};
+function openQuiz(){qStep=0; Object.keys(qAns).forEach(k=>delete qAns[k]); document.getElementById('quizOv').classList.add('show'); document.body.style.overflow='hidden'; renderQuiz();}
+function closeQuiz(){document.getElementById('quizOv').classList.remove('show'); document.body.style.overflow='';}
+function quizFilteredList(){
+ let list=UNITS.slice();
+ const b=QUIZ[1].opts.find(o=>o.v===qAns.budget);
+ if(b)list=list.filter(u=>u.pr>=b.range[0]&&u.pr<=b.range[1]);
+ const f=QUIZ[2].opts.find(o=>o.v===qAns.format);
+ if(f){ if(f.type)list=list.filter(u=>u.t===f.type); if(f.rooms)list=list.filter(u=>f.rooms.includes(u.rooms)); }
+ return list;
+}
+function quizApplyToCatalog(){
+ const b=QUIZ[1].opts.find(o=>o.v===qAns.budget);
+ const f=QUIZ[2].opts.find(o=>o.v===qAns.format);
+ curType='all'; roomsSel.clear();
+ if(f){ if(f.type)curType=f.type; if(f.rooms)f.rooms.forEach(r=>roomsSel.add(r)); }
+ document.querySelectorAll('.cf-tabs button').forEach(x=>x.classList.toggle('active', x.dataset.filter===curType));
+ document.querySelectorAll('#cfRooms button').forEach(x=>x.classList.toggle('active', roomsSel.has(+x.dataset.r)));
+ const pr=document.getElementById('prRange');
+ if(pr){
+   const lo=pr.querySelector('.lo'), hi=pr.querySelector('.hi');
+   lo.value = b?Math.max(PR_MIN,b.range[0]):PR_MIN;
+   hi.value = b?Math.min(PR_MAX,b.range[1]):PR_MAX;
+   lo.dispatchEvent(new Event('input'));
+ }
+ applyFilters();
+}
+function renderQuiz(){
+ const body=document.getElementById('quizBody'); const step=QUIZ[qStep];
+ document.getElementById('quizBar').style.width=((qStep+1)/QUIZ.length*100)+'%';
+ document.getElementById('quizStepLbl').textContent=txt('quiz_step')+' '+(qStep+1)+' '+txt('quiz_of')+' '+QUIZ.length;
+ if(step.contact){
+   body.innerHTML=`<h3>${txt('quiz_contact')}</h3>
+     <div class="quiz-field"><label>${txt('quiz_name')}</label><input type="text" id="qName" required></div>
+     <div class="quiz-field"><label>${txt('quiz_phone')}</label><input type="tel" id="qPhone" placeholder="+7 ..." required></div>
+     <label class="quiz-consent"><input type="checkbox" id="qConsent" required><span>${txt('quiz_consent')}</span></label>
+     <div class="quiz-nav">
+       <button class="quiz-back" id="qBack">${txt('quiz_back')}</button>
+       <button class="btn btn-gold" id="qSubmit">${txt('quiz_submit')}</button>
+     </div>`;
+   body.querySelector('#qBack').addEventListener('click',()=>{qStep--; renderQuiz();});
+   body.querySelector('#qSubmit').addEventListener('click',quizSubmit);
+ } else {
+   body.innerHTML=`<h3>${txt(step.t)}</h3>
+     <div class="quiz-opts">${step.opts.map(o=>`<button class="quiz-opt${qAns[step.key]===o.v?' sel':''}" data-v="${o.v}"><span class="qi">${o.ic||''}</span>${txt(o.i)}</button>`).join('')}</div>
+     ${qStep>0?`<div class="quiz-nav"><button class="quiz-back" id="qBack">${txt('quiz_back')}</button></div>`:''}`;
+   body.querySelectorAll('.quiz-opt').forEach(btn=>btn.addEventListener('click',()=>{
+     qAns[step.key]=btn.dataset.v; qStep++; renderQuiz();
+   }));
+   const back=body.querySelector('#qBack'); if(back)back.addEventListener('click',()=>{qStep--; renderQuiz();});
+ }
+}
+function quizSubmit(){
+ const name=document.getElementById('qName'), phone=document.getElementById('qPhone'), consent=document.getElementById('qConsent');
+ if(!name.value.trim()){name.focus(); return;}
+ if(!phone.value.trim()){phone.focus(); return;}
+ if(!consent.checked){consent.focus(); return;}
+ const gv=k=>{const s=QUIZ.find(x=>x.key===k); const o=s&&s.opts&&s.opts.find(op=>op.v===qAns[k]); return o?txt(o.i):'—';};
+ const list=quizFilteredList();
+ quizApplyToCatalog();
+ // Telegram lead
+ const text=encodeURIComponent(`Заявка (квиз) — ВЕРШИНА:\nЦель: ${gv('goal')}\nБюджет: ${gv('budget')}\nФормат: ${gv('format')}\nПодходит вариантов: ${list.length}\nИмя: ${name.value}\nТелефон: ${phone.value}`);
+ // result screen
+ const body=document.getElementById('quizBody');
+ document.getElementById('quizBar').style.width='100%';
+ document.getElementById('quizStepLbl').textContent='';
+ body.innerHTML=`<div class="quiz-result">
+   <div class="qr-check"><svg viewBox="0 0 32 32"><path d="M6 17l7 7L26 9"/></svg></div>
+   <div class="big">${list.length}</div>
+   <p>${list.length?txt('quiz_result_sub'):txt('quiz_result_none')}</p>
+   <button class="btn btn-gold" id="qrView">${txt('quiz_result_cta')}</button>
+ </div>`;
+ body.querySelector('#qrView').addEventListener('click',()=>{
+   closeQuiz();
+   const cat=document.getElementById('catalog'); if(cat)cat.scrollIntoView({behavior:'smooth'});
+ });
+ const toast=document.getElementById('toast'); toast.textContent=txt('toast_ok'); toast.classList.add('show');
+ setTimeout(()=>toast.classList.remove('show'),3500);
+ setTimeout(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'),700);
+}
+
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
- applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal();
+ applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal(); initStock();
+
+ // quiz triggers
+ document.querySelectorAll('[data-quiz]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault(); openQuiz();}));
+ document.getElementById('quizX').addEventListener('click',closeQuiz);
+ document.getElementById('quizOv').addEventListener('click',e=>{if(e.target.id==='quizOv')closeQuiz();});
+ addEventListener('keydown',e=>{if(e.key==='Escape')closeQuiz();});
 
  // halal mode
  const halalBtn=document.getElementById('halalToggle');
