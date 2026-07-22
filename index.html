@@ -498,6 +498,25 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 .doc-sheet .ds-wm{position:absolute; top:52%; left:50%; transform:translate(-50%,-50%) rotate(-24deg); font-family:var(--serif); font-size:clamp(40px,9vw,64px); color:rgba(12,27,48,.09); font-weight:600; letter-spacing:8px; pointer-events:none; white-space:nowrap}
 .doc-note{font-size:12px; color:var(--text-3); margin-bottom:18px; line-height:1.55}
 
+/* ============ VIDEO TOUR ============ */
+.tour-wrap{position:relative; border-radius:var(--r-lg); overflow:hidden; aspect-ratio:16/9; background:var(--grad-ph); border:1px solid var(--border); max-width:1000px; margin:0 auto; cursor:pointer}
+.tour-poster{position:absolute; inset:0; background-size:cover; background-position:center; opacity:.72; transition:transform 6s var(--ease)}
+.tour-wrap:hover .tour-poster{transform:scale(1.05)}
+.tour-wrap::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,16,30,.22),rgba(5,16,30,.66)); pointer-events:none}
+.tour-play{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2; width:88px;height:88px;border-radius:50%; background:rgba(201,169,110,.94); display:flex;align-items:center;justify-content:center; box-shadow:0 12px 40px rgba(201,169,110,.4); transition:transform .3s var(--ease); animation:pulse 2.6s infinite}
+.tour-wrap:hover .tour-play{transform:translate(-50%,-50%) scale(1.09)}
+.tour-play svg{width:32px;height:32px;margin-left:5px;fill:#0a1524}
+.tour-meta{position:absolute; left:22px; right:22px; bottom:20px; z-index:2; display:flex; justify-content:space-between; align-items:center; pointer-events:none}
+.tour-badge{display:inline-flex;align-items:center;gap:8px; font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#fff; background:rgba(5,16,30,.55); backdrop-filter:blur(6px); padding:8px 15px; border-radius:100px; border:1px solid var(--border-2)}
+.tour-badge .dot{width:7px;height:7px;border-radius:50%;background:#e0524d; box-shadow:0 0 8px #e0524d}
+.tour-dur{font-size:13px;color:#fff; background:rgba(5,16,30,.55); backdrop-filter:blur(6px); padding:8px 14px; border-radius:var(--r-sm)}
+.quiz.vid-modal{max-width:880px}
+.vid-frame{position:relative; width:100%; aspect-ratio:16/9; background:#0a1420; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; text-align:center; padding:24px; margin-top:12px}
+.vid-frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.vid-frame .vf-ic{width:54px;height:54px;color:var(--gold)}
+.vid-frame .vf-ic svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vid-frame p{color:var(--text-2); font-size:14px; max-width:36ch}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
@@ -547,6 +566,8 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   /* quiz */
   .quiz{padding:32px 24px}
   .quiz-result .big{font-size:48px}
+  .tour-play{width:64px;height:64px}
+  .tour-play svg{width:24px;height:24px}
 }
 </style>
 </head>
@@ -676,6 +697,25 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 4v10a3 3 0 0 0 6 0V4M12 4v24M23 4c-2.5 0-4 3-4 7s1.5 6 4 6v11"/></svg></div><h3 data-i18n="adv4_t">Свой ресторан</h3><p data-i18n="adv4_p">Собственная точка питания — дополнительный доход и конкурентное преимущество.</p></div>
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="adv5_t">Закрытая территория</h3><p data-i18n="adv5_p">Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.</p></div>
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 5h14l5 7-12 15L4 12z"/><path d="M4 12h24M12 5l-3 7 7 15 7-15-3-7"/></svg></div><h3 data-i18n="adv6_t">Дефицитный актив</h3><p data-i18n="adv6_p">Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO TOUR ============ -->
+<section id="tour">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="tour_eye">Видео-облёт</span>
+      <h2 class="sec-title" data-i18n="tour_title">Посмотрите объект вживую</h2>
+      <p class="sec-sub" data-i18n="tour_sub">Панорама, территория, апартаменты и виды на горы — в одном коротком ролике.</p>
+    </div>
+    <div class="tour-wrap reveal" id="tourWrap">
+      <div class="tour-poster" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80')"></div>
+      <button class="tour-play" id="tourPlay" aria-label="Play"><svg viewBox="0 0 32 32"><path d="M8 5l20 11L8 27z"/></svg></button>
+      <div class="tour-meta">
+        <span class="tour-badge"><span class="dot"></span><span data-i18n="tour_eye">Видео-облёт</span></span>
+        <span class="tour-dur">02:14</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1006,6 +1046,15 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   </div>
 </div>
 
+<!-- ============ VIDEO MODAL ============ -->
+<div class="quiz-ov" id="vidOv">
+  <div class="quiz vid-modal" role="dialog" aria-modal="true">
+    <button class="quiz-x" id="vidX" aria-label="Close">&times;</button>
+    <span class="eyebrow" data-i18n="tour_eye">Видео-облёт</span>
+    <div class="vid-frame" id="vidFrame"></div>
+  </div>
+</div>
+
 <script>
 /* ============ i18n ============ */
 const I18N={
@@ -1102,6 +1151,8 @@ const I18N={
   da2_t:"Введён в эксплуатацию",da2_d:"Официальное разрешение получено",
   da3_t:"Сопровождение сделки",da3_d:"Юрист ведёт вас на всех этапах",
   da4_t:"Без обременений",da4_d:"Проверка на аресты и залоги",
+  tour_eye:"Видео-облёт",tour_title:"Посмотрите объект вживую",tour_sub:"Панорама, территория, апартаменты и виды на горы — в одном коротком ролике.",
+  tour_ph:"Видео-облёт добавляется по материалам объекта. Оставьте заявку — вышлем полную видеопрезентацию.",tour_cta:"Запросить видеопрезентацию",
   unit_apart:"Апарт-номер",unit_flat:"Квартира",unit_view:"Вид на горы",price_req:"по запросу",m2:"м²",floor:"этаж",lvl:"уровня",
   years:"лет"
  },
@@ -1198,6 +1249,8 @@ const I18N={
   da2_t:"Commissioned",da2_d:"Official permit obtained",
   da3_t:"Deal support",da3_d:"A lawyer guides you at every stage",
   da4_t:"No encumbrances",da4_d:"Checked for seizures and pledges",
+  tour_eye:"Video tour",tour_title:"See the property live",tour_sub:"Panorama, grounds, apartments and mountain views — in one short film.",
+  tour_ph:"The tour video will be added from the object's materials. Leave a request — we'll send the full video presentation.",tour_cta:"Request the video presentation",
   unit_apart:"Apart-unit",unit_flat:"Residence",unit_view:"Mountain view",price_req:"on request",m2:"m²",floor:"floor",lvl:"levels",
   years:"yrs"
  }
@@ -1572,6 +1625,20 @@ function openDoc(i){
 }
 function closeDoc(){document.getElementById('docOv').classList.remove('show'); document.body.style.overflow='';}
 
+/* ============ VIDEO TOUR ============ */
+const TOUR={youtube:''}; // задать ID ролика YouTube от объекта, напр. 'abcd1234' — тогда играет реальное видео
+function openVid(){
+ const f=document.getElementById('vidFrame');
+ if(TOUR.youtube){
+   f.innerHTML='<iframe src="https://www.youtube.com/embed/'+TOUR.youtube+'?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+ } else {
+   f.innerHTML='<div class="vf-ic"><svg viewBox="0 0 32 32"><rect x="3" y="7" width="20" height="18" rx="2"/><path d="M23 13l6-3v12l-6-3z"/></svg></div><p>'+txt('tour_ph')+'</p><button type="button" class="btn btn-gold" id="vidQuiz" style="justify-content:center">'+txt('tour_cta')+'</button>';
+   const q=f.querySelector('#vidQuiz'); if(q)q.addEventListener('click',()=>{closeVid(); openQuiz();});
+ }
+ document.getElementById('vidOv').classList.add('show'); document.body.style.overflow='hidden';
+}
+function closeVid(){const o=document.getElementById('vidOv'); o.classList.remove('show'); document.getElementById('vidFrame').innerHTML=''; document.body.style.overflow='';}
+
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
  applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal(); initStock(); renderDocs();
@@ -1581,11 +1648,17 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.getElementById('docOv').addEventListener('click',e=>{if(e.target.id==='docOv')closeDoc();});
  document.getElementById('docReq').addEventListener('click',()=>{closeDoc(); openQuiz();});
 
+ // video tour
+ document.getElementById('tourPlay').addEventListener('click',openVid);
+ document.getElementById('tourWrap').addEventListener('click',e=>{if(e.target.id==='tourWrap'||e.target.classList.contains('tour-poster'))openVid();});
+ document.getElementById('vidX').addEventListener('click',closeVid);
+ document.getElementById('vidOv').addEventListener('click',e=>{if(e.target.id==='vidOv')closeVid();});
+
  // quiz triggers
  document.querySelectorAll('[data-quiz]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault(); openQuiz();}));
  document.getElementById('quizX').addEventListener('click',closeQuiz);
  document.getElementById('quizOv').addEventListener('click',e=>{if(e.target.id==='quizOv')closeQuiz();});
- addEventListener('keydown',e=>{if(e.key==='Escape'){closeQuiz();closeDoc();}});
+ addEventListener('keydown',e=>{if(e.key==='Escape'){closeQuiz();closeDoc();closeVid();}});
 
  // halal mode
  const halalBtn=document.getElementById('halalToggle');
