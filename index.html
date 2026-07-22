@@ -422,14 +422,14 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 .halal-card p{color:var(--text-2); font-size:14px}
 
 /* ============ STOCK / SCARCITY ============ */
-.stock{display:flex; align-items:center; gap:30px; flex-wrap:wrap; border:1px solid rgba(201,169,110,.32); border-radius:var(--r-lg); background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(27,94,255,.03)); padding:24px 32px; margin-bottom:40px}
+.stock{display:flex; align-items:center; gap:30px; flex-wrap:wrap; border:1px solid rgba(201,169,110,.32); border-radius:var(--r-lg); background:linear-gradient(135deg,rgba(201,169,110,.10),rgba(27,94,255,.04)), var(--surface); padding:24px 32px; margin-bottom:40px}
 .stock-n{display:flex; align-items:baseline; gap:10px; flex-shrink:0}
 .stock-n b{font-family:var(--serif); font-size:46px; color:var(--gold); line-height:1; font-weight:500}
-.stock-n span{font-size:13px; color:var(--text-2); max-width:12ch}
+.stock-n span{font-size:13px; color:rgba(255,255,255,.82); max-width:12ch}
 .stock-mid{flex:1; min-width:200px}
 .stock-bar{height:8px; background:var(--surface-2); border-radius:8px; overflow:hidden}
 .stock-bar span{display:block; height:100%; width:0; background:var(--grad-gold); border-radius:8px; transition:width 1.3s var(--ease)}
-.stock-sub{font-size:12px; color:var(--text-3); margin-top:9px; letter-spacing:.3px}
+.stock-sub{font-size:12px; color:rgba(255,255,255,.62); margin-top:9px; letter-spacing:.3px}
 .stock-tag{flex-shrink:0; font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold-l); border:1px solid rgba(201,169,110,.4); border-radius:100px; padding:8px 16px; max-width:220px; line-height:1.35}
 
 /* ============ MOBILE ACTION BAR ============ */
@@ -470,12 +470,40 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 .quiz-result p{color:var(--text-2); font-size:15px; max-width:40ch; margin:12px auto 26px}
 .quiz-result .btn{justify-content:center}
 
+/* ============ DOCS / LEGAL ============ */
+.docs-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:42px}
+.doc-card{padding:30px 28px; border:1px solid var(--border); border-radius:var(--r-md); background:var(--surface); transition:all .4s var(--ease); display:flex; flex-direction:column; gap:12px}
+.doc-card:hover{border-color:rgba(201,169,110,.4); transform:translateY(-4px); background:var(--surface-2)}
+.doc-card .di{width:44px;height:44px; color:rgba(201,169,110,.9)}
+.doc-card .di svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.doc-card h4{font-family:var(--serif); font-size:19px; color:#fff; font-weight:400}
+.doc-card p{font-size:14px; color:var(--text-2); flex:1}
+.doc-card .dmeta{font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-3)}
+.doc-view{margin-top:6px; font-size:13px; color:var(--gold); background:none; border:none; padding:0; cursor:pointer; display:inline-flex; gap:7px; align-items:center; text-align:left}
+.doc-view:hover{color:var(--gold-l)}
+.doc-view svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.docs-assure{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.da-item{display:flex; gap:13px; align-items:flex-start; padding:20px 22px; border-left:2px solid var(--gold); background:var(--surface); border-radius:0 var(--r-sm) var(--r-sm) 0}
+.da-item .dai{width:24px;height:24px;flex-shrink:0; color:var(--gold)}
+.da-item .dai svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.35;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.da-item b{color:#fff; font-size:14px; display:block; margin-bottom:3px; font-family:var(--sans); font-weight:500}
+.da-item span{font-size:12px; color:var(--text-2); line-height:1.45}
+/* doc modal sheet */
+.doc-sheet{position:relative; background:#f3efe6; color:#1a2436; border-radius:var(--r-sm); padding:34px 32px; min-height:280px; overflow:hidden; margin:10px 0 16px}
+.doc-sheet h5{font-family:var(--serif); font-size:21px; margin-bottom:5px; color:#0c1b30; font-weight:600}
+.doc-sheet .ds-sub{font-size:12px; color:#5a6472; margin-bottom:24px; letter-spacing:.4px}
+.doc-sheet .ds-line{height:9px; background:#d9d2c4; border-radius:3px; margin-bottom:12px}
+.doc-sheet .ds-line.s{width:58%}
+.doc-sheet .ds-line.m{width:78%}
+.doc-sheet .ds-wm{position:absolute; top:52%; left:50%; transform:translate(-50%,-50%) rotate(-24deg); font-family:var(--serif); font-size:clamp(40px,9vw,64px); color:rgba(12,27,48,.09); font-weight:600; letter-spacing:8px; pointer-events:none; white-space:nowrap}
+.doc-note{font-size:12px; color:var(--text-3); margin-bottom:18px; line-height:1.55}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   section{padding:80px 0}
   .about-grid,.calc-wrap,.loc-grid,.contact-grid{grid-template-columns:1fr; gap:34px}
   .adv-grid,.cards,.inv-top{grid-template-columns:repeat(2,1fr)}
-  .inv-facts,.deal-steps{grid-template-columns:repeat(2,1fr)}
+  .inv-facts,.deal-steps,.docs-grid,.docs-assure{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
   .infra-grid{grid-template-columns:repeat(2,1fr)}
   .b2b{padding:36px 28px}
@@ -491,7 +519,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   .hero-stats{gap:28px}
   .hero-cta{flex-direction:column; align-items:stretch}
   .hero-cta .btn{justify-content:center}
-  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid,.infra-grid,.plan-wrap{grid-template-columns:1fr}
+  .adv-grid,.cards,.inv-top,.inv-facts,.deal-steps,.foot-grid,.infra-grid,.plan-wrap,.docs-grid,.docs-assure{grid-template-columns:1fr}
   .bars{height:230px; gap:8px; padding-top:38px}
   .bar .fill{max-width:60px}
   .plan{min-height:320px}
@@ -844,6 +872,24 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
         <div class="plan-list" id="planList"></div>
         <a class="btn btn-ghost" href="https://www.google.com/maps?q=Кисловодск" target="_blank" rel="noopener" data-i18n="plan_map">Смотреть на Google Картах</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCS / LEGAL ============ -->
+<section id="docs">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="docs_eye">Безопасность сделки</span>
+      <h2 class="sec-title" data-i18n="docs_title">Документы и юридическая чистота</h2>
+      <p class="sec-sub" data-i18n="docs_sub">Объект введён в эксплуатацию, право собственности зарегистрировано. Полный пакет документов предоставляем на просмотре и по запросу.</p>
+    </div>
+    <div class="docs-grid reveal" id="docsGrid"></div>
+    <div class="docs-assure">
+      <div class="da-item reveal"><div class="dai"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><div><b data-i18n="da1_t">Право зарегистрировано</b><span data-i18n="da1_d">Собственность внесена в ЕГРН / Росреестр</span></div></div>
+      <div class="da-item reveal"><div class="dai"><svg viewBox="0 0 32 32"><path d="M6 4h14l6 6v18H6z"/><path d="M20 4v6h6M11 24l3 3 6-7"/></svg></div><div><b data-i18n="da2_t">Введён в эксплуатацию</b><span data-i18n="da2_d">Официальное разрешение получено</span></div></div>
+      <div class="da-item reveal"><div class="dai"><svg viewBox="0 0 32 32"><path d="M6 20v-5a10 10 0 0 1 20 0v5"/><path d="M4 20a2 2 0 0 1 2-2h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2z"/><path d="M28 20a2 2 0 0 0-2-2h-1.5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1H26a2 2 0 0 0 2-2z"/></svg></div><div><b data-i18n="da3_t">Сопровождение сделки</b><span data-i18n="da3_d">Юрист ведёт вас на всех этапах</span></div></div>
+      <div class="da-item reveal"><div class="dai"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><div><b data-i18n="da4_t">Без обременений</b><span data-i18n="da4_d">Проверка на аресты и залоги</span></div></div>
     </div>
   </div>
 </section>
