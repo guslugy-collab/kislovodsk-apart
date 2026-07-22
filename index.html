@@ -45,7 +45,7 @@
 <style>
 /* ============ TOKENS ============ */
 :root{
-  --bg:#05101E; --bg-2:#081526; --surface:#0C1B30; --surface-2:#10223A;
+  --bg:#0A1420; --bg-2:#081526; --surface:#0C1B30; --surface-2:#10223A;
   --accent:#1B5EFF; --accent-h:#3B79FF;
   --gold:#C9A96E; --gold-l:#E0C28A;
   --white:#FFFFFF;
@@ -62,7 +62,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg); color:var(--text); font-family:var(--sans);
+  background:linear-gradient(180deg,#0A1420 0%,#0B1826 55%,#0C1D33 100%) no-repeat fixed var(--bg);
+  color:var(--text); font-family:var(--sans);
   font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
@@ -100,13 +101,14 @@ section{padding:120px 0}
 header{position:fixed; top:0; left:0; right:0; z-index:100; transition:all .4s var(--ease); padding:22px 0}
 header.scrolled{background:rgba(5,16,30,.86); backdrop-filter:blur(14px); padding:14px 0; border-bottom:1px solid var(--border)}
 .nav{display:flex; align-items:center; justify-content:space-between; gap:20px}
+header .nav{max-width:1360px; padding-left:40px; padding-right:40px}
 .logo{font-family:var(--serif); font-size:26px; letter-spacing:4px; color:#fff; display:flex; align-items:center; gap:10px}
 .logo b{color:var(--gold); font-weight:600}
 .logo svg{width:26px;height:26px}
-.nav-links{display:flex; gap:34px; align-items:center}
+.nav-links{display:flex; gap:28px; align-items:center}
 .nav-links a{font-size:14px; color:var(--text-2); letter-spacing:.5px; transition:color .3s; position:relative}
 .nav-links a:hover{color:#fff}
-.nav-right{display:flex; align-items:center; gap:18px}
+.nav-right{display:flex; align-items:center; gap:16px}
 .lang{display:flex; gap:2px; border:1px solid var(--border); border-radius:var(--r-sm); overflow:hidden}
 .lang button{padding:7px 12px; font-size:12px; letter-spacing:1px; color:var(--text-2)}
 .lang button.active{background:var(--gold); color:#0a1524; font-weight:600}
@@ -346,6 +348,28 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:20px;heig
 .proof-cap{padding:16px 18px; font-size:15px; color:#fff; font-family:var(--serif)}
 @media(max-width:900px){.proof-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.proof-grid{grid-template-columns:1fr} .proof-ph{height:210px}}
+
+/* ============ COMPARE / сравнение ============ */
+.cmp{border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; background:var(--surface)}
+.cmp-row,.cmp-head{display:grid; grid-template-columns:1.5fr 1.15fr 1.15fr; align-items:stretch}
+.cmp-row+.cmp-row,.cmp-row{border-top:1px solid var(--border)}
+.cmp-c{padding:17px 22px; font-size:15px; display:flex; align-items:center; gap:10px}
+.cmp-head{background:var(--bg-2)}
+.cmp-head .cmp-c{padding:18px 22px; font-family:var(--serif); font-size:17px}
+.cmp-crit{color:var(--text-2)}
+.cmp-head .cmp-crit{color:var(--text-3); font-size:12px; letter-spacing:2px; text-transform:uppercase; font-family:var(--sans)}
+.cmp-us{background:rgba(201,169,110,.07); color:#fff; box-shadow:inset 1px 0 0 rgba(201,169,110,.22),inset -1px 0 0 rgba(201,169,110,.22)}
+.cmp-head .cmp-us{background:rgba(201,169,110,.16); color:var(--gold)}
+.cmp-them{color:var(--text-2)}
+.cmp-us svg{width:19px; height:19px; flex-shrink:0; stroke:var(--gold); stroke-width:1.7; fill:none; stroke-linecap:round; stroke-linejoin:round}
+.cmp-them svg{width:17px; height:17px; flex-shrink:0; stroke:var(--text-3); stroke-width:1.7; fill:none; stroke-linecap:round; stroke-linejoin:round}
+@media(max-width:640px){
+  .cmp-row,.cmp-head{grid-template-columns:1.3fr 1fr 1fr}
+  .cmp-c{padding:13px 11px; font-size:12.5px; gap:6px}
+  .cmp-head .cmp-c{font-size:12px; padding:14px 11px}
+  .cmp-head .cmp-crit{font-size:10px; letter-spacing:1px}
+  .cmp-us svg,.cmp-them svg{width:15px; height:15px}
+}
 
 /* ============ LOCATION ============ */
 .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
@@ -640,7 +664,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   .b2b{padding:36px 28px}
   .calc-form,.calc-res{padding:34px}
 }
-@media(max-width:1280px){
+@media(max-width:1360px){
   .nav-links{display:none}
   .burger{display:inline-flex}
   .nav-right{gap:12px}
@@ -648,9 +672,10 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 }
 @media(max-width:640px){
   .container{padding:0 20px}
+  header .nav{padding-left:16px; padding-right:16px; gap:12px}
   .burger span:not(.bl){display:none}
   .burger{gap:0}
-  .nav-right{gap:10px}
+  .nav-right{gap:8px}
   .logo span{font-size:18px}
   .logo svg{width:22px; height:22px}
   section{padding:64px 0}
@@ -838,6 +863,54 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 4v10a3 3 0 0 0 6 0V4M12 4v24M23 4c-2.5 0-4 3-4 7s1.5 6 4 6v11"/></svg></div><h3 data-i18n="adv4_t">Свой ресторан</h3><p data-i18n="adv4_p">Собственная точка питания — дополнительный доход и конкурентное преимущество.</p></div>
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="adv5_t">Закрытая территория</h3><p data-i18n="adv5_p">Благоустройство, озеленение, приватные зоны отдыха для резидентов и гостей.</p></div>
       <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M9 5h14l5 7-12 15L4 12z"/><path d="M4 12h24M12 5l-3 7 7 15 7-15-3-7"/></svg></div><h3 data-i18n="adv6_t">Дефицитный актив</h3><p data-i18n="adv6_p">Вторая санитарная зона — ограниченная застройка. Качественного предложения на рынке остро не хватает.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE / СРАВНЕНИЕ ============ -->
+<section id="compare" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow" data-i18n="cmp_eye">Сравнение</span>
+      <h2 class="sec-title" data-i18n="cmp_title">ВЕРШИНА против строящихся</h2>
+      <p class="sec-sub" data-i18n="cmp_sub">Пока конкуренты сдаются в 2026–2028 годах, объект уже готов и приносит доход.</p>
+    </div>
+    <div class="cmp reveal">
+      <div class="cmp-head">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_crit">Критерий</div>
+        <div class="cmp-c cmp-us" data-i18n="cmp_us">ВЕРШИНА</div>
+        <div class="cmp-c cmp-them" data-i18n="cmp_them">Строящиеся ЖК</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r1">Готовность объекта</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u1">Готов и сдан</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t1">Сдача 2026–2028</span></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r2">Доход от аренды</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u2">Сразу, с первого месяца</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t2">Через 2–4 года</span></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r3">Строительные риски</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u3">Отсутствуют</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t3">Риск долгостроя</span></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r4">Осмотр перед покупкой</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u4">Реальный объект</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t4">Только рендеры</span></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r5">Отельная инфраструктура</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u5">Ресепшен, ресторан</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t5">Как правило нет</span></div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-c cmp-crit" data-i18n="cmp_r6">Локация · 2-я санзона</div>
+        <div class="cmp-c cmp-us"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg><span data-i18n="cmp_u6">Дефицит, не строят</span></div>
+        <div class="cmp-c cmp-them"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp_t6">Массовая застройка</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1333,6 +1406,13 @@ const I18N={
   pr_eye:"Фотоотчёт",pr_title:"Это не рендеры — объект уже построен",pr_sub:"Реальные фото с площадки. Комплекс введён в эксплуатацию — можно приехать и осмотреть лично.",
   pr_f1:"Введён в эксплуатацию",pr_f2:"Можно осмотреть лично",pr_f3:"Ноль строительных рисков",pr_date:"Съёмка · июль 2026",
   pr_c1:"Фасад комплекса",pr_c2:"Входная группа и холл",pr_c3:"Готовый апартамент",pr_c4:"Территория и виды на горы",
+  cmp_eye:"Сравнение",cmp_title:"ВЕРШИНА против строящихся",cmp_sub:"Пока конкуренты сдаются в 2026–2028 годах, объект уже готов и приносит доход.",cmp_crit:"Критерий",cmp_us:"ВЕРШИНА",cmp_them:"Строящиеся ЖК",
+  cmp_r1:"Готовность объекта",cmp_u1:"Готов и сдан",cmp_t1:"Сдача 2026–2028",
+  cmp_r2:"Доход от аренды",cmp_u2:"Сразу, с первого месяца",cmp_t2:"Через 2–4 года",
+  cmp_r3:"Строительные риски",cmp_u3:"Отсутствуют",cmp_t3:"Риск долгостроя",
+  cmp_r4:"Осмотр перед покупкой",cmp_u4:"Реальный объект",cmp_t4:"Только рендеры",
+  cmp_r5:"Отельная инфраструктура",cmp_u5:"Ресепшен, ресторан",cmp_t5:"Как правило нет",
+  cmp_r6:"Локация · 2-я санзона",cmp_u6:"Дефицит, не строят",cmp_t6:"Массовая застройка",
   hero_badge:"100% готов · введён в эксплуатацию",hero_h1a:"Готовый апарт-комплекс с видом на ",hero_h1b:"горы Кавказа",
   halal_mode:"Халяль",halal_badge:"Халяль-инвестиция",halal_eye:"Халяль-инвестиция",halal_title:"Вложение по нормам шариата",halal_sub:"Актив и сделку можно структурировать без риба — по этическим принципам ислама.",
   halal1_t:"Без процентов (риба)",halal1_p:"Только 100% оплата — без ипотеки и процентных схем.",
@@ -1442,6 +1522,13 @@ const I18N={
   pr_eye:"Photo report",pr_title:"Not renders — the building is already up",pr_sub:"Real photos from site. The complex is commissioned — you can come and inspect it in person.",
   pr_f1:"Commissioned",pr_f2:"Inspect in person",pr_f3:"Zero construction risk",pr_date:"Shot · July 2026",
   pr_c1:"Building facade",pr_c2:"Entrance & lobby",pr_c3:"Finished apartment",pr_c4:"Grounds & mountain views",
+  cmp_eye:"Comparison",cmp_title:"VERSHINA vs off-plan",cmp_sub:"While competitors complete in 2026–2028, our building is ready and earning now.",cmp_crit:"Criterion",cmp_us:"VERSHINA",cmp_them:"Off-plan projects",
+  cmp_r1:"Readiness",cmp_u1:"Ready & commissioned",cmp_t1:"Handover 2026–2028",
+  cmp_r2:"Rental income",cmp_u2:"From month one",cmp_t2:"In 2–4 years",
+  cmp_r3:"Construction risk",cmp_u3:"None",cmp_t3:"Delay risk",
+  cmp_r4:"Pre-purchase viewing",cmp_u4:"Real building",cmp_t4:"Renders only",
+  cmp_r5:"Hotel infrastructure",cmp_u5:"Reception, restaurant",cmp_t5:"Usually none",
+  cmp_r6:"Location · 2nd zone",cmp_u6:"Scarce, no new builds",cmp_t6:"Mass development",
   hero_badge:"100% ready · commissioned",hero_h1a:"A ready apart-complex with a view of the ",hero_h1b:"Caucasus mountains",
   halal_mode:"Halal",halal_badge:"Halal investment",halal_eye:"Halal investment",halal_title:"An investment aligned with Sharia",halal_sub:"The asset and the deal can be structured without riba — on ethical Islamic principles.",
   halal1_t:"No interest (riba)",halal1_p:"100% payment only — no mortgage, no interest schemes.",
