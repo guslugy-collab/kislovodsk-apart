@@ -995,6 +995,17 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   </div>
 </div>
 
+<!-- ============ DOC VIEWER ============ -->
+<div class="quiz-ov" id="docOv">
+  <div class="quiz doc-modal" role="dialog" aria-modal="true">
+    <button class="quiz-x" id="docX" aria-label="Close">&times;</button>
+    <span class="eyebrow" data-i18n="docs_eye">Безопасность сделки</span>
+    <div class="doc-sheet" id="docSheet"></div>
+    <p class="doc-note" id="docNote"></p>
+    <button type="button" class="btn btn-gold" id="docReq" style="width:100%;justify-content:center" data-i18n="doc_req">Запросить оригинал документа</button>
+  </div>
+</div>
+
 <script>
 /* ============ i18n ============ */
 const I18N={
@@ -1077,6 +1088,20 @@ const I18N={
   quiz_result_cta:"Смотреть подборку",
   mbar_call:"Позвонить",mbar_tg:"Telegram",mbar_pick:"Подобрать",
   stock_left:"юнитов осталось в пуле",stock_tag:"2-я санзона · новых объектов не строят",stock_sold:"Продано {s} из {t} · пул ограничен",
+  docs_eye:"Безопасность сделки",docs_title:"Документы и юридическая чистота",docs_sub:"Объект введён в эксплуатацию, право собственности зарегистрировано. Полный пакет документов предоставляем на просмотре и по запросу.",
+  doc_view:"Посмотреть образец",doc_meta:"PDF · по запросу",doc_sample:"ОБРАЗЕЦ",
+  doc_note:"Демонстрационный образец. Оригиналы документов предоставляются на просмотре объекта и по запросу после подписания NDA.",
+  doc_req:"Запросить оригинал документа",
+  doc1_t:"Выписка из ЕГРН",doc1_d:"Подтверждение зарегистрированного права собственности.",
+  doc2_t:"Разрешение на ввод",doc2_d:"Объект официально введён в эксплуатацию.",
+  doc3_t:"Технический план",doc3_d:"Площади, планировки и характеристики юнитов.",
+  doc4_t:"Правоустанавливающие",doc4_d:"Основание владения и история объекта.",
+  doc5_t:"Договор (образец)",doc5_d:"Прозрачные условия купли-продажи заранее.",
+  doc6_t:"Проверка обременений",doc6_d:"Справка об отсутствии арестов и залогов.",
+  da1_t:"Право зарегистрировано",da1_d:"Собственность внесена в ЕГРН / Росреестр",
+  da2_t:"Введён в эксплуатацию",da2_d:"Официальное разрешение получено",
+  da3_t:"Сопровождение сделки",da3_d:"Юрист ведёт вас на всех этапах",
+  da4_t:"Без обременений",da4_d:"Проверка на аресты и залоги",
   unit_apart:"Апарт-номер",unit_flat:"Квартира",unit_view:"Вид на горы",price_req:"по запросу",m2:"м²",floor:"этаж",lvl:"уровня",
   years:"лет"
  },
@@ -1159,6 +1184,20 @@ const I18N={
   quiz_result_cta:"View the selection",
   mbar_call:"Call",mbar_tg:"Telegram",mbar_pick:"Find unit",
   stock_left:"units left in the pool",stock_tag:"2nd sanitary zone · no new builds",stock_sold:"Sold {s} of {t} · limited pool",
+  docs_eye:"Deal security",docs_title:"Documents & clean legal title",docs_sub:"The property is commissioned and ownership is registered. The full document package is provided at the viewing and on request.",
+  doc_view:"View a sample",doc_meta:"PDF · on request",doc_sample:"SAMPLE",
+  doc_note:"A demonstration sample. Original documents are provided at the viewing and on request after signing an NDA.",
+  doc_req:"Request the original document",
+  doc1_t:"USRN extract",doc1_d:"Confirmation of registered ownership title.",
+  doc2_t:"Commissioning permit",doc2_d:"The property is officially commissioned.",
+  doc3_t:"Technical plan",doc3_d:"Areas, layouts and unit specifications.",
+  doc4_t:"Title documents",doc4_d:"Basis of ownership and property history.",
+  doc5_t:"Contract (sample)",doc5_d:"Transparent purchase terms upfront.",
+  doc6_t:"Encumbrance check",doc6_d:"Certificate of no seizures or pledges.",
+  da1_t:"Title registered",da1_d:"Ownership recorded in the USRN / Rosreestr",
+  da2_t:"Commissioned",da2_d:"Official permit obtained",
+  da3_t:"Deal support",da3_d:"A lawyer guides you at every stage",
+  da4_t:"No encumbrances",da4_d:"Checked for seizures and pledges",
   unit_apart:"Apart-unit",unit_flat:"Residence",unit_view:"Mountain view",price_req:"on request",m2:"m²",floor:"floor",lvl:"levels",
   years:"yrs"
  }
@@ -1332,7 +1371,7 @@ function applyLang(l){
  });
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
  document.getElementById('cookie').querySelector('p').innerHTML=txt('cookie_txt').replace(txt('ct_policy'),`<a href="#" onclick="return false">${txt('ct_policy')}</a>`);
- applyFilters(); renderFAQ(); calc(); refreshBars(); renderPlan(); renderStockSub();
+ applyFilters(); renderFAQ(); calc(); refreshBars(); renderPlan(); renderStockSub(); renderDocs();
  ['prRange','arRange'].forEach(id=>{const w=document.getElementById(id); if(w)w.querySelector('.lo').dispatchEvent(new Event('input'));});
 }
 
@@ -1501,15 +1540,52 @@ function quizSubmit(){
  setTimeout(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'),700);
 }
 
+/* ============ DOCS ============ */
+const DOCS=[
+ {ic:'<svg viewBox="0 0 32 32"><path d="M7 3h13l5 5v21H7z"/><path d="M20 3v5h5M11 15h10M11 20h10M11 25h6"/></svg>', t:'doc1_t', d:'doc1_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M7 3h13l5 5v21H7z"/><path d="M20 3v5h5M11 20l3 3 6-7"/></svg>', t:'doc2_t', d:'doc2_d'},
+ {ic:'<svg viewBox="0 0 32 32"><rect x="6" y="4" width="20" height="24" rx="1.5"/><path d="M11 4v24M11 11h15M11 18h15"/></svg>', t:'doc3_t', d:'doc3_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M7 3h13l5 5v21H7z"/><path d="M20 3v5h5M16 13a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM16 19v5M13 24h6"/></svg>', t:'doc4_t', d:'doc4_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M7 3h13l5 5v21H7z"/><path d="M20 3v5h5M11 22c2-3 4-3 5 0M17 15l6-6 2 2-6 6-3 1z"/></svg>', t:'doc5_t', d:'doc5_d'},
+ {ic:'<svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 15l3.5 3.5L21 11"/></svg>', t:'doc6_t', d:'doc6_d'}
+];
+function renderDocs(){
+ const box=document.getElementById('docsGrid'); if(!box)return; box.innerHTML='';
+ DOCS.forEach((doc,i)=>{
+  const el=document.createElement('article'); el.className='doc-card reveal';
+  el.innerHTML=`<div class="di">${doc.ic}</div><h4>${txt(doc.t)}</h4><p>${txt(doc.d)}</p>
+    <span class="dmeta">${txt('doc_meta')}</span>
+    <button class="doc-view" type="button"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>${txt('doc_view')}</button>`;
+  el.querySelector('.doc-view').addEventListener('click',()=>openDoc(i));
+  box.appendChild(el);
+ });
+ observeReveal();
+}
+function openDoc(i){
+ const doc=DOCS[i];
+ document.getElementById('docSheet').innerHTML=`<div class="ds-wm">${txt('doc_sample')}</div>
+   <h5>${txt(doc.t)}</h5><div class="ds-sub">${txt(doc.d)}</div>
+   <div class="ds-line m"></div><div class="ds-line"></div><div class="ds-line s"></div>
+   <div class="ds-line"></div><div class="ds-line m"></div><div class="ds-line s"></div>`;
+ document.getElementById('docNote').textContent=txt('doc_note');
+ document.getElementById('docOv').classList.add('show'); document.body.style.overflow='hidden';
+}
+function closeDoc(){document.getElementById('docOv').classList.remove('show'); document.body.style.overflow='';}
+
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded',()=>{
- applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal(); initStock();
+ applyFilters(); renderFAQ(); calc(); renderPlan(); observeReveal(); initStock(); renderDocs();
+
+ // doc viewer
+ document.getElementById('docX').addEventListener('click',closeDoc);
+ document.getElementById('docOv').addEventListener('click',e=>{if(e.target.id==='docOv')closeDoc();});
+ document.getElementById('docReq').addEventListener('click',()=>{closeDoc(); openQuiz();});
 
  // quiz triggers
  document.querySelectorAll('[data-quiz]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault(); openQuiz();}));
  document.getElementById('quizX').addEventListener('click',closeQuiz);
  document.getElementById('quizOv').addEventListener('click',e=>{if(e.target.id==='quizOv')closeQuiz();});
- addEventListener('keydown',e=>{if(e.key==='Escape')closeQuiz();});
+ addEventListener('keydown',e=>{if(e.key==='Escape'){closeQuiz();closeDoc();}});
 
  // halal mode
  const halalBtn=document.getElementById('halalToggle');
