@@ -1538,6 +1538,21 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 </div>
 
 <script>
+/* ============ TELEGRAM CONFIG ============ */
+// ↓ Вставь свои значения — форма начнёт слать заявки прямо в Telegram
+const TG_TOKEN = 'ВСТАВЬ_TOKEN_БОТА';   // получи у @BotFather
+const TG_CHAT  = 'ВСТАВЬ_CHAT_ID';      // свой числовой chat_id
+
+async function sendToTelegram(html){
+  const r=await fetch(
+    `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
+    {method:'POST',headers:{'Content-Type':'application/json'},
+     body:JSON.stringify({chat_id:TG_CHAT,text:html,parse_mode:'HTML'})}
+  );
+  if(!r.ok) throw new Error('TG '+r.status);
+  return r.json();
+}
+
 /* ============ CURSOR ============ */
 (function(){
   if(window.matchMedia('(pointer:coarse)').matches)return;
@@ -1673,7 +1688,7 @@ const I18N={
   foot_nav:"Навигация",foot_docs:"Документы",foot_privacy:"Политика конфиденциальности",foot_consent:"Согласие на обработку ПДн",foot_terms:"Пользовательское соглашение",
   foot_copy:"© 2026 ВЕРШИНА. Демонстрационная версия сайта.",foot_made:"Сделано в студии Abdul Aziz Digital",
   cookie_txt:'Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с политикой конфиденциальности.',cookie_ok:"Принять",
-  toast_ok:"Заявка отправлена! Открываем Telegram…",
+  toast_ok:"✓ Заявка принята — перезвоним за 15 минут",
   quiz_open:"Подобрать апартамент",quiz_title:"Подбор апартамента",quiz_step:"Шаг",quiz_of:"из",quiz_back:"Назад",
   quiz_goal:"Какая у вас цель?",quiz_g1:"Сдавать в аренду (доход)",quiz_g2:"Для себя и семьи",quiz_g3:"Инвестировать в весь пул",
   quiz_budget:"Ваш бюджет?",quiz_b1:"до 15 млн ₽",quiz_b2:"15–25 млн ₽",quiz_b3:"25–40 млн ₽",quiz_b4:"от 40 млн ₽",
@@ -1789,7 +1804,7 @@ const I18N={
   foot_nav:"Navigation",foot_docs:"Documents",foot_privacy:"Privacy policy",foot_consent:"Personal data consent",foot_terms:"Terms of use",
   foot_copy:"© 2026 VERSHINA. Demonstration version.",foot_made:"Made by Abdul Aziz Digital studio",
   cookie_txt:'We use cookies to improve the site. By continuing, you agree to the privacy policy.',cookie_ok:"Accept",
-  toast_ok:"Request sent! Opening Telegram…",
+  toast_ok:"✓ Request received — we'll call you in 15 minutes",
   quiz_open:"Find my apartment",quiz_title:"Apartment finder",quiz_step:"Step",quiz_of:"of",quiz_back:"Back",
   quiz_goal:"What's your goal?",quiz_g1:"Rent out (income)",quiz_g2:"For myself & family",quiz_g3:"Invest in the whole pool",
   quiz_budget:"Your budget?",quiz_b1:"up to ₽15M",quiz_b2:"₽15–25M",quiz_b3:"₽25–40M",quiz_b4:"from ₽40M",
@@ -2364,16 +2379,48 @@ document.addEventListener('DOMContentLoaded',()=>{
    });
  })();
 
- // form
- document.getElementById('leadForm').addEventListener('submit',e=>{
+ // form → Telegram Bot API
+ document.getElementById('leadForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const name=document.getElementById('fName').value, phone=document.getElementById('fPhone').value,
-        type=document.getElementById('fType').value, msg=document.getElementById('fMsg').value;
-  const toast=document.getElementById('toast'); toast.textContent=txt('toast_ok'); toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),3500);
-  const text=encodeURIComponent(`Заявка с сайта ВЕРШИНА:\nИмя: ${name}\nТелефон: ${phone}\nЗапрос: ${type}\n${msg?'Сообщение: '+msg:''}`);
-  setTimeout(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'),700);
-  e.target.reset();
+  const form=e.target;
+  const btn=form.querySelector('[type=submit]');
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim();
+  const type=document.getElementById('fType').value;
+  const msg=document.getElementById('fMsg').value.trim();
+  const toast=document.getElementById('toast');
+
+  // loading state
+  const origHTML=btn.innerHTML; btn.disabled=true; btn.textContent='…';
+
+  const html=[
+   `🏔 <b>Заявка с сайта ВЕРШИНА</b>`,
+   `👤 <b>Имя:</b> ${name}`,
+   `📞 <b>Телефон:</b> ${phone}`,
+   `📋 <b>Запрос:</b> ${type}`,
+   msg?`💬 <b>Сообщение:</b> ${msg}`:'',
+   `🌐 <i>kislovodsk-apart</i>`
+  ].filter(Boolean).join('\n');
+
+  try{
+   await sendToTelegram(html);
+   // ✓ success
+   toast.textContent=txt('toast_ok');
+   toast.style.cssText='background:#0f2a1c;border-color:#2f7d52;color:#a8e6c2';
+   toast.classList.add('show');
+   setTimeout(()=>toast.classList.remove('show'),4500);
+   form.reset();
+  }catch(err){
+   // fallback — открываем TG вручную
+   const fb=encodeURIComponent(`Заявка ВЕРШИНА\nИмя: ${name}\nТел: ${phone}\nЗапрос: ${type}${msg?'\n'+msg:''}`);
+   window.open('https://t.me/AbdulAzizDigital?text='+fb,'_blank');
+   toast.textContent='Открываем Telegram — нажмите отправить';
+   toast.style.cssText='background:#2a1a0f;border-color:#7d4e2f;color:#e6c2a8';
+   toast.classList.add('show');
+   setTimeout(()=>toast.classList.remove('show'),5000);
+  }finally{
+   btn.disabled=false; btn.innerHTML=origHTML;
+  }
  });
 });
 </script>
