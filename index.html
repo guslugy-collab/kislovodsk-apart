@@ -214,6 +214,9 @@ header .nav{max-width:1360px; padding-left:40px; padding-right:40px}
 .adv-card:hover .ico{color:#C9A96E}
 .adv-card h3{font-size:22px; color:#fff; margin-bottom:12px}
 .adv-card p{font-size:15px; color:var(--text-2)}
+.adv-card .adv-metric{display:flex; align-items:baseline; gap:9px; margin-top:18px; padding-top:16px; border-top:1px solid var(--border)}
+.adv-card .adv-metric b{font-family:var(--serif); font-size:20px; color:var(--gold); line-height:1.05; font-weight:500}
+.adv-card .adv-metric span{font-size:12px; color:var(--text-3); letter-spacing:.3px; line-height:1.3}
 
 /* ============ CATALOG ============ */
 .filters{display:flex; gap:12px; margin-bottom:44px; flex-wrap:wrap}
@@ -423,9 +426,35 @@ footer{padding:70px 0 40px; border-top:1px solid var(--border)}
 .foot-bottom a{color:var(--text-3); text-decoration:underline}
 
 /* ============ FLOAT + COOKIE + TOAST ============ */
-.float-btn{position:fixed; right:24px; bottom:24px; z-index:90; width:60px;height:60px; border-radius:50%; background:var(--grad-gold); display:flex;align-items:center;justify-content:center; font-size:28px; box-shadow:0 10px 30px rgba(201,169,110,.4); transition:transform .3s; animation:pulse 2.6s infinite}
-.float-btn:hover{transform:scale(1.08)}
-.float-btn svg{width:26px;height:26px;stroke:#0C1B30;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* FAB wrapper */
+.fab-wrap{position:fixed;right:24px;bottom:28px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+/* double-ring pulse */
+.fab-pulse{position:absolute;bottom:0;right:0;width:60px;height:60px;border-radius:50%;pointer-events:none}
+.fab-pulse::before,.fab-pulse::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(201,169,110,.55);animation:fabRing 2.6s var(--ease) infinite}
+.fab-pulse::after{inset:-2px;border-color:rgba(201,169,110,.35);animation-delay:.9s}
+@keyframes fabRing{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+.fab-wrap.open .fab-pulse::before,.fab-wrap.open .fab-pulse::after{animation-play-state:paused;opacity:0;transition:opacity .2s}
+/* main button */
+.fab-main{width:60px;height:60px;border-radius:50%;background:var(--grad-gold);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(201,169,110,.5);position:relative;z-index:1;transition:transform .3s var(--ease),box-shadow .3s}
+.fab-main:hover{transform:scale(1.09);box-shadow:0 14px 36px rgba(201,169,110,.65)}
+.fab-main svg{width:26px;height:26px;stroke:#0C1B30;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;position:absolute;transition:transform .35s var(--ease),opacity .3s}
+.fab-main .ico-chat{opacity:1;transform:none}
+.fab-main .ico-close{opacity:0;transform:rotate(-45deg) scale(.5)}
+.fab-wrap.open .fab-main .ico-chat{opacity:0;transform:rotate(45deg) scale(.5)}
+.fab-wrap.open .fab-main .ico-close{opacity:1;transform:none}
+/* child buttons */
+.fab-children{display:flex;flex-direction:column;align-items:flex-end;gap:9px;pointer-events:none}
+.fab-child{display:flex;align-items:center;gap:10px;text-decoration:none;opacity:0;transform:translateY(14px) scale(.88);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
+.fab-wrap.open .fab-children{pointer-events:auto}
+.fab-wrap.open .fab-child{opacity:1;transform:none;pointer-events:auto}
+.fab-wrap.open .fab-child:nth-child(1){transition-delay:.06s}
+.fab-wrap.open .fab-child:nth-child(2){transition-delay:.0s}
+.fab-chip{background:rgba(5,16,30,.88);backdrop-filter:blur(10px);color:#fff;font-size:12px;font-weight:500;padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);letter-spacing:.3px;white-space:nowrap}
+.fab-ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.4);flex-shrink:0}
+.fab-ico svg{width:23px;height:23px;stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fab-tg .fab-ico{background:#2AABEE}
+.fab-wa .fab-ico{background:#25D366}
+/* @keyframes pulse kept for .tour-play */
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,169,110,.5)}70%{box-shadow:0 0 0 16px rgba(201,169,110,0)}100%{box-shadow:0 0 0 0 rgba(201,169,110,0)}}
 .cookie{position:fixed; left:24px; bottom:24px; right:100px; max-width:520px; z-index:95; background:var(--surface-2); border:1px solid var(--border-2); border-radius:var(--r-md); padding:20px 24px; display:flex; gap:18px; align-items:center; box-shadow:0 20px 50px rgba(0,0,0,.5); transform:translateY(150%); transition:transform .5s var(--ease)}
 .cookie.show{transform:none}
@@ -643,17 +672,100 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 #locMapWrap .plan-info .btn{margin-top:auto}
 
 /* ============ PRELOADER ============ */
-#preloader{position:fixed; inset:0; z-index:300; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; transition:opacity .7s var(--ease)}
-#preloader.done{opacity:0; pointer-events:none}
-.pl-logo{display:flex; align-items:center; gap:14px; opacity:0; transform:translateY(10px); animation:plUp .9s var(--ease) forwards}
-.pl-logo svg{width:46px;height:46px}
-.pl-logo span{font-family:var(--serif); font-size:clamp(26px,5vw,32px); letter-spacing:6px; color:#fff}
-.pl-logo span b{color:var(--gold); font-weight:600}
-.pl-bar{width:150px; height:2px; background:var(--border-2); border-radius:2px; overflow:hidden}
-.pl-bar i{display:block; height:100%; width:0; background:var(--grad-gold); animation:plBar 1.1s var(--ease) .2s forwards}
+#preloader{
+  position:fixed; inset:0; z-index:300; background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .95s cubic-bezier(.76,0,.24,1);
+  will-change:transform;
+}
+#preloader.done{transform:translateY(-105%); pointer-events:none}
+.pl-inner{display:flex; flex-direction:column; align-items:center; gap:20px}
+
+/* SVG mountain */
+.pl-mountain{width:80px; height:62px; overflow:visible; display:block}
+.pl-fill{fill:rgba(201,169,110,.1); opacity:0; animation:plFadeIn .7s var(--ease) .8s forwards}
+.pl-stroke{
+  fill:none; stroke:var(--gold); stroke-width:2.6;
+  stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:230; stroke-dashoffset:230;
+  animation:plDraw .9s var(--ease) .1s forwards;
+}
+@keyframes plDraw{to{stroke-dashoffset:0}}
+@keyframes plFadeIn{to{opacity:1}}
+
+/* text block */
+.pl-text{display:flex; flex-direction:column; align-items:center; gap:8px; overflow:hidden}
+.pl-name{
+  font-family:var(--serif); font-size:clamp(24px,4vw,30px);
+  letter-spacing:10px; color:#fff; display:block;
+  clip-path:inset(0 100% 0 0);
+  animation:plReveal .8s var(--ease) .72s forwards;
+}
+@keyframes plReveal{to{clip-path:inset(0 0% 0 0)}}
+.pl-sub{
+  font-size:10px; letter-spacing:2.5px; text-transform:uppercase;
+  color:rgba(201,169,110,.55); display:block;
+  opacity:0; transform:translateY(6px);
+  animation:plUp .55s var(--ease) 1.15s forwards;
+}
+
+/* progress bar */
+.pl-bar{width:130px; height:1px; background:var(--border); border-radius:2px; overflow:hidden; opacity:0; animation:plUp .4s var(--ease) 1.0s forwards}
+.pl-bar i{display:block; height:100%; width:0; background:var(--grad-gold); animation:plBar .9s var(--ease) 1.05s forwards}
 @keyframes plUp{to{opacity:1; transform:none}}
 @keyframes plBar{to{width:100%}}
-@media (prefers-reduced-motion: reduce){.pl-logo{animation:none; opacity:1; transform:none} .pl-bar i{animation:none; width:100%}}
+
+@media (prefers-reduced-motion:reduce){
+  #preloader.done{transform:none; opacity:0; transition:opacity .5s}
+  .pl-stroke{animation:none; stroke-dashoffset:0}
+  .pl-fill,.pl-sub,.pl-bar{animation:none; opacity:1; transform:none}
+  .pl-name{animation:none; clip-path:inset(0 0% 0 0)}
+  .pl-bar i{animation:none; width:100%}
+}
+
+/* ============ CURSOR ============ */
+@media (pointer:fine){
+  *,*::before,*::after{cursor:none!important}
+  #cur-dot,#cur-ring{
+    position:fixed;top:0;left:0;
+    pointer-events:none;z-index:9999;
+    border-radius:50%;user-select:none;will-change:transform;
+  }
+  #cur-dot{
+    width:6px;height:6px;background:var(--gold);
+    margin:-3px 0 0 -3px;
+    transition:opacity .3s,width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .25s;
+  }
+  #cur-ring{
+    width:36px;height:36px;
+    border:1px solid rgba(201,169,110,.4);
+    margin:-18px 0 0 -18px;
+    transition:width .42s var(--ease),height .42s var(--ease),margin .42s var(--ease),border-color .42s,background .42s,opacity .25s;
+    position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  #cur-ring::after{
+    content:'';font-size:7px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold-l);font-family:var(--sans);font-weight:500;
+    white-space:nowrap;opacity:0;
+    transition:opacity .3s var(--ease);
+    pointer-events:none;
+  }
+  /* hover: link / button */
+  #cur-dot.is-link{opacity:0;width:0;height:0;margin:0}
+  #cur-ring.is-link{
+    width:56px;height:56px;margin:-28px 0 0 -28px;
+    border-color:rgba(201,169,110,.72);background:rgba(201,169,110,.08);
+  }
+  /* hover: image / card */
+  #cur-ring.is-media{
+    width:74px;height:74px;margin:-37px 0 0 -37px;
+    border-color:rgba(201,169,110,.6);background:rgba(201,169,110,.04);
+  }
+  #cur-ring.is-media::after{content:'ОТКРЫТЬ';opacity:1}
+  /* press */
+  #cur-dot.pressing{background:var(--gold-l)}
+  #cur-ring.pressing{background:rgba(201,169,110,.18);border-color:rgba(201,169,110,.95)}
+}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
@@ -700,7 +812,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   .sec-title{font-size:32px}
   /* mobile action bar */
   body{padding-bottom:66px}
-  .float-btn{display:none}
+  .fab-wrap{display:none}
   .mbar{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:96; background:rgba(8,21,38,.97); backdrop-filter:blur(12px); border-top:1px solid var(--border-2); padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
   .mbar-b{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border-radius:var(--r-sm); color:var(--text-2); font-size:11px; letter-spacing:.3px}
   .mbar-b svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -722,9 +834,22 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 
 <!-- ============ PRELOADER ============ -->
 <div id="preloader">
-  <div class="pl-logo"><svg viewBox="0 0 100 100"><path d="M12 74 L40 30 L54 52 L66 34 L88 74 Z" fill="#C9A96E"/></svg><span>ВЕР<b>ШИНА</b></span></div>
-  <div class="pl-bar"><i></i></div>
+  <div class="pl-inner">
+    <svg class="pl-mountain" viewBox="0 0 120 88" xmlns="http://www.w3.org/2000/svg">
+      <path class="pl-fill" d="M8 78 L42 26 L58 50 L72 30 L112 78 Z"/>
+      <path class="pl-stroke" d="M8 78 L42 26 L58 50 L72 30 L112 78 Z"/>
+    </svg>
+    <div class="pl-text">
+      <span class="pl-name">ВЕРШИНА</span>
+      <span class="pl-sub">Кисловодск · Премиальная недвижимость</span>
+    </div>
+    <div class="pl-bar"><i></i></div>
+  </div>
 </div>
+
+<!-- ============ CURSOR ============ -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
 
 <!-- ============ HEADER ============ -->
 <header id="header">
@@ -812,14 +937,14 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
       <p class="sec-sub" data-i18n="ben_sub">Не просто квадратные метры — готовый доходный актив под ключ.</p>
     </div>
     <div class="adv-grid">
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><rect x="3" y="8" width="26" height="16" rx="2"/><circle cx="16" cy="16" r="3.5"/><path d="M7 12v8M25 12v8"/></svg></div><h3 data-i18n="b1_t">Доход с первого месяца</h3><p data-i18n="b1_p">Готовый объект приносит деньги сразу — без ожидания стройки и рисков.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg></div><h3 data-i18n="b2_t">Управляющая компания</h3><p data-i18n="b2_p">Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 15v-3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v3"/><path d="M6 15a3 3 0 0 0-3 3v4h26v-4a3 3 0 0 0-3-3 3 3 0 0 0-3 3v1H9v-1a3 3 0 0 0-3-3z"/><path d="M6 22v3M26 22v3"/></svg></div><h3 data-i18n="b3_t">Готово и меблировано</h3><p data-i18n="b3_p">Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 4v24h24"/><path d="M8 21l6-7 4 4 8-10"/><path d="M22 12h4v4"/></svg></div><h3 data-i18n="b4_t">Рост стоимости актива</h3><p data-i18n="b4_p">Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="b5_t">Юридическая чистота</h3><p data-i18n="b5_p">Проверенные документы, безопасная сделка и полное сопровождение.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 4s9 10 9 16a9 9 0 0 1-18 0c0-6 9-16 9-16z"/><path d="M11 20a5 5 0 0 0 4 4"/></svg></div><h3 data-i18n="b6_t">Ликвидность</h3><p data-i18n="b6_p">Дефицитный курортный актив во 2-й санзоне легко перепродать.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 20v-5a10 10 0 0 1 20 0v5"/><path d="M4 20a2 2 0 0 1 2-2h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2z"/><path d="M28 20a2 2 0 0 0-2-2h-1.5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1H26a2 2 0 0 0 2-2z"/><path d="M24 24v1a3 3 0 0 1-3 3h-3"/></svg></div><h3 data-i18n="b7_t">Персональный менеджер</h3><p data-i18n="b7_p">Ведёт вас от заявки до ключей и первой выплаты по аренде.</p></div>
-      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама гор — то, за что платят премию и туристы, и покупатели.</p></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><rect x="3" y="8" width="26" height="16" rx="2"/><circle cx="16" cy="16" r="3.5"/><path d="M7 12v8M25 12v8"/></svg></div><h3 data-i18n="b1_t">Доход с первого месяца</h3><p data-i18n="b1_p">Готовый объект приносит деньги сразу — без ожидания стройки и стройрисков. Сдавайте в аренду уже в первый месяц после сделки.</p><div class="adv-metric"><b data-i18n="b1_mv">8–12%</b><span data-i18n="b1_ml">доходность годовых в сезон</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 24h24M6 24v-2a10 10 0 0 1 20 0v2M16 9V6M13 6h6"/></svg></div><h3 data-i18n="b2_t">Управляющая компания</h3><p data-i18n="b2_p">Сдаём и обслуживаем апартамент по отельной модели: заселение гостей, уборка, сервис. Пассивный доход без хлопот.</p><div class="adv-metric"><b data-i18n="b2_mv">80%+</b><span data-i18n="b2_ml">сезонная загрузка объектов</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 15v-3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v3"/><path d="M6 15a3 3 0 0 0-3 3v4h26v-4a3 3 0 0 0-3-3 3 3 0 0 0-3 3v1H9v-1a3 3 0 0 0-3-3z"/><path d="M6 22v3M26 22v3"/></svg></div><h3 data-i18n="b3_t">Готово и меблировано</h3><p data-i18n="b3_p">Объект введён в эксплуатацию, с ремонтом и мебелью. Заезжайте или сдавайте сразу — без ремонта и дополнительных вложений.</p><div class="adv-metric"><b data-i18n="b3_mv">100%</b><span data-i18n="b3_ml">готов и введён в эксплуатацию</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M4 4v24h24"/><path d="M8 21l6-7 4 4 8-10"/><path d="M22 12h4v4"/></svg></div><h3 data-i18n="b4_t">Рост стоимости актива</h3><p data-i18n="b4_p">Кисловодск — лидер КМВ по динамике цен. Прогноз метра в премиум-сегменте: с ~380 до ~590 тыс ₽ к 2028 году. Капитал работает.</p><div class="adv-metric"><b data-i18n="b4_mv">+47%</b><span data-i18n="b4_ml">рост за м² за полугодие</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 3l11 4v8c0 7-4.5 12-11 14C9.5 27 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12"/></svg></div><h3 data-i18n="b5_t">Юридическая чистота</h3><p data-i18n="b5_p">Проверенные документы, безопасная сделка и полное сопровождение — от проверки до регистрации права. Возможна структура сделки по нормам халяль.</p><div class="adv-metric"><b data-i18n="b5_mv">Халяль</b><span data-i18n="b5_ml">сделка без процентов и ипотеки</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16 4s9 10 9 16a9 9 0 0 1-18 0c0-6 9-16 9-16z"/><path d="M11 20a5 5 0 0 0 4 4"/></svg></div><h3 data-i18n="b6_t">Ликвидность</h3><p data-i18n="b6_p">Дефицитный курортный актив во 2-й санзоне легко перепродать и сдать. Спрос обеспечивают ~1,9 млн туристов в год.</p><div class="adv-metric"><b data-i18n="b6_mv">5–15т ₽</b><span data-i18n="b6_ml">ставка аренды за ночь</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M6 20v-5a10 10 0 0 1 20 0v5"/><path d="M4 20a2 2 0 0 1 2-2h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2z"/><path d="M28 20a2 2 0 0 0-2-2h-1.5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1H26a2 2 0 0 0 2-2z"/><path d="M24 24v1a3 3 0 0 1-3 3h-3"/></svg></div><h3 data-i18n="b7_t">Персональный менеджер</h3><p data-i18n="b7_p">Ведёт вас от заявки до ключей и первой выплаты по аренде. Один человек по всем вопросам сделки и доходности.</p><div class="adv-metric"><b data-i18n="b7_mv">1 контакт</b><span data-i18n="b7_ml">от заявки до ключей</span></div></div>
+      <div class="adv-card reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M3 26l8-13 5 7 4-6 9 12z"/><circle cx="23" cy="8" r="2.5"/></svg></div><h3 data-i18n="b8_t">Видовые апартаменты</h3><p data-i18n="b8_p">Панорама Кавказского хребта — то, за что и туристы, и покупатели платят премию. Видовые юниты сдаются дороже и раскупаются первыми.</p><div class="adv-metric"><b data-i18n="b8_mv">Вид на горы</b><span data-i18n="b8_ml">премия к ставке аренды</span></div></div>
     </div>
     <div class="center" style="margin-top:48px">
       <button type="button" class="btn btn-gold" data-quiz data-i18n="ben_cta">Получить подборку и расчёт</button>
@@ -1345,7 +1470,27 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
   </div>
 </footer>
 
-<a href="https://t.me/AbdulAzizDigital" target="_blank" rel="noopener" class="float-btn" title="Написать в Telegram"><svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg></a>
+<div class="fab-wrap" id="fabWrap">
+  <div class="fab-children">
+    <a href="https://wa.me/70000000000" class="fab-child fab-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <span class="fab-chip">WhatsApp</span>
+      <div class="fab-ico">
+        <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3 9 3 16c0 2.4.7 4.6 1.8 6.6L3 29l6.6-1.7C11.4 28.4 13.6 29 16 29c7 0 13-6 13-13S23 3 16 3z"/><path d="M11.5 10.3c-.3 0-.7.1-1 .5-.4.4-1.5 1.5-1.5 3.6s1.5 4.2 1.7 4.5c.2.3 3 4.6 7.4 6.4 1 .4 1.9.6 2.5.8.9.2 1.8.2 2.4 0 .8-.2 2.3-1 2.6-1.9.3-.9.3-1.7.2-1.9l-.8-.5-2.9-1.4c-.4-.2-.6-.2-.9.2-.3.4-1 1.3-1.2 1.6-.2.2-.4.3-.8 0-.4-.2-1.8-.7-3.5-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.2-.4 0-.6.2-.8l.6-.6.3-.6c.1-.2 0-.5-.1-.7-.1-.2-1.5-3.7-2.1-5-.5-.8-1.1-.8-1.5-.8z"/></svg>
+      </div>
+    </a>
+    <a href="https://t.me/AbdulAzizDigital" class="fab-child fab-tg" target="_blank" rel="noopener" aria-label="Telegram">
+      <span class="fab-chip">Telegram</span>
+      <div class="fab-ico">
+        <svg viewBox="0 0 32 32"><path d="M29 4L3 15l8 3 2 9 4-6 7 5z"/><path d="M11 18L24 8"/></svg>
+      </div>
+    </a>
+  </div>
+  <div class="fab-pulse"></div>
+  <button class="fab-main" id="fabMain" aria-label="Связаться с нами" aria-expanded="false">
+    <svg class="ico-chat" viewBox="0 0 32 32"><path d="M29 20a2 2 0 0 1-2 2H9l-6 6V6a2 2 0 0 1 2-2h22a2 2 0 0 1 2 2z"/></svg>
+    <svg class="ico-close" viewBox="0 0 32 32"><line x1="8" y1="8" x2="24" y2="24"/><line x1="24" y1="8" x2="8" y2="24"/></svg>
+  </button>
+</div>
 
 <div class="cookie" id="cookie">
   <p data-i18n="cookie_txt">Мы используем файлы cookie для улучшения работы сайта. Продолжая, вы соглашаетесь с <a href="#" onclick="return false">политикой конфиденциальности</a>.</p>
@@ -1393,6 +1538,54 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 </div>
 
 <script>
+/* ============ CURSOR ============ */
+(function(){
+  if(window.matchMedia('(pointer:coarse)').matches)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const dot=document.getElementById('cur-dot');
+  const ring=document.getElementById('cur-ring');
+  if(!dot||!ring)return;
+
+  let mx=-200,my=-200,rx=-200,ry=-200;
+
+  const LINK='a,button,.btn,.filter,.quiz-opt,.plan-list button,.lang button,.mm-nav a,.nav-cta,.halal-toggle';
+  const MEDIA='.card,.g-item,.about-media,.tour-wrap,.fin-slide,.hero-bg,.uc-img';
+
+  // Dot follows mouse instantly
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform=`translate(${mx}px,${my}px)`;
+  });
+
+  // Ring follows with lerp lag
+  (function tick(){
+    rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
+    ring.style.transform=`translate(${rx}px,${ry}px)`;
+    requestAnimationFrame(tick);
+  })();
+
+  // State management
+  function setState(type){
+    dot.classList.toggle('is-link',type==='link');
+    ring.classList.toggle('is-link',type==='link');
+    ring.classList.toggle('is-media',type==='media');
+  }
+
+  document.addEventListener('mouseover',e=>{
+    if(e.target.closest(LINK))     setState('link');
+    else if(e.target.closest(MEDIA)) setState('media');
+    else                             setState('');
+  });
+
+  // Press feedback
+  document.addEventListener('mousedown',()=>{dot.classList.add('pressing');ring.classList.add('pressing')});
+  document.addEventListener('mouseup',()=>{dot.classList.remove('pressing');ring.classList.remove('pressing')});
+
+  // Hide when cursor leaves window
+  document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{dot.style.opacity='';ring.style.opacity=''});
+})();
+
 /* ============ i18n ============ */
 const I18N={
  ru:{
@@ -1424,14 +1617,14 @@ const I18N={
   hero_cta1:"Оставить заявку",hero_cta2:"Смотреть апартаменты",
   hs_ready:"готовность",hs_units:"юнитов в продаже",hs_yield:"доход в сезон",hs_tourists:"туристов в год",
   ben_eye:"Что вы получаете",ben_title:"Что инвестор получает от вложения",ben_sub:"Не просто квадратные метры — готовый доходный актив под ключ.",ben_cta:"Получить подборку и расчёт",
-  b1_t:"Доход с первого месяца",b1_p:"Готовый объект приносит деньги сразу — без ожидания стройки и рисков.",
-  b2_t:"Управляющая компания",b2_p:"Сдаём и обслуживаем апартамент за вас — пассивный доход без хлопот.",
-  b3_t:"Готово и меблировано",b3_p:"Заезжайте или сдавайте сразу: без ремонта и дополнительных вложений.",
-  b4_t:"Рост стоимости актива",b4_p:"Кисловодск — лидер КМВ: +47% за м² за полугодие. Капитал работает.",
-  b5_t:"Юридическая чистота",b5_p:"Проверенные документы, безопасная сделка и полное сопровождение.",
-  b6_t:"Ликвидность",b6_p:"Дефицитный курортный актив во 2-й санзоне легко перепродать.",
-  b7_t:"Персональный менеджер",b7_p:"Ведёт вас от заявки до ключей и первой выплаты по аренде.",
-  b8_t:"Видовые апартаменты",b8_p:"Панорама гор — то, за что платят премию и туристы, и покупатели.",
+  b1_t:"Доход с первого месяца",b1_p:"Готовый объект приносит деньги сразу — без ожидания стройки и стройрисков. Сдавайте в аренду уже в первый месяц после сделки.",b1_mv:"8–12%",b1_ml:"доходность годовых в сезон",
+  b2_t:"Управляющая компания",b2_p:"Сдаём и обслуживаем апартамент по отельной модели: заселение гостей, уборка, сервис. Пассивный доход без хлопот.",b2_mv:"80%+",b2_ml:"сезонная загрузка объектов",
+  b3_t:"Готово и меблировано",b3_p:"Объект введён в эксплуатацию, с ремонтом и мебелью. Заезжайте или сдавайте сразу — без ремонта и дополнительных вложений.",b3_mv:"100%",b3_ml:"готов и введён в эксплуатацию",
+  b4_t:"Рост стоимости актива",b4_p:"Кисловодск — лидер КМВ по динамике цен. Прогноз метра в премиум-сегменте: с ~380 до ~590 тыс ₽ к 2028 году. Капитал работает.",b4_mv:"+47%",b4_ml:"рост за м² за полугодие",
+  b5_t:"Юридическая чистота",b5_p:"Проверенные документы, безопасная сделка и полное сопровождение — от проверки до регистрации права. Возможна структура сделки по нормам халяль.",b5_mv:"Халяль",b5_ml:"сделка без процентов и ипотеки",
+  b6_t:"Ликвидность",b6_p:"Дефицитный курортный актив во 2-й санзоне легко перепродать и сдать. Спрос обеспечивают ~1,9 млн туристов в год.",b6_mv:"5–15т ₽",b6_ml:"ставка аренды за ночь",
+  b7_t:"Персональный менеджер",b7_p:"Ведёт вас от заявки до ключей и первой выплаты по аренде. Один человек по всем вопросам сделки и доходности.",b7_mv:"1 контакт",b7_ml:"от заявки до ключей",
+  b8_t:"Видовые апартаменты",b8_p:"Панорама Кавказского хребта — то, за что и туристы, и покупатели платят премию. Видовые юниты сдаются дороже и раскупаются первыми.",b8_mv:"Вид на горы",b8_ml:"премия к ставке аренды",
   about_eye:"О проекте",about_title:"Курортная резиденция премиум-класса",
   about_text:"Многофункциональный комплекс полностью построен и введён в эксплуатацию в курортной столице Северного Кавказа. Первый этаж — апарт-номера под отельную модель, верхние уровни — двухэтажные квартиры. Часть юнитов уже реализована; в продаже — оставшийся пул.",
   chip_reception:"Ресепшен 24/7",chip_reception_d:"Гостиничная стойка регистрации",chip_rest:"Ресторан / кафе",chip_rest_d:"Своя точка питания и доход",chip_area:"Закрытая территория",chip_area_d:"Благоустройство и охрана",chip_relax:"Зоны отдыха",chip_relax_d:"Озеленение и приватные зоны",chip_view:"Панорамные виды",chip_view_d:"На горы Кавказа",chip_hotel:"Отельный сервис",chip_hotel_d:"Готово к сдаче в аренду",about_tag:"готов к заселению",
@@ -1540,14 +1733,14 @@ const I18N={
   hero_cta1:"Request a call",hero_cta2:"View apartments",
   hs_ready:"readiness",hs_units:"units for sale",hs_yield:"seasonal yield",hs_tourists:"tourists / year",
   ben_eye:"What you get",ben_title:"What the investor gets from the deal",ben_sub:"Not just square metres — a ready, income-generating asset, turnkey.",ben_cta:"Get a selection & calculation",
-  b1_t:"Income from month one",b1_p:"A ready property earns immediately — no waiting for construction, no risk.",
-  b2_t:"Management company",b2_p:"We rent out and service the unit for you — passive income, no hassle.",
-  b3_t:"Ready & furnished",b3_p:"Move in or rent out at once: no renovation, no extra spend.",
-  b4_t:"Asset appreciation",b4_p:"Kislovodsk leads the CMW region: +47% per m² in six months. Capital at work.",
-  b5_t:"Clean legal title",b5_p:"Verified documents, a safe transaction and full support.",
-  b6_t:"Liquidity",b6_p:"A scarce resort asset in the 2nd sanitary zone is easy to resell.",
-  b7_t:"Personal manager",b7_p:"Guides you from enquiry to keys and your first rental payout.",
-  b8_t:"Rooms with a view",b8_p:"A mountain panorama — what both tourists and buyers pay a premium for.",
+  b1_t:"Income from month one",b1_p:"A ready property earns immediately — no waiting for construction, no risk. Rent it out from the very first month after the deal.",b1_mv:"8–12%",b1_ml:"annual yield in season",
+  b2_t:"Management company",b2_p:"We rent out and service the unit hotel-style: guest check-in, cleaning, service. Passive income, no hassle.",b2_mv:"80%+",b2_ml:"seasonal occupancy",
+  b3_t:"Ready & furnished",b3_p:"The property is commissioned, renovated and furnished. Move in or rent out at once — no renovation, no extra spend.",b3_mv:"100%",b3_ml:"built & commissioned",
+  b4_t:"Asset appreciation",b4_p:"Kislovodsk leads the CMW region on price growth. Premium-metre forecast: from ~380k to ~590k ₽ by 2028. Capital at work.",b4_mv:"+47%",b4_ml:"per m² in six months",
+  b5_t:"Clean legal title",b5_p:"Verified documents, a safe transaction and full support — from due diligence to title registration. A halal deal structure is available.",b5_mv:"Halal",b5_ml:"deal with no interest or mortgage",
+  b6_t:"Liquidity",b6_p:"A scarce resort asset in the 2nd sanitary zone is easy to resell and rent. Demand from ~1.9M tourists a year.",b6_mv:"5–15k ₽",b6_ml:"nightly rental rate",
+  b7_t:"Personal manager",b7_p:"Guides you from enquiry to keys and your first rental payout. One person for every question on the deal and its returns.",b7_mv:"1 contact",b7_ml:"from enquiry to keys",
+  b8_t:"Rooms with a view",b8_p:"A panorama of the Caucasus ridge — what both tourists and buyers pay a premium for. View units rent higher and sell first.",b8_mv:"Mountain view",b8_ml:"premium to the rental rate",
   about_eye:"The Project",about_title:"A premium resort residence",
   about_text:"A mixed-use complex fully built and commissioned in the resort capital of the North Caucasus. Ground floor — apart-hotel units under a hotel model, upper levels — two-storey residences. Part of the units is already sold; the remaining pool is available.",
   chip_reception:"24/7 reception",chip_reception_d:"Hotel-grade front desk",chip_rest:"Restaurant / café",chip_rest_d:"On-site dining & extra income",chip_area:"Gated territory",chip_area_d:"Landscaping & security",chip_relax:"Leisure zones",chip_relax_d:"Greenery & private areas",chip_view:"Panoramic views",chip_view_d:"Of the Caucasus mountains",chip_hotel:"Hotel service",chip_hotel_d:"Ready to rent out",about_tag:"move-in ready",
@@ -2078,10 +2271,21 @@ document.addEventListener('DOMContentLoaded',()=>{
  const header=document.getElementById('header');
  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
 
- // preloader
- (function(){const p=document.getElementById('preloader'); if(!p)return; let hid=false;
-   const hide=()=>{if(hid)return; hid=true; p.classList.add('done'); setTimeout(()=>{p.style.display='none';},700);};
-   addEventListener('load',()=>setTimeout(hide,300)); setTimeout(hide,2200);})();
+ // preloader — min 1800ms visible so all animations complete; exit slides up (0.95s)
+ (function(){
+   const p=document.getElementById('preloader'); if(!p)return;
+   let hid=false; const t0=Date.now();
+   const hide=()=>{
+     if(hid)return; hid=true;
+     p.classList.add('done');
+     setTimeout(()=>{p.remove();},1000);
+   };
+   addEventListener('load',()=>{
+     const elapsed=Date.now()-t0;
+     setTimeout(hide, Math.max(1800-elapsed, 200));
+   });
+   setTimeout(hide, 3200);
+ })();
 
  // hero parallax (на контейнере .hero-bg, не трогает слайды)
  const heroBg=document.querySelector('#hero .hero-bg');
@@ -2141,6 +2345,24 @@ document.addEventListener('DOMContentLoaded',()=>{
  const cookie=document.getElementById('cookie');
  if(!localStorage.getItem('ck_ok')) setTimeout(()=>cookie.classList.add('show'),1400);
  document.getElementById('cookieOk').addEventListener('click',()=>{localStorage.setItem('ck_ok','1');cookie.classList.remove('show')});
+
+ // FAB toggle
+ (function(){
+   const wrap=document.getElementById('fabWrap');
+   const btn=document.getElementById('fabMain');
+   if(!wrap||!btn)return;
+   btn.addEventListener('click',e=>{
+     e.stopPropagation();
+     const open=wrap.classList.toggle('open');
+     btn.setAttribute('aria-expanded',open);
+   });
+   document.addEventListener('click',e=>{
+     if(!wrap.contains(e.target))wrap.classList.remove('open');
+   });
+   document.addEventListener('keydown',e=>{
+     if(e.key==='Escape')wrap.classList.remove('open');
+   });
+ })();
 
  // form
  document.getElementById('leadForm').addEventListener('submit',e=>{
