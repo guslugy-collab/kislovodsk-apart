@@ -1560,19 +1560,25 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 </div>
 
 <script>
-/* ============ TELEGRAM CONFIG ============ */
-// ↓ Вставь свои значения — форма начнёт слать заявки прямо в Telegram
-const TG_TOKEN = '8840481698:AAEuIEdB2e6FvUEp1IO-CxQukyJWYO1SpUE';   // бот «вершина»
-const TG_CHAT  = '924658134';      // Abdul Aziz
+/* ============ LEAD ENDPOINT (Cloudflare Worker) ============ */
+// ↓ Вставь адрес своего Worker после деплоя (см. worker.js рядом с файлом).
+//   Токен бота лежит СЕКРЕТОМ в Worker и в код сайта НЕ попадает.
+const LEAD_ENDPOINT = 'https://vershina-leads.usaamnesia2026.workers.dev';
+const LEAD_SRC = 'ВЕРШИНА'; // подпись источника в заявке
 
-async function sendToTelegram(html){
-  const r=await fetch(
-    `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
-    {method:'POST',headers:{'Content-Type':'application/json'},
-     body:JSON.stringify({chat_id:TG_CHAT,text:html,parse_mode:'HTML'})}
-  );
-  if(!r.ok) throw new Error('TG '+r.status);
-  return r.json();
+// Отправляет структурированную заявку на прокси. Возвращает true при успехе.
+async function sendLead(data){
+  if(!LEAD_ENDPOINT || LEAD_ENDPOINT.includes('ЗАМЕНИ'))
+    throw new Error('LEAD_ENDPOINT не настроен');
+  const r=await fetch(LEAD_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({...data, src:LEAD_SRC})
+  });
+  if(!r.ok) throw new Error('LEAD '+r.status);
+  const j=await r.json().catch(()=>({}));
+  if(j && j.ok===false) throw new Error('LEAD payload');
+  return true;
 }
 
 /* ============ CURSOR ============ */
@@ -1583,21 +1589,25 @@ async function sendToTelegram(html){
   const ring=document.getElementById('cur-ring');
   if(!dot||!ring)return;
 
-  let mx=-200,my=-200,rx=-200,ry=-200;
+  let mx=-200,my=-200,dx=-200,dy=-200,rx=-200,ry=-200,seen=false;
 
   const LINK='a,button,.btn,.filter,.quiz-opt,.plan-list button,.lang button,.mm-nav a,.nav-cta,.halal-toggle';
   const MEDIA='.card,.g-item,.about-media,.tour-wrap,.fin-slide,.hero-bg,.uc-img';
 
-  // Dot follows mouse instantly
+  // В mousemove только запоминаем позицию — БЕЗ записи в DOM.
+  // При первом движении подтягиваем точку и кольцо к курсору, чтобы они не «влетали» из угла.
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
-    dot.style.transform=`translate(${mx}px,${my}px)`;
-  });
+    if(!seen){ seen=true; dx=rx=mx; dy=ry=my; }
+  },{passive:true});
 
-  // Ring follows with lerp lag
+  // Обе части двигаем в ОДНОМ requestAnimationFrame-цикле — синхронно с кадром экрана.
+  // Это убирает дёрганье: раньше точка обновлялась на нестабильной частоте mousemove.
   (function tick(){
-    rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
-    ring.style.transform=`translate(${rx}px,${ry}px)`;
+    dx+=(mx-dx)*.4;  dy+=(my-dy)*.4;   // точка: почти мгновенно, но сглажено
+    rx+=(mx-rx)*.14; ry+=(my-ry)*.14;  // кольцо: мягкое отставание
+    dot.style.transform =`translate3d(${dx}px,${dy}px,0)`;
+    ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;
     requestAnimationFrame(tick);
   })();
 
@@ -2175,8 +2185,11 @@ function quizSubmit(){
  const gv=k=>{const s=QUIZ.find(x=>x.key===k); const o=s&&s.opts&&s.opts.find(op=>op.v===qAns[k]); return o?txt(o.i):'—';};
  const list=quizFilteredList();
  quizApplyToCatalog();
- // Telegram lead
- const text=encodeURIComponent(`Заявка (квиз) — ВЕРШИНА:\nЦель: ${gv('goal')}\nБюджет: ${gv('budget')}\nФормат: ${gv('format')}\nПодходит вариантов: ${list.length}\nИмя: ${name.value}\nТелефон: ${phone.value}`);
+ // Lead → Worker (автозахват). Fallback — открыть Telegram вручную.
+ const quizMsg=`Цель: ${gv('goal')}; Бюджет: ${gv('budget')}; Формат: ${gv('format')}; Подходит вариантов: ${list.length}`;
+ const text=encodeURIComponent(`Заявка (квиз) — ВЕРШИНА:\n${quizMsg}\nИмя: ${name.value}\nТелефон: ${phone.value}`);
+ sendLead({name:name.value.trim(), phone:phone.value.trim(), type:'Квиз-подбор', msg:quizMsg})
+   .catch(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'));
  // result screen
  const body=document.getElementById('quizBody');
  document.getElementById('quizBar').style.width='100%';
@@ -2193,7 +2206,6 @@ function quizSubmit(){
  });
  const toast=document.getElementById('toast'); toast.textContent=txt('toast_ok'); toast.classList.add('show');
  setTimeout(()=>toast.classList.remove('show'),3500);
- setTimeout(()=>window.open('https://t.me/AbdulAzizDigital?text='+text,'_blank'),700);
 }
 
 /* ============ DOCS ============ */
@@ -2401,7 +2413,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    });
  })();
 
- // form → Telegram Bot API
+ // form → Lead endpoint (Cloudflare Worker → Telegram)
  document.getElementById('leadForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const form=e.target;
@@ -2415,17 +2427,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   // loading state
   const origHTML=btn.innerHTML; btn.disabled=true; btn.textContent='…';
 
-  const html=[
-   `🏔 <b>Заявка с сайта ВЕРШИНА</b>`,
-   `👤 <b>Имя:</b> ${name}`,
-   `📞 <b>Телефон:</b> ${phone}`,
-   `📋 <b>Запрос:</b> ${type}`,
-   msg?`💬 <b>Сообщение:</b> ${msg}`:'',
-   `🌐 <i>kislovodsk-apart</i>`
-  ].filter(Boolean).join('\n');
-
   try{
-   await sendToTelegram(html);
+   await sendLead({name, phone, type, msg});
    // ✓ success
    toast.textContent=txt('toast_ok');
    toast.style.cssText='background:#0f2a1c;border-color:#2f7d52;color:#a8e6c2';
