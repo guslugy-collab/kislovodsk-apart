@@ -92,6 +92,16 @@ section{padding:120px 0}
 }
 .btn-gold{background:var(--grad-gold); color:#0a1524; font-weight:600}
 .btn-gold:hover{filter:brightness(1.08); transform:translateY(-2px); box-shadow:0 14px 34px rgba(201,169,110,.28)}
+/* Переливание кнопки-CTA: активируется классом .live (когда в форме есть заявка) */
+.btn-shine{position:relative; overflow:hidden}
+.btn-shine::after{
+  content:''; position:absolute; top:-40%; bottom:-40%; left:-75%; width:55%; z-index:1;
+  background:linear-gradient(100deg,transparent,rgba(255,250,236,.9),transparent);
+  filter:blur(7px); transform:skewX(-14deg); pointer-events:none; opacity:0;
+}
+.btn-shine.live::after{opacity:.95; animation:btnShine 3s ease-in-out infinite}
+@keyframes btnShine{0%{left:-75%}55%{left:120%}100%{left:120%}}
+@media (prefers-reduced-motion: reduce){.btn-shine.live::after{animation:none; opacity:0}}
 .btn-ghost{border:1px solid var(--border-2); color:#fff}
 .btn-ghost:hover{border-color:var(--gold); color:var(--gold)}
 
@@ -1449,7 +1459,7 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
         </div>
         <div class="form-el"><label data-i18n="ct_msg">Сообщение (необязательно)</label><textarea id="fMsg"></textarea></div>
         <label class="consent"><input type="checkbox" id="fConsent" required style="width:auto;margin-top:3px"><span data-i18n="ct_consent">Я согласен на обработку персональных данных в соответствии с </span><a href="#" onclick="return false" data-i18n="ct_policy">политикой конфиденциальности</a></label>
-        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center" data-i18n="ct_submit">Отправить заявку</button>
+        <button type="submit" class="btn btn-gold btn-shine" id="leadSubmit" style="width:100%; justify-content:center" data-i18n="ct_submit">Отправить заявку</button>
       </form>
     </div>
     <div class="contact-info reveal">
@@ -2447,6 +2457,18 @@ document.addEventListener('DOMContentLoaded',()=>{
    btn.disabled=false; btn.innerHTML=origHTML;
   }
  });
+
+ // Переливание кнопки «Отправить заявку»: включаем, когда появилась заявка (есть имя и телефон)
+ (function(){
+  const lf=document.getElementById('leadForm'); if(!lf) return;
+  const submit=document.getElementById('leadSubmit');
+  const upd=()=>{
+   const ready=document.getElementById('fName').value.trim()!=='' && document.getElementById('fPhone').value.trim()!=='';
+   submit.classList.toggle('live', ready);
+  };
+  lf.addEventListener('input', upd);
+  upd();
+ })();
 });
 </script>
 </body>
