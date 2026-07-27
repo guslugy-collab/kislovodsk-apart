@@ -181,10 +181,32 @@ header .nav{max-width:1360px; padding-left:40px; padding-right:40px}
   .hero-badge,.hero h1,.hero p.lead,.hero-cta,.halal-badge,.hero-stats{opacity:1; animation:none}
 }
 .hero-badge{
-  display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border:1px solid var(--border-2);
+  display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border:1px solid rgba(224,194,138,.30);
   border-radius:100px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-l); margin-bottom:30px;
+  position:relative; overflow:visible;
+  background:rgba(255,255,255,.05); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -6px 16px rgba(201,169,110,.09), 0 6px 26px rgba(0,0,0,.28);
+  text-shadow:0 1px 8px rgba(5,16,30,.55);
 }
-.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#3ad07a; box-shadow:0 0 10px #3ad07a}
+/* liquid glass — золотое текучее свечение за матовым стеклом */
+.hero-badge::before{
+  content:''; position:absolute; inset:-80% -35%; z-index:-1; border-radius:100px; pointer-events:none;
+  background:
+    radial-gradient(38% 60% at 22% 45%, rgba(224,194,138,.60), transparent 62%),
+    radial-gradient(34% 58% at 72% 58%, rgba(201,169,110,.55), transparent 60%),
+    radial-gradient(30% 52% at 52% 28%, rgba(255,228,176,.50), transparent 60%);
+  filter:blur(18px); opacity:.85; will-change:transform;
+  animation:badgeLiquid 7.5s ease-in-out infinite;
+}
+.hero-badge > span{position:relative; z-index:2}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#3ad07a; box-shadow:0 0 10px #3ad07a; z-index:2}
+@keyframes badgeLiquid{
+  0%,100%{transform:translate(-3%,-4%) rotate(0deg) scale(1)}
+  30%{transform:translate(5%,3%) rotate(10deg) scale(1.15)}
+  55%{transform:translate(-2%,5%) rotate(-8deg) scale(1.06)}
+  80%{transform:translate(4%,-2%) rotate(6deg) scale(1.10)}
+}
+@media (prefers-reduced-motion: reduce){.hero-badge::before{animation:none}}
 .hero h1{font-size:clamp(42px,7vw,88px); color:#fff; max-width:15ch; margin-bottom:26px}
 .hero h1 em{font-style:italic; color:var(--gold)}
 .hero p.lead{font-size:clamp(17px,2vw,21px); color:var(--text-2); max-width:52ch; margin-bottom:40px}
@@ -1540,8 +1562,8 @@ body.halal .halal{border-color:rgba(201,169,110,.7); box-shadow:0 0 0 1px rgba(2
 <script>
 /* ============ TELEGRAM CONFIG ============ */
 // ↓ Вставь свои значения — форма начнёт слать заявки прямо в Telegram
-const TG_TOKEN = 'ВСТАВЬ_TOKEN_БОТА';   // получи у @BotFather
-const TG_CHAT  = 'ВСТАВЬ_CHAT_ID';      // свой числовой chat_id
+const TG_TOKEN = '8840481698:AAEuIEdB2e6FvUEp1IO-CxQukyJWYO1SpUE';   // бот «вершина»
+const TG_CHAT  = '924658134';      // Abdul Aziz
 
 async function sendToTelegram(html){
   const r=await fetch(
